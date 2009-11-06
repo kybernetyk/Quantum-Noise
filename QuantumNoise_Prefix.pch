@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'QuantumNoise' target in the 'QuantumNoise' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+	#import "Defines.h"
+#endif

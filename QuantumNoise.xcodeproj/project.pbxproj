@@ -1,0 +1,602 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03A14A2110A06E56002BF9B1 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A14A2010A06E56002BF9B1 /* Sparkle.framework */; };
+		03A14A2B10A06E68002BF9B1 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 03A14A2A10A06E68002BF9B1 /* dsa_pub.pem */; };
+		03A14A3510A06F32002BF9B1 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 03A14A2010A06E56002BF9B1 /* Sparkle.framework */; };
+		03C20D54108E14FF009C905A /* QNMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20D53108E14FF009C905A /* QNMainWindowController.m */; };
+		03C20D56108E1509009C905A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20D55108E1509009C905A /* MainWindow.xib */; };
+		03C20D67108E156F009C905A /* LeftSidebarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20D66108E156F009C905A /* LeftSidebarView.xib */; };
+		03C20D90108E16B9009C905A /* QNLeftSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20D8F108E16B9009C905A /* QNLeftSidebarViewController.m */; };
+		03C20D93108E16C5009C905A /* QNLeftSidebarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20D92108E16C5009C905A /* QNLeftSidebarItem.m */; };
+		03C20DBF108E1771009C905A /* QNImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20DBE108E1771009C905A /* QNImageAndTextCell.m */; };
+		03C20E00108E19DA009C905A /* QNDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20DFD108E19DA009C905A /* QNDownloadManager.m */; };
+		03C20E0C108E19F6009C905A /* QNDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E04108E19F5009C905A /* QNDownloadOperation.m */; };
+		03C20E0D108E19F6009C905A /* QNDownloadOperation+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E06108E19F5009C905A /* QNDownloadOperation+Factory.m */; };
+		03C20E0E108E19F6009C905A /* QNRapidshareComDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E0A108E19F6009C905A /* QNRapidshareComDownloadOperation.m */; };
+		03C20E1A108E1A2D009C905A /* QNDownloadBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E19108E1A2D009C905A /* QNDownloadBundle.m */; };
+		03C20E1D108E1A37009C905A /* QNDownloadBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E1C108E1A37009C905A /* QNDownloadBundleManager.m */; };
+		03C20E28108E1A7B009C905A /* NSString+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E27108E1A7B009C905A /* NSString+Search.m */; };
+		03C20E2F108E1A8F009C905A /* DDInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E2C108E1A8F009C905A /* DDInvocationGrabber.m */; };
+		03C20E30108E1A8F009C905A /* NSObject+DDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E2E108E1A8F009C905A /* NSObject+DDExtensions.m */; };
+		03C20E34108E1AB8009C905A /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C20E33108E1AB8009C905A /* libcurl.dylib */; };
+		03C20E64108E1ECE009C905A /* QNDownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E63108E1ECE009C905A /* QNDownloadsViewController.m */; };
+		03C20E66108E1EDC009C905A /* DownloadsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20E65108E1EDC009C905A /* DownloadsView.xib */; };
+		03F8D3B6108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F8D3B3108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib */; };
+		03F8D3B7108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F8D3B5108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m */; };
+		03F8D3BB108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F8D3B8108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib */; };
+		03F8D3BC108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F8D3BA108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m */; };
+		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		256AC3DA0F4B6AC300CF3369 /* QuantumNoiseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* QuantumNoiseAppDelegate.m */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		03A14A3610A06F53002BF9B1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				03A14A3510A06F32002BF9B1 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		03A14A2010A06E56002BF9B1 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		03A14A2A10A06E68002BF9B1 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		03C20D52108E14FF009C905A /* QNMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNMainWindowController.h; sourceTree = "<group>"; };
+		03C20D53108E14FF009C905A /* QNMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNMainWindowController.m; sourceTree = "<group>"; };
+		03C20D55108E1509009C905A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		03C20D65108E1566009C905A /* QNLeftSidebarItemTypeDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNLeftSidebarItemTypeDefinitions.h; sourceTree = "<group>"; };
+		03C20D66108E156F009C905A /* LeftSidebarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftSidebarView.xib; sourceTree = "<group>"; };
+		03C20D8E108E16B9009C905A /* QNLeftSidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNLeftSidebarViewController.h; sourceTree = "<group>"; };
+		03C20D8F108E16B9009C905A /* QNLeftSidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNLeftSidebarViewController.m; sourceTree = "<group>"; };
+		03C20D91108E16C5009C905A /* QNLeftSidebarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNLeftSidebarItem.h; sourceTree = "<group>"; };
+		03C20D92108E16C5009C905A /* QNLeftSidebarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNLeftSidebarItem.m; sourceTree = "<group>"; };
+		03C20DBD108E1771009C905A /* QNImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNImageAndTextCell.h; sourceTree = "<group>"; };
+		03C20DBE108E1771009C905A /* QNImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNImageAndTextCell.m; sourceTree = "<group>"; };
+		03C20DFC108E19DA009C905A /* QNDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadManager.h; sourceTree = "<group>"; };
+		03C20DFD108E19DA009C905A /* QNDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNDownloadManager.m; sourceTree = "<group>"; };
+		03C20DFE108E19DA009C905A /* QNDownloadManager+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNDownloadManager+Private.h"; sourceTree = "<group>"; };
+		03C20DFF108E19DA009C905A /* QNDownloadManagerDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadManagerDelegateProtocol.h; sourceTree = "<group>"; };
+		03C20E03108E19F5009C905A /* QNDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadOperation.h; sourceTree = "<group>"; };
+		03C20E04108E19F5009C905A /* QNDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNDownloadOperation.m; sourceTree = "<group>"; };
+		03C20E05108E19F5009C905A /* QNDownloadOperation+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNDownloadOperation+Factory.h"; sourceTree = "<group>"; };
+		03C20E06108E19F5009C905A /* QNDownloadOperation+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QNDownloadOperation+Factory.m"; sourceTree = "<group>"; };
+		03C20E07108E19F5009C905A /* QNDownloadOperation+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNDownloadOperation+Private.h"; sourceTree = "<group>"; };
+		03C20E08108E19F5009C905A /* QNDownloadOperationDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadOperationDelegateProtocol.h; sourceTree = "<group>"; };
+		03C20E09108E19F6009C905A /* QNRapidshareComDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNRapidshareComDownloadOperation.h; sourceTree = "<group>"; };
+		03C20E0A108E19F6009C905A /* QNRapidshareComDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNRapidshareComDownloadOperation.m; sourceTree = "<group>"; };
+		03C20E0B108E19F6009C905A /* QNRapidshareComDownloadOperation+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNRapidshareComDownloadOperation+Private.h"; sourceTree = "<group>"; };
+		03C20E18108E1A2D009C905A /* QNDownloadBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadBundle.h; sourceTree = "<group>"; };
+		03C20E19108E1A2D009C905A /* QNDownloadBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNDownloadBundle.m; sourceTree = "<group>"; };
+		03C20E1B108E1A37009C905A /* QNDownloadBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadBundleManager.h; sourceTree = "<group>"; };
+		03C20E1C108E1A37009C905A /* QNDownloadBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNDownloadBundleManager.m; sourceTree = "<group>"; };
+		03C20E1E108E1A3E009C905A /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		03C20E26108E1A7B009C905A /* NSString+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Search.h"; sourceTree = "<group>"; };
+		03C20E27108E1A7B009C905A /* NSString+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Search.m"; sourceTree = "<group>"; };
+		03C20E2B108E1A8F009C905A /* DDInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDInvocationGrabber.h; sourceTree = "<group>"; };
+		03C20E2C108E1A8F009C905A /* DDInvocationGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDInvocationGrabber.m; sourceTree = "<group>"; };
+		03C20E2D108E1A8F009C905A /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
+		03C20E2E108E1A8F009C905A /* NSObject+DDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DDExtensions.m"; sourceTree = "<group>"; };
+		03C20E33108E1AB8009C905A /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = /usr/lib/libcurl.dylib; sourceTree = "<absolute>"; };
+		03C20E62108E1ECE009C905A /* QNDownloadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadsViewController.h; sourceTree = "<group>"; };
+		03C20E63108E1ECE009C905A /* QNDownloadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNDownloadsViewController.m; sourceTree = "<group>"; };
+		03C20E65108E1EDC009C905A /* DownloadsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadsView.xib; sourceTree = "<group>"; };
+		03F8D3B3108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QNAddDownloadLinksWindow.xib; sourceTree = "<group>"; };
+		03F8D3B4108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNAddDownloadLinksWindowController.h; sourceTree = "<group>"; };
+		03F8D3B5108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNAddDownloadLinksWindowController.m; sourceTree = "<group>"; };
+		03F8D3B8108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QNCreateNewDownloadBundleWindow.xib; sourceTree = "<group>"; };
+		03F8D3B9108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNCreateNewDownloadBundleWindowController.h; sourceTree = "<group>"; };
+		03F8D3BA108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNCreateNewDownloadBundleWindowController.m; sourceTree = "<group>"; };
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* QuantumNoiseAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuantumNoiseAppDelegate.h; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* QuantumNoiseAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuantumNoiseAppDelegate.m; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* QuantumNoise_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuantumNoise_Prefix.pch; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		8D1107310486CEB800E47090 /* QuantumNoise-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "QuantumNoise-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* QuantumNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuantumNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				03C20E34108E1AB8009C905A /* libcurl.dylib in Frameworks */,
+				03A14A2110A06E56002BF9B1 /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03A14A2E10A06EC3002BF9B1 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				256AC3D80F4B6AC300CF3369 /* QuantumNoiseAppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* QuantumNoiseAppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		03C20D2B108E14BA009C905A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				03A14A2E10A06EC3002BF9B1 /* App Delegate */,
+				03F8D3B1108E4E4A00B8E7E2 /* Create New Bundle Sheet */,
+				03F8D3B0108E4E4000B8E7E2 /* Add Links Sheet */,
+				03C20D2C108E14BF009C905A /* Main Window */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		03C20D2C108E14BF009C905A /* Main Window */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E60108E1DFF009C905A /* Downloads View */,
+				03C20D58108E152E009C905A /* Left Sidebar */,
+				03C20D2D108E14C6009C905A /* Main Window */,
+			);
+			name = "Main Window";
+			sourceTree = "<group>";
+		};
+		03C20D2D108E14C6009C905A /* Main Window */ = {
+			isa = PBXGroup;
+			children = (
+				03C20D55108E1509009C905A /* MainWindow.xib */,
+				03C20D52108E14FF009C905A /* QNMainWindowController.h */,
+				03C20D53108E14FF009C905A /* QNMainWindowController.m */,
+			);
+			name = "Main Window";
+			sourceTree = "<group>";
+		};
+		03C20D58108E152E009C905A /* Left Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				03C20DD0108E183C009C905A /* Internal Stuff */,
+				03C20D8E108E16B9009C905A /* QNLeftSidebarViewController.h */,
+				03C20D8F108E16B9009C905A /* QNLeftSidebarViewController.m */,
+				03C20D66108E156F009C905A /* LeftSidebarView.xib */,
+			);
+			name = "Left Sidebar";
+			sourceTree = "<group>";
+		};
+		03C20DD0108E183C009C905A /* Internal Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				03C20D65108E1566009C905A /* QNLeftSidebarItemTypeDefinitions.h */,
+				03C20D91108E16C5009C905A /* QNLeftSidebarItem.h */,
+				03C20D92108E16C5009C905A /* QNLeftSidebarItem.m */,
+				03C20DBD108E1771009C905A /* QNImageAndTextCell.h */,
+				03C20DBE108E1771009C905A /* QNImageAndTextCell.m */,
+			);
+			name = "Internal Stuff";
+			sourceTree = "<group>";
+		};
+		03C20DF8108E19B1009C905A /* Download Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E1E108E1A3E009C905A /* Defines.h */,
+				03C20E12108E1A19009C905A /* Download Bundle Manager */,
+				03C20E11108E1A11009C905A /* Download Bundle */,
+				03C20E01108E19DF009C905A /* Download Operation */,
+				03C20DF9108E19BB009C905A /* Download Manager */,
+			);
+			name = "Download Stuff";
+			sourceTree = "<group>";
+		};
+		03C20DF9108E19BB009C905A /* Download Manager */ = {
+			isa = PBXGroup;
+			children = (
+				03C20DFC108E19DA009C905A /* QNDownloadManager.h */,
+				03C20DFD108E19DA009C905A /* QNDownloadManager.m */,
+				03C20DFE108E19DA009C905A /* QNDownloadManager+Private.h */,
+				03C20DFF108E19DA009C905A /* QNDownloadManagerDelegateProtocol.h */,
+			);
+			name = "Download Manager";
+			sourceTree = "<group>";
+		};
+		03C20E01108E19DF009C905A /* Download Operation */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E03108E19F5009C905A /* QNDownloadOperation.h */,
+				03C20E04108E19F5009C905A /* QNDownloadOperation.m */,
+				03C20E05108E19F5009C905A /* QNDownloadOperation+Factory.h */,
+				03C20E06108E19F5009C905A /* QNDownloadOperation+Factory.m */,
+				03C20E07108E19F5009C905A /* QNDownloadOperation+Private.h */,
+				03C20E08108E19F5009C905A /* QNDownloadOperationDelegateProtocol.h */,
+				03C20E09108E19F6009C905A /* QNRapidshareComDownloadOperation.h */,
+				03C20E0A108E19F6009C905A /* QNRapidshareComDownloadOperation.m */,
+				03C20E0B108E19F6009C905A /* QNRapidshareComDownloadOperation+Private.h */,
+			);
+			name = "Download Operation";
+			sourceTree = "<group>";
+		};
+		03C20E11108E1A11009C905A /* Download Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E18108E1A2D009C905A /* QNDownloadBundle.h */,
+				03C20E19108E1A2D009C905A /* QNDownloadBundle.m */,
+			);
+			name = "Download Bundle";
+			sourceTree = "<group>";
+		};
+		03C20E12108E1A19009C905A /* Download Bundle Manager */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E1B108E1A37009C905A /* QNDownloadBundleManager.h */,
+				03C20E1C108E1A37009C905A /* QNDownloadBundleManager.m */,
+			);
+			name = "Download Bundle Manager";
+			sourceTree = "<group>";
+		};
+		03C20E21108E1A69009C905A /* Cocoa Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E29108E1A7E009C905A /* NSObject Threading */,
+				03C20E22108E1A71009C905A /* NSString */,
+			);
+			name = "Cocoa Extensions";
+			sourceTree = "<group>";
+		};
+		03C20E22108E1A71009C905A /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E26108E1A7B009C905A /* NSString+Search.h */,
+				03C20E27108E1A7B009C905A /* NSString+Search.m */,
+			);
+			name = NSString;
+			sourceTree = "<group>";
+		};
+		03C20E29108E1A7E009C905A /* NSObject Threading */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E2B108E1A8F009C905A /* DDInvocationGrabber.h */,
+				03C20E2C108E1A8F009C905A /* DDInvocationGrabber.m */,
+				03C20E2D108E1A8F009C905A /* NSObject+DDExtensions.h */,
+				03C20E2E108E1A8F009C905A /* NSObject+DDExtensions.m */,
+			);
+			name = "NSObject Threading";
+			sourceTree = "<group>";
+		};
+		03C20E60108E1DFF009C905A /* Downloads View */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E62108E1ECE009C905A /* QNDownloadsViewController.h */,
+				03C20E63108E1ECE009C905A /* QNDownloadsViewController.m */,
+				03C20E65108E1EDC009C905A /* DownloadsView.xib */,
+			);
+			name = "Downloads View";
+			sourceTree = "<group>";
+		};
+		03F8D3B0108E4E4000B8E7E2 /* Add Links Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				03F8D3B3108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib */,
+				03F8D3B4108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.h */,
+				03F8D3B5108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m */,
+			);
+			name = "Add Links Sheet";
+			sourceTree = "<group>";
+		};
+		03F8D3B1108E4E4A00B8E7E2 /* Create New Bundle Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				03F8D3B8108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib */,
+				03F8D3B9108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.h */,
+				03F8D3BA108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m */,
+			);
+			name = "Create New Bundle Sheet";
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* QuantumNoise.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* QuantumNoise */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E21108E1A69009C905A /* Cocoa Extensions */,
+				03C20DF8108E19B1009C905A /* Download Stuff */,
+				03C20D2B108E14BA009C905A /* UI */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = QuantumNoise;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				256AC3F00F4B6AF500CF3369 /* QuantumNoise_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				03A14A2A10A06E68002BF9B1 /* dsa_pub.pem */,
+				8D1107310486CEB800E47090 /* QuantumNoise-Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03A14A2010A06E56002BF9B1 /* Sparkle.framework */,
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				03C20E33108E1AB8009C905A /* libcurl.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* QuantumNoise */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "QuantumNoise" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				03A14A3610A06F53002BF9B1 /* CopyFiles */,
+				03A14AB910A07411002BF9B1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuantumNoise;
+			productInstallPath = "$(HOME)/Applications";
+			productName = QuantumNoise;
+			productReference = 8D1107320486CEB800E47090 /* QuantumNoise.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "QuantumNoise" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* QuantumNoise */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* QuantumNoise */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				03C20D56108E1509009C905A /* MainWindow.xib in Resources */,
+				03C20D67108E156F009C905A /* LeftSidebarView.xib in Resources */,
+				03C20E66108E1EDC009C905A /* DownloadsView.xib in Resources */,
+				03F8D3B6108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib in Resources */,
+				03F8D3BB108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib in Resources */,
+				03A14A2B10A06E68002BF9B1 /* dsa_pub.pem in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03A14AB910A07411002BF9B1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "#!/usr/bin/python\n\nfrom AppKit import NSMutableDictionary\n\nimport os\n\n# reading info.plist file\nprojectPlist = NSMutableDictionary.dictionaryWithContentsOfFile_('QuantumNoise-Info.plist')\n\n#overall build\nversion = projectPlist['BuildNumber']\nincrementVersion = long(version) + 1\nprojectPlist['BuildNumber'] = str(incrementVersion)\n\n#this version build\nversion = projectPlist['ThisVersionBuildNumber']\nincrementVersion = long(version) + 1\nprojectPlist['ThisVersionBuildNumber'] = str(incrementVersion)\n\nprojectPlist.writeToFile_atomically_('QuantumNoise-Info.plist', True)\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* QuantumNoiseAppDelegate.m in Sources */,
+				03C20D54108E14FF009C905A /* QNMainWindowController.m in Sources */,
+				03C20D90108E16B9009C905A /* QNLeftSidebarViewController.m in Sources */,
+				03C20D93108E16C5009C905A /* QNLeftSidebarItem.m in Sources */,
+				03C20DBF108E1771009C905A /* QNImageAndTextCell.m in Sources */,
+				03C20E00108E19DA009C905A /* QNDownloadManager.m in Sources */,
+				03C20E0C108E19F6009C905A /* QNDownloadOperation.m in Sources */,
+				03C20E0D108E19F6009C905A /* QNDownloadOperation+Factory.m in Sources */,
+				03C20E0E108E19F6009C905A /* QNRapidshareComDownloadOperation.m in Sources */,
+				03C20E1A108E1A2D009C905A /* QNDownloadBundle.m in Sources */,
+				03C20E1D108E1A37009C905A /* QNDownloadBundleManager.m in Sources */,
+				03C20E28108E1A7B009C905A /* NSString+Search.m in Sources */,
+				03C20E2F108E1A8F009C905A /* DDInvocationGrabber.m in Sources */,
+				03C20E30108E1A8F009C905A /* NSObject+DDExtensions.m in Sources */,
+				03C20E64108E1ECE009C905A /* QNDownloadsViewController.m in Sources */,
+				03F8D3B7108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m in Sources */,
+				03F8D3BC108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = QuantumNoise_Prefix.pch;
+				INFOPLIST_FILE = "QuantumNoise-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = QuantumNoise;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = QuantumNoise_Prefix.pch;
+				INFOPLIST_FILE = "QuantumNoise-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = QuantumNoise;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "QuantumNoise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "QuantumNoise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
