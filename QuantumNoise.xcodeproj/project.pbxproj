@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031F1AA510AB304F007386F7 /* unrar in Resources */ = {isa = PBXBuildFile; fileRef = 031F1AA410AB304F007386F7 /* unrar */; };
 		0397196D10A7959C00E34BB8 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0397196C10A7959C00E34BB8 /* icon.icns */; };
 		03A14A2110A06E56002BF9B1 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A14A2010A06E56002BF9B1 /* Sparkle.framework */; };
 		03A14A2B10A06E68002BF9B1 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 03A14A2A10A06E68002BF9B1 /* dsa_pub.pem */; };
 		03A14A3510A06F32002BF9B1 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 03A14A2010A06E56002BF9B1 /* Sparkle.framework */; };
+		03A4D9AE10AB2CA4003C4AA8 /* QNUnrarOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A4D9AC10AB2CA4003C4AA8 /* QNUnrarOperation.m */; };
 		03C20D54108E14FF009C905A /* QNMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20D53108E14FF009C905A /* QNMainWindowController.m */; };
 		03C20D56108E1509009C905A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20D55108E1509009C905A /* MainWindow.xib */; };
 		03C20D67108E156F009C905A /* LeftSidebarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20D66108E156F009C905A /* LeftSidebarView.xib */; };
@@ -54,9 +56,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		031F1AA410AB304F007386F7 /* unrar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = unrar; sourceTree = "<group>"; };
 		0397196C10A7959C00E34BB8 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		03A14A2010A06E56002BF9B1 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		03A14A2A10A06E68002BF9B1 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		03A4D9AB10AB2CA4003C4AA8 /* QNUnrarOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUnrarOperation.h; sourceTree = "<group>"; };
+		03A4D9AC10AB2CA4003C4AA8 /* QNUnrarOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUnrarOperation.m; sourceTree = "<group>"; };
+		03A4D9AD10AB2CA4003C4AA8 /* QNUnrarOperationDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUnrarOperationDelegateProtocol.h; sourceTree = "<group>"; };
 		03C20D52108E14FF009C905A /* QNMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNMainWindowController.h; sourceTree = "<group>"; };
 		03C20D53108E14FF009C905A /* QNMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNMainWindowController.m; sourceTree = "<group>"; };
 		03C20D55108E1509009C905A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -113,7 +119,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* QuantumNoise-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "QuantumNoise-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* QuantumNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuantumNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* QuantumDrone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuantumDrone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +343,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* QuantumNoise.app */,
+				8D1107320486CEB800E47090 /* QuantumDrone.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -360,6 +366,9 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				03A4D9AB10AB2CA4003C4AA8 /* QNUnrarOperation.h */,
+				03A4D9AC10AB2CA4003C4AA8 /* QNUnrarOperation.m */,
+				03A4D9AD10AB2CA4003C4AA8 /* QNUnrarOperationDelegateProtocol.h */,
 				256AC3F00F4B6AF500CF3369 /* QuantumNoise_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -369,6 +378,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				031F1AA410AB304F007386F7 /* unrar */,
 				0397196C10A7959C00E34BB8 /* icon.icns */,
 				03A14A2A10A06E68002BF9B1 /* dsa_pub.pem */,
 				8D1107310486CEB800E47090 /* QuantumNoise-Info.plist */,
@@ -409,7 +419,7 @@
 			name = QuantumNoise;
 			productInstallPath = "$(HOME)/Applications";
 			productName = QuantumNoise;
-			productReference = 8D1107320486CEB800E47090 /* QuantumNoise.app */;
+			productReference = 8D1107320486CEB800E47090 /* QuantumDrone.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -443,6 +453,7 @@
 				03F8D3BB108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib in Resources */,
 				03A14A2B10A06E68002BF9B1 /* dsa_pub.pem in Resources */,
 				0397196D10A7959C00E34BB8 /* icon.icns in Resources */,
+				031F1AA510AB304F007386F7 /* unrar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +498,7 @@
 				03C20E64108E1ECE009C905A /* QNDownloadsViewController.m in Sources */,
 				03F8D3B7108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m in Sources */,
 				03F8D3BC108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m in Sources */,
+				03A4D9AE10AB2CA4003C4AA8 /* QNUnrarOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +541,7 @@
 				GCC_PREFIX_HEADER = QuantumNoise_Prefix.pch;
 				INFOPLIST_FILE = "QuantumNoise-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = QuantumNoise;
+				PRODUCT_NAME = QuantumDrone;
 			};
 			name = Debug;
 		};
@@ -547,7 +559,7 @@
 				GCC_PREFIX_HEADER = QuantumNoise_Prefix.pch;
 				INFOPLIST_FILE = "QuantumNoise-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = QuantumNoise;
+				PRODUCT_NAME = QuantumDrone;
 			};
 			name = Release;
 		};

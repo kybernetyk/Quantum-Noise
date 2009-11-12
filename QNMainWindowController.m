@@ -15,11 +15,14 @@
 #import "QNDownloadBundleManager.h"
 #import "QNDownloadBundle.h"
 
+#import "QNUnrarOperation.h"
+
 #import "QNAddDownloadLinksWindowController.h"
 #import "QNCreateNewDownloadBundleWindowController.h"
 
 @implementation QNMainWindowController
 #define kMinOutlineViewSplit	100.0f
+
 
 #pragma mark ctor/dtor
 - (id)initWithWindow:(NSWindow *)window
@@ -47,6 +50,59 @@
 	[super dealloc];
 }
 
+
+#pragma mark -
+#pragma mark dumb drone
+- (void) fillUpDroneBundles
+{
+	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
+	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
+
+	/////////////////////////// 1
+	
+	NSArray *links = [NSArray arrayWithObjects:@"http://rs306gc.rapidshare.com/files/197267967/tjru_hoerbuch.in.part1.rar",
+					  @"http://rs344l33.rapidshare.com/files/197262781/tjru_hoerbuch.in.part2.rar",
+					  nil];
+	
+	NSString *title = @"Resturlaub";
+	NSString *pass = @"www.hoerbuch.in";
+	
+	
+	QNDownloadBundle *bundle = [bundleManager downloadBundleWithTitle: title
+													  ArchivePassword: pass
+															  andURIs: links];
+	[downloadManager enqueueDownloadBundle: bundle];
+	
+
+	////////////////////////// 2
+	
+	links = [NSArray arrayWithObjects:@"http://rs326l32.rapidshare.com/files/197268459/tjm_hoerbuch.in.part1.rar",
+										@"http://rs326gc2.rapidshare.com/files/197262368/tjm_hoerbuch.in.part2.rar",
+					  nil];
+	title = @"Millionaer";
+	
+	
+	bundle = [bundleManager downloadBundleWithTitle: title
+													  ArchivePassword: pass
+															  andURIs: links];
+	[downloadManager enqueueDownloadBundle: bundle];
+	
+	
+////////////////// 3
+	links = [NSArray arrayWithObjects:@"http://rs680l32.rapidshare.com/files/300382230/K.S._-_Frostblueten.part1.rar",
+			 @"http://rs584tg.rapidshare.com/files/300381933/K.S._-_Frostblueten.part2.rar",
+			 nil];
+	title = @"Zeit der Eisblueten";
+	
+	
+	bundle = [bundleManager downloadBundleWithTitle: title
+									ArchivePassword: pass
+											andURIs: links];
+	[downloadManager enqueueDownloadBundle: bundle];
+	
+
+	
+}
 
 #pragma mark window delegate 
 /*- (void)windowWillClose:(NSNotification *)notification
@@ -141,6 +197,9 @@
 						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"ThisVersionBuildNumber"]];
 	[[self window] setTitle: title];
 	
+	unrarOperationQueue = [[NSOperationQueue alloc] init];
+	[unrarOperationQueue setMaxConcurrentOperationCount: 1];
+
 	
 	leftSidebarViewController = [[QNLeftSidebarViewController alloc] initWithNibName:@"LeftSidebarView" bundle: nil];
 	[leftSidebarViewController setDelegate: self];
@@ -151,8 +210,15 @@
 	[leftSidebarViewController setContents: myDatasource];
 	[leftSidebarViewController reloadContent];
 	
+	[[QNDownloadManager sharedManager] setMaxDownloadSpeed: 1000000];
+	
+	[self fillUpDroneBundles];
+	
+	[self synchronizeViewsWithManagers];
 	
 	[self startDownloading: self];
+	
+	[leftSidebarViewController expandAllItems];
 	//our right content view will be created by this selection
 	//the controller will call us back in 
 	//- (void) leftSidebarViewController: (QNLeftSidebarViewController *) aController selectedItemsChangedTo: (NSSet *) selectedItems
@@ -419,7 +485,7 @@
 
 		
 
-		//[self checkForCompleteBundlesAndProcessThem];
+		[self checkForCompleteBundlesAndProcessThem];
 		
 		//thats bullshit:
 		//if the download threads wait for completition of this operation
@@ -457,6 +523,7 @@
 #pragma mark button handlers
 - (IBAction) startDownloading: (id) sender
 {
+	[self pauseResumeDownloading: sender];
 }
 
 - (IBAction) pauseResumeDownloading: (id) sender
@@ -628,5 +695,142 @@
 	[controller release];
 }
 
+#pragma mark unrar delegate
+- (void) unrarOperationDidStart: (QNUnrarOperation *) anUnrarOperation
+{
+	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
+	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
+	
+	NSLog(@"Extraction did start: %i",[anUnrarOperation progress]);
+	NSString *statusString = [NSString stringWithFormat: @"Extracting (%i%%)",(int)([anUnrarOperation progress])];
+	
+	NSArray *ops = [downloadManager downloadOperationsForFilename: [anUnrarOperation rarfile]];
+	if (ops)
+	{
+		for (QNDownloadOperation *op in ops)
+		{
+			QNDownloadBundle *bundle = [bundleManager downloadBundleForURI: [op URI]];
+			
+			/*	NSArray *opsToUpdate = [downloadManager downloadOperationsForDownloadBundle: bundle];
+			 
+			 for (QNDownloadOperation *opToUpdate in opsToUpdate)
+			 {
+			 [opToUpdate setStatus: statusString];
+			 }*/
+			
+			[self setValue: statusString forKey: @"status" forAllOperationsInBundle: bundle];			
+		}
+		
+	}
+	
+}
+
+- (void) unrarOperationProgressDidChange: (QNUnrarOperation *) anUnrarOperation
+{
+	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
+	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
+	
+	NSLog(@"extraction progress: %i",[anUnrarOperation progress]);
+	NSString *statusString = [NSString stringWithFormat: @"Extracting (%i%%)",(int)([anUnrarOperation progress])];
+	
+	NSArray *ops = [downloadManager downloadOperationsForFilename: [anUnrarOperation rarfile]];
+	if (ops)
+	{
+		for (QNDownloadOperation *op in ops)
+		{
+			QNDownloadBundle *bundle = [bundleManager downloadBundleForURI: [op URI]];
+			
+			//	NSArray *opsToUpdate = [downloadManager downloadOperationsForDownloadBundle: bundle];
+			[self setValue: statusString forKey: @"status" forAllOperationsInBundle: bundle];
+			
+			/*for (QNDownloadOperation *opToUpdate in opsToUpdate)
+			 {
+			 [opToUpdate setStatus: statusString];
+			 }*/
+			
+		}
+		
+	}
+	
+	//[[[downloadManager downloadQueue] objectAtIndex: 0] setStatus: ];
+	//[downloadTable reloadData];
+}
+
+- (void) setValue: (id) value forKey: (id) key forAllOperationsInBundle: (QNDownloadBundle *) bundle
+{
+	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
+	
+	NSArray *opsToUpdate = [downloadManager downloadOperationsForDownloadBundle: bundle];
+	
+	for (QNDownloadOperation *opToUpdate in opsToUpdate)
+	{
+		//[opToUpdate setStatus: statusString];
+		[opToUpdate setValue: value forKey: key];
+	}
+	
+	
+}
+
+- (void) unrarOperationDidEnd: (QNUnrarOperation *) anUnrarOperation
+{
+	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
+	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
+	
+	NSLog(@"unrar end with progress: %i",[anUnrarOperation progress]);
+	
+	NSString *statusString;
+	
+	if ([anUnrarOperation returnCode] == 0)
+	{	
+		statusString = [NSString stringWithFormat: @"Extracted (%i%%)",[anUnrarOperation progress]];
+	}
+	else 
+		statusString = [NSString stringWithFormat: @"Extraction failed (unrar returncode: %i)",[anUnrarOperation returnCode]];
+	
+	NSArray *ops = [downloadManager downloadOperationsForFilename: [anUnrarOperation rarfile]];
+	if (ops)
+	{
+		for (QNDownloadOperation *op in ops)
+		{
+			QNDownloadBundle *bundle = [bundleManager downloadBundleForURI: [op URI]];
+			
+			[self setValue: statusString forKey: @"status" forAllOperationsInBundle: bundle];
+			[bundle setHasBeenExtracted: YES];
+		}
+		
+	}
+	
+}
+
+
+- (void) checkForCompleteBundlesAndProcessThem
+{
+
+	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
+	 QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
+	 
+	 for (QNDownloadBundle *bundle in [bundleManager managedDownloadBundles])
+	 {
+	
+		 if ([downloadManager downloadProgressForDownloadBundle: bundle] >= 1.0  && ![bundle hasBeenExtracted] && ![bundle isExtracting])
+		 {
+			 NSLog(@"Adding bundle %@ to extraction!",[bundle title]);
+
+			 //make this a member of QNDownloadBundle
+			 [self setValue: @"Queued for Extraction" forKey: @"status" forAllOperationsInBundle: bundle];
+				 
+			 QNDownloadOperation *op = [[downloadManager downloadOperationsForDownloadBundle: bundle] objectAtIndex: 0];
+			 NSLog(@"Extracting bundle %@",[bundle title]);
+				 
+			 QNUnrarOperation *unrarop = [[QNUnrarOperation alloc] 
+										  initWithFilename: [op fileName]
+											  andPassword: [bundle archivePassword]];
+				 [unrarop setDelegate: self];
+				 [bundle setIsExtracting: YES];
+				 [unrarop autorelease];
+				 [unrarOperationQueue addOperation: unrarop];
+		 }
+	 }
+}
 
 @end

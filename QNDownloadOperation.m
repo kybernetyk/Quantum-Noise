@@ -421,6 +421,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	}
 	else
 	{
+	//	NSLog(@"applying max download speed of: %i",maxDownloadSpeedLimit);
 		curl_easy_setopt(curlHandle, CURLOPT_MAX_RECV_SPEED_LARGE, maxDownloadSpeedLimit);
 		
 		if (![[self status] isEqualToString: kQNDownloadStatusDownloading])
@@ -515,14 +516,14 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		return NO;
 	}
 	
-	curl_easy_setopt(curlHandle, CURLOPT_PROXY, "localhost:8886");
+//	curl_easy_setopt(curlHandle, CURLOPT_PROXY, "localhost:8886");
 	
 	//Some proxies require user authentication before allowing a request, and you pass that information similar to this:
 	//curl_easy_setopt(curlHandle, CURLOPT_PROXYUSERPWD, "user:password");
 	
 //	If you want to, you can specify the host name only in the CURLOPT_PROXY option, and set the port number separately with CURLOPT_PROXYPORT.
 //	Tell libcurl what kind of proxy it is with CURLOPT_PROXYTYPE (if not, it will default to assume a HTTP proxy):
-	curl_easy_setopt(curlHandle, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);
+//	curl_easy_setopt(curlHandle, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);
 	
 	return YES;
 }

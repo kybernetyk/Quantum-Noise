@@ -22,7 +22,7 @@
 	QNDownloadsViewController *currentDownloadsViewController;
 	
 	NSMutableDictionary *downloadsViewControllerCache;
-	
+		NSOperationQueue *unrarOperationQueue;
 	
 }
 

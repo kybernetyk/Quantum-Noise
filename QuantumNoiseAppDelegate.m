@@ -24,6 +24,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {
+	NSString *unrarpath = [[NSBundle mainBundle] pathForResource: @"unrar" ofType: nil];
+	
+	NSLog(@"unrarpath = %@",unrarpath);
+	
 	[self openMainWindow: self];
 }
 
