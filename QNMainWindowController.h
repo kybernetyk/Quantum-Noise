@@ -22,8 +22,7 @@
 	QNDownloadsViewController *currentDownloadsViewController;
 	
 	NSMutableDictionary *downloadsViewControllerCache;
-	
-	
+	NSOperationQueue *unrarOperationQueue;
 }
 
 //starts the download manager at all
