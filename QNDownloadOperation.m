@@ -262,6 +262,22 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	return blockSize * numberOfBlocks;
 }
 
+/*#define kQNDownloadOperationErrorRecoverable 1
+ #define kQNDownloadOperationErrorDontKnow 2
+ #define kQNDownloadOperationErrorFatal 3
+*/ 
+
+- (NSError *) errorWithDescription: (NSString *) errorDescription code: (NSInteger) errorCode andErrorLevel: (NSInteger) errorLevel
+{
+	NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys: 
+							   errorDescription, NSLocalizedDescriptionKey,
+							   [NSNumber numberWithInteger: errorLevel], @"errorLevel",
+							   
+							   nil];
+	
+	NSError *ret = [NSError errorWithDomain: @"quantumnoise" code: errorCode userInfo: errorDict];
+	return ret;
+}
 
 /*
  this method is called by the C99 curl callback
@@ -281,6 +297,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	if ([self isCancelled])
 	{	
 		[self setStatus:@"Error: Operation was cancelled!"];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
 		[self setHasBeenExecuted: YES];
 		return -1;
 	}
@@ -354,6 +371,8 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	{	
 		[self setHasBeenExecuted: YES];
 		[self setStatus:@"Error: Operation was cancelled!"];
+		//[self setOperationError: [self errorWithDescription:@"Operation was cancelled!" andCode: 1]];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
 		return 1;
 	}
 	
@@ -454,6 +473,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	if (!curlHandle)
 	{	
 		[self setStatus: @"performFileDownload: No curl handle! Fatal!"];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
 		return NO;
 	}
 
@@ -486,7 +506,10 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		//TODO: ein nserror in die klasse tun und gescheites handling bauen
 		
 		if (res != 23) //writing abort through handler return 0
+		{	
 			[self setStatus: [NSString stringWithFormat: @"Download Failed: %s", curl_easy_strerror(res)]];
+			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
+		}
 		return NO;
 	}
 	
@@ -512,6 +535,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	if (!curlHandle)
 	{	
 		[self setStatus: @"setupProxy: No curl handle! Fatal!"];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 		return NO;
 	}
 	
@@ -622,6 +646,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 
 		[self setProgress: 1.0]; //we assume that the file was downloaded by the user
 		[self setStatus: [NSString stringWithFormat: @"File Error: File %@ exists!", [[[self fileName] pathComponents] lastObject]]];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 		return NO;
 	}
 	
@@ -658,6 +683,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	{	
 		[self setStatus: [NSString stringWithFormat: @"File Error: Failed (%@) (%@)",[err localizedDescription],[err localizedFailureReason]]];
 		[self setProgress: 0.0];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 		return NO;
 	}
 	else 

@@ -65,6 +65,8 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	if (res != CURLE_OK)
 	{	
 		[self setStatus: [NSString stringWithFormat: @"Login Failed: %s", curl_easy_strerror(res)]];
+		
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 		[receivedData release];
 		receivedData = nil;
 		return NO;
@@ -80,6 +82,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	if (apiError)
 	{
 		[self setStatus: [NSString stringWithFormat:@"Login Failed: %@", apiError]];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 		[receivedData release];
 		receivedData = nil;
 		return NO;
@@ -134,11 +137,15 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	if (res != CURLE_OK)
 	{	
 		[self setStatus: [NSString stringWithFormat: @"Login Failed: %s", curl_easy_strerror(res)]];
+		
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 		return NO;
 	}
 	if (errorString)
 	{
 		[self setStatus: [NSString stringWithFormat:@"Login Failed: %@", errorString]];
+
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 		return NO;
 	}
 	
@@ -201,6 +208,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	if (res != CURLE_OK)
 	{	
 		[self setStatus: [NSString stringWithFormat: @"File Check Failed: %s", curl_easy_strerror(res)]];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorFatal]];
 		return NO;
 	}
 	
@@ -217,6 +225,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	{
 		NSLog(@"File Check Error: %@",apiReturn);
 		[self setStatus: [NSString stringWithFormat: @"File check Error: %@",apiReturn]];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorFatal]];
 		return NO;
 	}
 
@@ -224,6 +233,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	if (!replyarray || [replyarray count] < 5)
 	{
 		[self setStatus: [NSString stringWithFormat: @"File check crit Error: Response malformed - could not create array! %@",apiReturn]];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 		return NO;
 	}
 	
@@ -233,6 +243,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	{
 		case 0:
 			[self setStatus:@"File Check Error: File not found!"];
+			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 			return NO;
 			break;
 		case 1:
@@ -243,18 +254,22 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 			break;
 		case 3:
 			[self setStatus:@"File Check Error: Server Down!"];
+			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
 			return NO;
 			break;
 		case 4:
 			[self setStatus:@"File Check Error: File marked as illegal!"];
+			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorFatal]];
 			return NO;
 			break;
 		case 5:
 			[self setStatus:@"File Check Error: Maximum downloads reached!"];
+			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorFatal]];
 			return NO;
 			break;
 	}
 	[self setStatus: [NSString stringWithFormat: @"File Check Error: Uknown File Status: %i",stat]];
+	[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
 	return NO;
 }
 
@@ -361,6 +376,13 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	
 	[self performSelectorSequence: conditionalDownloadSequence abortOnError: YES];
 	[self performSelectorSequence: unconditionalDownloadSequence abortOnError: NO];
+
+	if (operationError)
+	{
+		NSLog(@"NSERROR: error has occured: %@",operationError);
+		//tut evtl jeder host einen filename mitsenden beim download? damit setupFilenames: nicht so gay ist!
+		//performSelectorSequence: abortOnError: !!!!
+	}
 	
 	[thePool release];
 }

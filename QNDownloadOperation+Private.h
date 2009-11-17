@@ -18,6 +18,8 @@
 - (BOOL) setupDownloadPathForFilename: (NSString *) filename;
 - (BOOL) finalizeDownload;
 - (void) main; //entry point. will be called by the parent NSOperationQueue
+
+- (NSError *) errorWithDescription: (NSString *) errorDescription code: (NSInteger) errorCode andErrorLevel: (NSInteger) errorLevel;
 @end
 
 #pragma mark -

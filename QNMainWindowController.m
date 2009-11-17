@@ -502,7 +502,25 @@
 		NSLog(@"checking download progress for bundle: %@ -> %f",bundle, [bundle downloadProgress]);
 		
 		if ([bundle downloadProgress] >= 1.0)
+		{	
 			[[QNDownloadBundleManager sharedManager] removeDownloadBundle: bundle];
+
+		}
+		else
+		{
+			for (QNDownloadOperation *op in [[QNDownloadManager sharedManager] downloadOperationsForDownloadBundle: bundle])
+			{
+				if ([op operationError])
+				{
+					if ([[[[op operationError] userInfo] objectForKey: @"errorLevel"] integerValue] == kQNDownloadOperationErrorFatal)
+					{
+						NSLog(@"deleting bundle %@ because of error %@ in operation %@",bundle, [op operationError], op);
+						[[QNDownloadBundleManager sharedManager] removeDownloadBundle: bundle];
+						break;
+					}
+				}
+			}
+		}
 	}
 	
 	[self synchronizeViewsWithManagers];

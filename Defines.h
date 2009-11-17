@@ -13,6 +13,11 @@
 #define kQNDownloadStatusIdle @"Idle"
 #define kQNDownloadStatusSuccess @"Succeeded"
 
+//our download operation severance level
+#define kQNDownloadOperationErrorRecoverable 1
+#define kQNDownloadOperationErrorDontKnow 2
+#define kQNDownloadOperationErrorFatal 3
+
 //should be CURL verbose?
 #define CURL_VERBOSE 0
 
