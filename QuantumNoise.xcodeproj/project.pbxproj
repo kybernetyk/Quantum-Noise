@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0397196D10A7959C00E34BB8 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0397196C10A7959C00E34BB8 /* icon.icns */; };
+		03A0EE3710B34F6C0032BA3A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A0EE3610B34F6C0032BA3A /* MainWindow.xib */; };
+		03A0EEDA10B3541B0032BA3A /* MainWindow_small.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A0EED910B3541B0032BA3A /* MainWindow_small.xib */; };
+		03A0EEDF10B354460032BA3A /* LeftSidebarView_small.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A0EEDE10B354460032BA3A /* LeftSidebarView_small.xib */; };
+		03A0EEE110B354550032BA3A /* DownloadsView_small.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A0EEE010B354550032BA3A /* DownloadsView_small.xib */; };
 		03A14A2110A06E56002BF9B1 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A14A2010A06E56002BF9B1 /* Sparkle.framework */; };
 		03A14A2B10A06E68002BF9B1 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 03A14A2A10A06E68002BF9B1 /* dsa_pub.pem */; };
 		03A14A3510A06F32002BF9B1 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 03A14A2010A06E56002BF9B1 /* Sparkle.framework */; };
 		03BE8E5810B338C40022EB82 /* unrar in Resources */ = {isa = PBXBuildFile; fileRef = 03BE8E5710B338C40022EB82 /* unrar */; };
 		03BE8E6910B338EA0022EB82 /* QNUnrarOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BE8E6710B338EA0022EB82 /* QNUnrarOperation.m */; };
 		03C20D54108E14FF009C905A /* QNMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20D53108E14FF009C905A /* QNMainWindowController.m */; };
-		03C20D56108E1509009C905A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20D55108E1509009C905A /* MainWindow.xib */; };
 		03C20D67108E156F009C905A /* LeftSidebarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20D66108E156F009C905A /* LeftSidebarView.xib */; };
 		03C20D90108E16B9009C905A /* QNLeftSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20D8F108E16B9009C905A /* QNLeftSidebarViewController.m */; };
 		03C20D93108E16C5009C905A /* QNLeftSidebarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20D92108E16C5009C905A /* QNLeftSidebarItem.m */; };
@@ -57,6 +60,10 @@
 
 /* Begin PBXFileReference section */
 		0397196C10A7959C00E34BB8 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		03A0EE3610B34F6C0032BA3A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		03A0EED910B3541B0032BA3A /* MainWindow_small.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_small.xib; sourceTree = "<group>"; };
+		03A0EEDE10B354460032BA3A /* LeftSidebarView_small.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftSidebarView_small.xib; sourceTree = "<group>"; };
+		03A0EEE010B354550032BA3A /* DownloadsView_small.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadsView_small.xib; sourceTree = "<group>"; };
 		03A14A2010A06E56002BF9B1 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		03A14A2A10A06E68002BF9B1 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		03BE8E5710B338C40022EB82 /* unrar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = unrar; sourceTree = "<group>"; };
@@ -65,7 +72,6 @@
 		03BE8E6810B338EA0022EB82 /* QNUnrarOperationDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUnrarOperationDelegateProtocol.h; sourceTree = "<group>"; };
 		03C20D52108E14FF009C905A /* QNMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNMainWindowController.h; sourceTree = "<group>"; };
 		03C20D53108E14FF009C905A /* QNMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNMainWindowController.m; sourceTree = "<group>"; };
-		03C20D55108E1509009C905A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		03C20D65108E1566009C905A /* QNLeftSidebarItemTypeDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNLeftSidebarItemTypeDefinitions.h; sourceTree = "<group>"; };
 		03C20D66108E156F009C905A /* LeftSidebarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftSidebarView.xib; sourceTree = "<group>"; };
 		03C20D8E108E16B9009C905A /* QNLeftSidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNLeftSidebarViewController.h; sourceTree = "<group>"; };
@@ -179,7 +185,8 @@
 		03C20D2D108E14C6009C905A /* Main Window */ = {
 			isa = PBXGroup;
 			children = (
-				03C20D55108E1509009C905A /* MainWindow.xib */,
+				03A0EED910B3541B0032BA3A /* MainWindow_small.xib */,
+				03A0EE3610B34F6C0032BA3A /* MainWindow.xib */,
 				03C20D52108E14FF009C905A /* QNMainWindowController.h */,
 				03C20D53108E14FF009C905A /* QNMainWindowController.m */,
 			);
@@ -193,6 +200,7 @@
 				03C20D8E108E16B9009C905A /* QNLeftSidebarViewController.h */,
 				03C20D8F108E16B9009C905A /* QNLeftSidebarViewController.m */,
 				03C20D66108E156F009C905A /* LeftSidebarView.xib */,
+				03A0EEDE10B354460032BA3A /* LeftSidebarView_small.xib */,
 			);
 			name = "Left Sidebar";
 			sourceTree = "<group>";
@@ -301,6 +309,7 @@
 				03C20E62108E1ECE009C905A /* QNDownloadsViewController.h */,
 				03C20E63108E1ECE009C905A /* QNDownloadsViewController.m */,
 				03C20E65108E1EDC009C905A /* DownloadsView.xib */,
+				03A0EEE010B354550032BA3A /* DownloadsView_small.xib */,
 			);
 			name = "Downloads View";
 			sourceTree = "<group>";
@@ -454,7 +463,6 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				03C20D56108E1509009C905A /* MainWindow.xib in Resources */,
 				03C20D67108E156F009C905A /* LeftSidebarView.xib in Resources */,
 				03C20E66108E1EDC009C905A /* DownloadsView.xib in Resources */,
 				03F8D3B6108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib in Resources */,
@@ -462,6 +470,10 @@
 				03A14A2B10A06E68002BF9B1 /* dsa_pub.pem in Resources */,
 				0397196D10A7959C00E34BB8 /* icon.icns in Resources */,
 				03BE8E5810B338C40022EB82 /* unrar in Resources */,
+				03A0EE3710B34F6C0032BA3A /* MainWindow.xib in Resources */,
+				03A0EEDA10B3541B0032BA3A /* MainWindow_small.xib in Resources */,
+				03A0EEDF10B354460032BA3A /* LeftSidebarView_small.xib in Resources */,
+				03A0EEE110B354550032BA3A /* DownloadsView_small.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

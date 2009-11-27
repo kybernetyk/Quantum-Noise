@@ -768,7 +768,8 @@
 	
 }
 
-
+//well let's call it checkForCompleteBundlesAndUnrarThem
+//processing will be done maybe later through plugins ... lol
 - (void) checkForCompleteBundlesAndProcessThem
 {
 	
@@ -783,10 +784,19 @@
 			NSLog(@"Adding bundle %@ to extraction!",[bundle title]);
 			
 			//make this a member of QNDownloadBundle
-			[self setValue: @"Queued for Extraction" forKey: @"status" forAllOperationsInBundle: bundle];
+			
 			
 			QNDownloadOperation *op = [[downloadManager downloadOperationsForDownloadBundle: bundle] objectAtIndex: 0];
 			NSLog(@"Extracting bundle %@",[bundle title]);
+			
+			//we will not extract anything other than rars. (and maybe zips later ... but i don't think so)
+			if (![[[op fileName] pathExtension] containsString: @"rar" ignoringCase: YES])
+			{
+				NSLog(@"hey bob, %@ is not a rar file. I won't try this to unrar.", [op fileName]);
+				continue; //check next bundle. we're in still in the for (..) loop
+			}
+				
+			[self setValue: @"Queued for Extraction" forKey: @"status" forAllOperationsInBundle: bundle];
 			
 			QNUnrarOperation *unrarop = [[QNUnrarOperation alloc] 
 										 initWithFilename: [op fileName]

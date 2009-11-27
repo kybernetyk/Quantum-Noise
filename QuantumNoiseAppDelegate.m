@@ -18,7 +18,7 @@
 		mainWindowController = [[QNMainWindowController alloc] initWithWindowNibName:@"MainWindow"];
 	
 	
-	[[mainWindowController window] center];
+	//[[mainWindowController window] center];
 	[[mainWindowController window] makeKeyAndOrderFront: self];
 }
 

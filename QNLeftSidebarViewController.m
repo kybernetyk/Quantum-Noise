@@ -15,6 +15,10 @@
 #define kQNPersistanceStoreDefaultsKey @"LeftSidebarViewControllerPersistanceStore"
 #define kQNLeftSidebarSelectedItemDefaultsKey @"LeftSidebarViewControllerSelectedItemTitle"
 #define kQNLeftSidebarSelectedRowDefaultsKey @"LeftSidebarViewControllerSelectedRow"
+
+#define kQNLeftSidebarIconWidth 16.0f
+#define kQNLeftSidebarIconHeight 16.0f
+
 /*
  Private Categories
  
@@ -428,11 +432,11 @@
 {
 	NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
 	NSImage *folderImage = [NSImage imageNamed:@"NSFolderSmart"];
-	[folderImage setSize:NSMakeSize(16.0,16.0)];
+	[folderImage setSize:NSMakeSize(kQNLeftSidebarIconWidth,kQNLeftSidebarIconHeight)];
 	[tempDict setObject: folderImage forKey: kQNFolderType];
 
 	NSImage *leafImage = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kInternetLocationHTTPIcon)];
-	[leafImage setSize:NSMakeSize(16.0,16.0)];
+	[leafImage setSize:NSMakeSize(kQNLeftSidebarIconWidth,kQNLeftSidebarIconHeight)];
 	[tempDict setObject: leafImage forKey: kQNLeafType];
 	
 	/*NSImage *headerImage = nil;

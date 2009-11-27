@@ -180,6 +180,9 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 
 - (BOOL) checkStatusOfFileOnRapidshare
 {
+	
+	LOG_LOCATION();
+	
 	if (!curlHandle)
 		return NO;
 	
@@ -208,7 +211,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	if (res != CURLE_OK)
 	{	
 		[self setStatus: [NSString stringWithFormat: @"File Check Failed: %s", curl_easy_strerror(res)]];
-		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorFatal]];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
 		return NO;
 	}
 	
@@ -243,7 +246,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	{
 		case 0:
 			[self setStatus:@"File Check Error: File not found!"];
-			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
+			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorFatal]];
 			return NO;
 			break;
 		case 1:

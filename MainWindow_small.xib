@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="14"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -41,8 +41,8 @@
 			<object class="NSWindowTemplate" id="1005">
 				<int key="NSWindowStyleMask">4111</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{456, 490}, {800, 350}}</string>
-				<int key="NSWTFlags">1618477056</int>
+				<string key="NSWindowRect">{{416, 296}, {800, 400}}</string>
+				<int key="NSWTFlags">1610612736</int>
 				<string key="NSWindowTitle">Quantum Noise</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<object class="NSToolbar" key="NSViewClass" id="473814795">
@@ -55,7 +55,7 @@
 					<bool key="NSToolbarAllowsUserCustomization">YES</bool>
 					<bool key="NSToolbarAutosavesConfiguration">YES</bool>
 					<int key="NSToolbarDisplayMode">1</int>
-					<int key="NSToolbarSizeMode">1</int>
+					<int key="NSToolbarSizeMode">2</int>
 					<object class="NSMutableDictionary" key="NSToolbarIBIdentifiedItems">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -255,30 +255,29 @@
 								<object class="NSCustomView" id="379313221">
 									<reference key="NSNextResponder" ref="22060102"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrameSize">{203, 350}</string>
+									<string key="NSFrameSize">{203, 400}</string>
 									<reference key="NSSuperview" ref="22060102"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 								<object class="NSCustomView" id="501017847">
 									<reference key="NSNextResponder" ref="22060102"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{204, 0}, {596, 350}}</string>
+									<string key="NSFrame">{{204, 0}, {596, 400}}</string>
 									<reference key="NSSuperview" ref="22060102"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 							</object>
-							<string key="NSFrameSize">{800, 350}</string>
+							<string key="NSFrameSize">{800, 400}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<bool key="NSIsVertical">YES</bool>
 							<int key="NSDividerStyle">2</int>
-							<string key="NSAutosaveName">qnMainWindowSplitView</string>
 						</object>
 					</object>
-					<string key="NSFrameSize">{800, 350}</string>
+					<string key="NSFrameSize">{800, 400}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
-				<string key="NSMinSize">{600, 377}</string>
+				<string key="NSMinSize">{600, 368}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSFrameAutosaveName">mainWindowAS</string>
 			</object>
@@ -500,9 +499,9 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{240, 495}, {800, 350}}</string>
+					<string>{{214, 419}, {800, 400}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{240, 495}, {800, 350}}</string>
+					<string>{{214, 419}, {800, 400}}</string>
 					<boolean value="NO"/>
 					<string>{196, 240}</string>
 					<string>{{202, 428}, {480, 270}}</string>
