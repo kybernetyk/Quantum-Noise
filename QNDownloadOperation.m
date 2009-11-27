@@ -232,6 +232,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 							waitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM];
 }
 
+//this will be called from our pure-C curl callback method header_callback() (top of this file)
 - (size_t) curlHeaderCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks
 {
 
@@ -266,7 +267,9 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
  #define kQNDownloadOperationErrorDontKnow 2
  #define kQNDownloadOperationErrorFatal 3
 */ 
-
+//helper method to create an NSError object with the given description, code and errorlevel.
+//the error level describes if the download can be retried (kQNDownloadOperationErrorRecoverable) or if the error was fatal
+//and the operation can not be reset (like 404 file not found)
 - (NSError *) errorWithDescription: (NSString *) errorDescription code: (NSInteger) errorCode andErrorLevel: (NSInteger) errorLevel
 {
 	NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys: 
@@ -371,66 +374,32 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	{	
 		[self setHasBeenExecuted: YES];
 		[self setStatus:@"Error: Operation was cancelled!"];
-		//[self setOperationError: [self errorWithDescription:@"Operation was cancelled!" andCode: 1]];
 		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
 		return 1;
 	}
 	
-	/* todo:
-	 die ganzen NSNumbers in native typen umbauen
-	 */
-/*	timingBytes += (bytesDownloaded - [self receivedBytes]);
-	
-	if (lastCallTime == 0.0)
-	{
-		lastCallTime = currentTimeInSeconds();
-		timingBytes = 0.0;
-	}
-	else 
-	{
-		double now = currentTimeInSeconds();
-		
-
-		double diffSeconds = now - lastCallTime;
-		//printf("diffsecs: %f\n",diffSeconds);
-
-		if (diffSeconds >= 1.0)
-		{
-			double kb = (timingBytes/1000.0) / diffSeconds;
-
-			[self setSpeed: kb];
-			
-			timingBytes = 0.0;
-			lastCallTime =  currentTimeInSeconds();
-
-		}
-/*		if (diffSeconds >= 5.0)
-		{
-			timingBytes = 0.0;
-			lastCallTime =  currentTimeInSeconds();
-		}*/
-		
-//	}
-
-//	CURLINFO_SPEED_DOWNLOAD
-	
+	//get our average download speed from curl, convert it to kilobit/s and upload our property, which will message our delegate 
+	//of the change
 	double d = 0.0;
 	curl_easy_getinfo(curlHandle, CURLINFO_SPEED_DOWNLOAD,&d);
 	d = d / 1000.0;
 	[self setDownloadSpeed: d];
 	
-	
+	//update our public properties with the new values for bytes downloaded (and filesize?)
+	//(the setter will message our delegate)
 	[self setReceivedBytes: bytesDownloaded];
 	[self setFileSize:  totalBytes];
 	
+	//update our progress property (the setter will message our delegate)
 	double progress_ = 0.0;
-	
 	if (totalBytes != 0.0)
 		progress_ = (1.0 / totalBytes) * bytesDownloaded;
-
 	[self setProgress: progress_];
 	
-	//sind wir pausiert?
+
+	
+	//if this download is paused set the max download speed to 100 byte/s
+	//TODO: implement a real pause and resume
 	if ([self isPaused])
 	{
 		curl_easy_setopt(curlHandle, CURLOPT_MAX_RECV_SPEED_LARGE, 100); //"pause" by limiting dl speed to almost 0
@@ -449,12 +418,6 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	return 0;
 }
 
-- (void) setSpeed: (float) s
-{
-	NSLog(@"set speed float?");
-	exit (101);
-}
-
 
 
 /*
@@ -462,11 +425,9 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 
 	called by: thread main:
  
-	returns YES for fucking success
+	returns YES for success
 	returns NO for fail
  
-	todo: 
-		- NSError return with status code and shit and fuck
 */
 - (BOOL) performFileDownload
 {
@@ -503,9 +464,10 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	
 	if (res != CURLE_OK)
 	{	
-		//TODO: ein nserror in die klasse tun und gescheites handling bauen
-		
-		if (res != 23) //writing abort through handler return 0
+		// if res == CURLE_WRITE_ERROR there was a file writing error
+		//and our status/error string is set already. so we won't overwrite them
+		//(atm there is no return 0 in the writeHandler so this won't get called)
+		if (res != CURLE_WRITE_ERROR) //writing abort through handler return 0
 		{	
 			[self setStatus: [NSString stringWithFormat: @"Download Failed: %s", curl_easy_strerror(res)]];
 			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
@@ -541,6 +503,8 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		return NO;
 	}
 	
+	//TODO: NSUserDefaults read in
+	
 //	curl_easy_setopt(curlHandle, CURLOPT_PROXY, "localhost:8887");
 	
 	//Some proxies require user authentication before allowing a request, and you pass that information similar to this:
@@ -559,12 +523,12 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	- build final filename from URI
 	- build temp downlaod filename from URI
 	- create the temporary download file
-	- check if final file exists and FUCKING BAIL OUT IF SO
+	- check if final file exists already (and abort download if it does)
  
  called by: thread main:
  
  returns YES for okidoki
- returns NO for WTF SOMETHING IS WRONG
+ returns NO for  SOMETHING IS WRONG
  
  todo:
 	- NSError return handling shit and fuck
@@ -576,52 +540,68 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 // or by the write download data handler if the path were not set (ie no content-disposition header was received)
 - (BOOL) setupDownloadPathForFilename: (NSString *) filename
 {
-//	NSString *filename = [[URI pathComponents] lastObject];
+	//the shared manager is not thread safe and is main thread only
+	//we are not on the main thread!
+	//so we will create a private instance (which is thread safe!)
+	NSFileManager *myThreadSafeFileManagerInstance = [[[NSFileManager alloc] init] autorelease];
 	
+
 	[self setStatus:@"Checking Files"];
+
+	
+	//-
+	//this block of code is here if we ever implement a "reset"-method for the download operation
+	//it makes sure that the old tempFilehandle gets released and old temp files will be deleted
+	//but it is very likely that this functionality will be called from the reset-method
+	//so this code will go away
 
 	//release old handle
 	[temporaryDownloadHandle closeFile];
 	[temporaryDownloadHandle release];
 	temporaryDownloadHandle = nil;
 	
-	//the shared manager is not thread safe and is main thread only
-	//we are not on the main thread!
-	NSFileManager *myThreadSafeFileManagerInstance = [[[NSFileManager alloc] init] autorelease];
 	
-	//kill old temp filename
+	//if there should be a file with the tempfilename let's remove it
 	if ([myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
 	{
 		NSError *err;
-		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];	
+		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
+		NSLog(@"removeItemAtPath: %@ returned => %@",[self temporaryDownloadFilename], err);
 	}
+	//--
 	
+	
+	// let's build our final download filename (with full path)
 	NSString *destinationFilename;
     NSString *homeDirectory=NSHomeDirectory();
 	
+	//the download location is: ~/Downloads/
+	//TODO: make this a setting which can be changed by the user
 	destinationFilename=[[homeDirectory stringByAppendingPathComponent:@"Downloads"]
 						 stringByAppendingPathComponent:filename];
 	
 	[self setFileName: destinationFilename];
+	
+	//build a temporary download filename
 	destinationFilename = [destinationFilename stringByAppendingPathExtension: @"part"];
 	[self setTemporaryDownloadFilename: destinationFilename];
 
-	
+	//TODO: move this filename generation to [self setFilename:]
 	
 	NSLog(@"filename: %@", [self fileName]);
 	NSLog(@"tempfn: %@",[self temporaryDownloadFilename]);
 	LOG_LOCATION();
 	
 	//check if there's a temporary file .. we could overwrite it later. or resume
-	//but now lets just stop the download
 	//if there's no file create an empty one for our filehandle
 	if (![myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
 	{	
 		[myThreadSafeFileManagerInstance createFileAtPath: [self temporaryDownloadFilename] contents:[NSData dataWithBytes: 0 length: 0] attributes: nil];
 	}
-	else 
+	else //remove old temp filename and create a new one
 	{
-		//for debugging lets kill it and create a new one
+		//TODO: implement download resume - setting the download resume location here!
+
 		NSError *err;
 		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
 		[myThreadSafeFileManagerInstance createFileAtPath: [self temporaryDownloadFilename] contents:[NSData dataWithBytes: 0 length: 0] attributes: nil];
@@ -629,14 +609,14 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	
 	
 	//check if the final file exists
-	//if yes kill our download
+	//if yes abor our download with an error
 	if ([myThreadSafeFileManagerInstance fileExistsAtPath: [self fileName]])
 	{	
 		NSLog(@"ERROR! Final file %@ exists already!",[self fileName]);
 		
-	//	- (NSDictionary *)attributesOfItemAtPath:(NSString *)path error:(NSError **)error
 		//let us set the files size as received byts #
 		//and progress to 100%
+		//as we asume that this file was downloaded by the user already
 		NSError *err;
 		NSDictionary *fileInfo = [myThreadSafeFileManagerInstance attributesOfItemAtPath: [self fileName]
 																				  error: &err];
@@ -649,13 +629,19 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		[self setProgress: 1.0]; //we assume that the file was downloaded by the user
 		[self setStatus: [NSString stringWithFormat: @"File Error: File %@ exists!", [[[self fileName] pathComponents] lastObject]]];
 		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
+		
+		//TODO: see if it should be really an kQNDownloadOperationErrorRecoverable error
+		//cleanup with this error and see if the file gets removed from the list (which it should!)
+		//(as the progress is set to 1.0 the bundle will be removed - i assume)
 		return NO;
 	}
 	
 	
+	//puh we're done. we got here without any errors. let's set the status and get out of here!
 	[self setStatus: kQNDownloadStatusDownloading];
 	return YES;
 }
+
 /*
 	Finalizes the download. eg.
 	move the temporary download file to the final path
@@ -716,7 +702,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		exit(99);
 	}
 	
-
+	//if our operation neither was executed nor is cannceld let's start the download
     if (![self isCancelled] && ![self hasBeenExecuted])
 	{	
 		[delegate performSelectorOnMainThread: @selector(downloadOperationDidStart:) 
@@ -810,8 +796,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 // todo: change the ugly int casting from [self performSelector: ...] to a NSNumber
 //		 for this the called selectors must be rewritten to return a NSNUmber
 //
-//		 change the array to a dictionary with selectorname + if the selector should abort the loop if it returns NO
-//- (BOOL) performSelectorSequence: (NSArray *) selectorNames conditional: (BOOL) conditional
+// TODO: change the array to a dictionary with selectorname + if the selector should abort the loop if it returns NO
 - (BOOL) performSelectorSequence: (NSArray *) selectorNames abortOnError: (BOOL) shouldAbortOnError
 {
 	BOOL performedFlawless = YES;
@@ -828,8 +813,9 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		
 		BOOL bContinue = [self performSelector: the_selector];
 		
-		/* check if the error-ivar was set and then abort if we should abort on error
-		 now dummy code: */
+		//TODO: rewrite the session loop part methods to not return BOOL but instead check the 
+		//operationError property to abort the loop
+		//TODO: check if the nserror-ivar was set and then abort if we should abort on error
 		NSLog(@"perform [%@ %@] returned: %i",[self class],methodName,bContinue);
 		if (!bContinue)
 		{
@@ -873,8 +859,8 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	if (operationError)
 	{
 		NSLog(@"error has occured: %@",operationError);
-		//tut evtl jeder host einen filename mitsenden beim download? damit setupFilenames: nicht so gay ist!
-		//performSelectorSequence: abortOnError: !!!!
+		
+		//TODO: message our delegate that there was an error
 	}
 	[thePool release];	
 }

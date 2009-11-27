@@ -61,7 +61,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	[receivedData release];
 	receivedData = [[NSMutableData alloc] init];
 
-	CURLcode res = curl_easy_perform(curlHandle);
+	CURLcode res = curl_easy_perform(curlHandle);		//receivedData will contain the returned API page
 	if (res != CURLE_OK)
 	{	
 		[self setStatus: [NSString stringWithFormat: @"Login Failed: %s", curl_easy_strerror(res)]];
@@ -72,6 +72,8 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 		return NO;
 	}
 	
+	
+	//parse the returned api answer to get information about the user's account (if it's valid)
 	NSString *apiReturn = [[NSString alloc] initWithData: receivedData encoding: NSUTF8StringEncoding];
 	[apiReturn autorelease];
 	
@@ -207,7 +209,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	[receivedData release];
 	receivedData = [[NSMutableData alloc] init];
 	
-	CURLcode res = curl_easy_perform(curlHandle);
+	CURLcode res = curl_easy_perform(curlHandle);	//receivedData will contain the api answer
 	if (res != CURLE_OK)
 	{	
 		[self setStatus: [NSString stringWithFormat: @"File Check Failed: %s", curl_easy_strerror(res)]];
@@ -284,6 +286,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 {
 	//if the api fails us and we get html instead of the requested file
 	//we will check for errors manually
+	//but we should never get to this
 	if ([errorPageHtmlString containsString:@"<!-- E#1 -->"])
 		return @"Premium Account not found!";
 	if ([errorPageHtmlString containsString:@"<!-- E#4 -->"])
@@ -326,6 +329,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 				//now is greater than exp omfg
 				if ([now compare: exp] == NSOrderedDescending)
 				{	
+					//the user's account has expired
 					return @"Account Expired";
 				}
 			}
@@ -383,8 +387,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	if (operationError)
 	{
 		NSLog(@"NSERROR: error has occured: %@",operationError);
-		//tut evtl jeder host einen filename mitsenden beim download? damit setupFilenames: nicht so gay ist!
-		//performSelectorSequence: abortOnError: !!!!
+		//TODO: message our delegate that there was an error
 	}
 	
 	[thePool release];

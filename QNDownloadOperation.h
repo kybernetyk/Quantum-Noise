@@ -3,6 +3,10 @@
     @author	Jaroslaw Szpilewski
 	@copyright Jaroslaw Szpilewski
 	@abstract Contains the QNDownloadOperation base class definitions
+	@discussion QNDownloadOperation (and its children) is a NSOperation inherited object that will perform only one task:
+				download a file to disk. it will take care of special premium hoster apis (like rapidshare).
+ 
+	Known bugs: This operation will use up too much CPU if many concurrent operations are run with a high download speed (> 3megabyte/s). I will try a reimplementation with a different download lib instead of libcurl.
 */
 
 
@@ -16,11 +20,7 @@
 //
 //	ToDO:
 //	- FUCKING ERROR HANDLING (WTF HAPPENS IF THE INTERNETZ GOES HOFF?)
-//	- NSError error handling instead of BOOL
 //	- operation resetting.
-//  Created by jrk on 20.09.09.
-//  Copyright 2009 flux forge. All rights reserved.
-//
 
 #import <Cocoa/Cocoa.h>
 #import <curl/curl.h>
@@ -39,41 +39,33 @@
 @interface QNDownloadOperation : NSOperation
 {
 	CURL *curlHandle;
-	NSFileHandle *temporaryDownloadHandle;
+	NSFileHandle *temporaryDownloadHandle;	//filehandle to the temporary download-file on disk
 	
 	//properties
-	NSString *URI;
-	NSString *fileName;
-	NSString *temporaryDownloadFilename;
-	NSString *status;
+	NSString *URI;							//the URI (the http://-link of the resource this operation will download)
+	NSString *fileName;						//the final filename on disk where the user will find the downloaded file
+	NSString *temporaryDownloadFilename;    //filename of the temporary download-file on disk
+	NSString *status;						//status string that will be displayed by the user interface
 	
-	double progress;
-	double downloadSpeed;
-	double receivedBytes;
-	double fileSize;
+	double progress;						//download progress from 0.0 to 1.0
+	double downloadSpeed;					//download speed in kilobit/s
+	double receivedBytes;					//ammount of already received bytes from the download
+	double fileSize;						//the estimated filesize of the fully downloaded file
 	
-	id <QNDownloadOperationDelegateProtocol> delegate;
+	BOOL isPaused;							//is the download paused? (limiting speed to ~ 0.01kbit/s)
+	
+	
+	BOOL hasBeenExecuted;					//YES if this operation was executed already (so we don't requeue it on restart)
+	
+	NSError *operationError;				//contains an extended error description on fail. (or nil if there was no error)
+	
 
-	//has the operation been executed?
-	BOOL hasBeenExecuted;
-	
-	//did an error occur?
-	NSError *operationError;
-	
-
-	//this is our generall received data
-	//it is used by the login modules to save the login pages
-	//and parse them for success
-	//don't forget to release and set to nil after you're done with it! (ESPECIALLY DONT FORGET TO SET TO NIL NIL NIL NIL!!!!)
-	//NSMutableData *receivedData;
-	
-	NSInteger maxDownloadSpeedLimit;
-	
-	BOOL isPaused; //is the download paused? (limiting speed to ~ 0kbit/s)
+	NSInteger maxDownloadSpeedLimit;		//the maximum bandwidth this operation may use. (in kilobit/s)
 	
 	
-	//
-	NSMutableData *myDataCache;
+	id <QNDownloadOperationDelegateProtocol> delegate; //our delegate
+	
+	
 	
 	//these vars are used to limit our delegate update frequency (to save redraws of UI)
 	unsigned int speedUpdateDelegateTimer;
