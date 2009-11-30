@@ -576,6 +576,12 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	//but it is very likely that this functionality will be called from the reset-method
 	//so this code will go away
 
+	//add:
+	//this will also ensure that premature temp files are deleted when the remote host will
+	//tell us a filename for our download. (on receiving such information in the http stream this
+	//method will be called again.) so we remove all old files and filehandles.
+	
+	
 	//release old handle
 	[temporaryDownloadHandle closeFile];
 	[temporaryDownloadHandle release];
