@@ -37,10 +37,14 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
  will try to login to rapidshare premium and get a premium cookie for the following download
  
  */
-- (BOOL) loginToRapidshareWithUsername: (NSString *) username andPassword: (NSString *) password
+//- (BOOL) loginToRapidshareWithUsername: (NSString *) username andPassword: (NSString *) password
+- (BOOL) performRemoteLogin
 {
 	if (!curlHandle)
 		return NO;
+	
+	NSString *username = @"1839287";
+	NSString *password =  @"OYNjH8YziW";
 	
 	///////////////////////////////////////////////////////////////////////////
 	// API Account Check
@@ -180,7 +184,8 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
  Reply format:	integer,string,integer,integer,integer,string,string
 */
 
-- (BOOL) checkStatusOfFileOnRapidshare
+
+- (BOOL) performRemoteFileCheck
 {
 	
 	LOG_LOCATION();
@@ -345,14 +350,14 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 #pragma mark Session Loop Parts
 // reads the rapid share account settings (HAHA HOFFCODED!)
 // and performs a login
-- (BOOL) sessionloop_loginRapidshare
+/*- (BOOL) sessionloop_loginRapidshare
 {
-	return [self loginToRapidshareWithUsername: @"1839287" andPassword: @"OYNjH8YziW"];
+	return [self performRemoteLogin];
 }
 
 - (BOOL) sessionloop_checkFileOnRapidshare
 {
-	return [self checkStatusOfFileOnRapidshare];
+	return [self performRemoteFileCheck];
 }
 
 #pragma mark The Session Loop
@@ -391,7 +396,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	}
 	
 	[thePool release];
-}
+}*/
 
 
 

@@ -14,7 +14,7 @@
 	//received login data from rapidshare
 	NSMutableData *receivedData;
 }
-- (BOOL) loginToRapidshareWithUsername: (NSString *) username andPassword: (NSString *) password;
+//- (BOOL) loginToRapidshareWithUsername: (NSString *) username andPassword: (NSString *) password;
 - (NSString *) errorStringForRapidshareErrorPage: (NSString *) errorPageHtmlString;
 
 @end

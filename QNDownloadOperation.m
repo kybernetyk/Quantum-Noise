@@ -420,6 +420,17 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 
 
 
+- (BOOL) performRemoteLogin
+{
+	return YES;
+}
+
+- (BOOL) performRemoteFileCheck
+{
+	return YES;
+}
+
+
 /*
 	will download the file specified in the URI.
 
@@ -560,6 +571,8 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	[temporaryDownloadHandle release];
 	temporaryDownloadHandle = nil;
 	
+	
+	NSLog(@"temp download filename: %@", [self temporaryDownloadFilename]);
 	
 	//if there should be a file with the tempfilename let's remove it
 	if ([myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
@@ -733,6 +746,17 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	return NO;
 }
 
+- (BOOL) sessionloop_checkRemotefile
+{
+	return [self performRemoteFileCheck];
+}
+
+- (BOOL) sessionloop_loginRemote
+{
+	return [self performRemoteLogin];
+}
+
+
 // performs the actual download
 - (BOOL) sessionloop_doDownload
 {
@@ -841,9 +865,14 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	//will break execution if one method returns NO
 	NSArray *conditionalDownloadSequence = [NSArray arrayWithObjects: @"sessionloop_beginDownloadSession",
 																		@"sessionloop_setupSession",
+																		
+																		@"sessionloop_checkRemotefile",
+																		@"sessionloop_loginRemote",
+
 																		@"sessionloop_doDownload",
 																		@"finalizeDownload",
 																		nil];
+	
 	
 	
 	//will be executed no matter what the prior method returns

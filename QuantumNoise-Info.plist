@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildNumber</key>
-	<string>443</string>
+	<string>453</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -35,6 +35,6 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>ThisVersionBuildNumber</key>
-	<string>124</string>
+	<string>134</string>
 </dict>
 </plist>
