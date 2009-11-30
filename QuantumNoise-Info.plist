@@ -3,11 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildNumber</key>
-<<<<<<< HEAD
-	<string>444</string>
-=======
 	<string>457</string>
->>>>>>> fcheckexperiment
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -39,10 +35,6 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>ThisVersionBuildNumber</key>
-<<<<<<< HEAD
-	<string>125</string>
-=======
 	<string>138</string>
->>>>>>> fcheckexperiment
 </dict>
 </plist>

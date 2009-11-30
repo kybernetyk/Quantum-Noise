@@ -7,13 +7,13 @@
  *
  */
 
-//our download op status strings
+//our download operation status strings
 #define kQNDownloadStatusDownloading @"Downloading"
 #define kQNDownloadStatusPaused @"Paused"
 #define kQNDownloadStatusIdle @"Idle"
 #define kQNDownloadStatusSuccess @"Succeeded"
 
-//our download operation severance level
+//our download operation error levels
 //the error level describes if the download can be 
 //retried (kQNDownloadOperationErrorRecoverable || kQNDownloadOperationErrorDontKnow ) 
 //or if the error was fatal
@@ -22,7 +22,7 @@
 #define kQNDownloadOperationErrorDontKnow 2
 #define kQNDownloadOperationErrorFatal 3
 
-//should be CURL verbose?
+//should CURL be verbose?
 #define CURL_VERBOSE 0
 
 //should the thread wait for the delegate thread to complete
