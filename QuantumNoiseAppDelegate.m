@@ -9,6 +9,7 @@
 #import "QuantumNoiseAppDelegate.h"
 #import "QNDownloadManager.h"
 #import "QNDownloadBundleManager.h"
+#import "PFMoveApplication.h"
 
 @implementation QuantumNoiseAppDelegate
 
@@ -21,6 +22,17 @@
 	//[[mainWindowController window] center];
 	[[mainWindowController window] makeKeyAndOrderFront: self];
 }
+
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
+{
+	// Offer to the move the Application if necessary.
+	// Note that if the user chooses to move the application,
+	// this call will never return. Therefore you can suppress
+	// any first run UI by putting it after this call.
+	
+	PFMoveToApplicationsFolderIfNecessary();
+}
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {
