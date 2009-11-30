@@ -14,6 +14,8 @@
 - (size_t) curlHeaderCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks;
 - (int) curlProgressCallbackWithDownloadedBytes: (double) bytesDownloaded andTotalBytesToDownload: (double) totalBytes;
 - (BOOL) performFileDownload;
+- (BOOL) performRemoteLogin;
+- (BOOL) performRemoteFileCheck;
 - (BOOL) setupProxy;
 - (BOOL) setupDownloadPathForFilename: (NSString *) filename;
 - (BOOL) finalizeDownload;
@@ -26,6 +28,8 @@
 #pragma mark session loop parts category
 @interface QNDownloadOperation (SessionLoop)
 - (BOOL) sessionloop_setupSession;
+- (BOOL) sessionloop_checkRemotefile;
+- (BOOL) sessionloop_loginRemote;
 - (BOOL) sessionloop_beginDownloadSession;
 - (BOOL) sessionloop_doDownload;
 - (BOOL) sessionloop_cleanupSession;

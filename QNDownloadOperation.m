@@ -419,6 +419,27 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 }
 
 
+/*
+ override this with your remote login code.
+ 
+ in this method you should set a login-cookie for the instance's curlHandle.
+ 
+ TODO: change this to return a cookie-string that will be used by the curlHandle
+ */
+- (BOOL) performRemoteLogin
+{
+	return YES;
+}
+
+
+/*
+ override this to implement a remote file check (if file exists, etc)
+ */
+- (BOOL) performRemoteFileCheck
+{
+	return YES;
+}
+
 
 /*
 	will download the file specified in the URI.
@@ -561,12 +582,15 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	temporaryDownloadHandle = nil;
 	
 	
+	NSLog(@"temp download filename: %@", [self temporaryDownloadFilename]);
+	
 	//if there should be a file with the tempfilename let's remove it
 	if ([myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
 	{
-		NSError *err;
+		NSError *err = nil;
 		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
-		NSLog(@"removeItemAtPath: %@ returned => %@",[self temporaryDownloadFilename], err);
+		
+		NSLog(@"removeItemAtPath: %@ returned => %@",[self temporaryDownloadFilename], [err localizedDescription]);
 	}
 	//--
 	
@@ -602,7 +626,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	{
 		//TODO: implement download resume - setting the download resume location here!
 
-		NSError *err;
+		NSError *err = nil;
 		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
 		[myThreadSafeFileManagerInstance createFileAtPath: [self temporaryDownloadFilename] contents:[NSData dataWithBytes: 0 length: 0] attributes: nil];
 	}
@@ -617,7 +641,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		//let us set the files size as received byts #
 		//and progress to 100%
 		//as we asume that this file was downloaded by the user already
-		NSError *err;
+		NSError *err = nil;
 		NSDictionary *fileInfo = [myThreadSafeFileManagerInstance attributesOfItemAtPath: [self fileName]
 																				  error: &err];
 		NSNumber *num = [NSNumber numberWithLongLong: [fileInfo fileSize]];
@@ -661,7 +685,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	NSLog(@"finalizing: moving %@ to %@",[self temporaryDownloadFilename],[self fileName]);
 	[self setStatus: @"Finalizing"];
 	
-	NSError *err;
+	NSError *err = nil;
 
 	//the shared manager is not thread safe and is main thread only
 	//we are not on the main thread!
@@ -733,6 +757,17 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	return NO;
 }
 
+- (BOOL) sessionloop_checkRemotefile
+{
+	return [self performRemoteFileCheck];
+}
+
+- (BOOL) sessionloop_loginRemote
+{
+	return [self performRemoteLogin];
+}
+
+
 // performs the actual download
 - (BOOL) sessionloop_doDownload
 {
@@ -759,7 +794,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	NSFileManager *myThreadSafeFileManagerInstance = [[[NSFileManager alloc] init] autorelease];
 	if ([myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
 	{
-		NSError *err;
+		NSError *err = nil;
 		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];	
 	}
 	
@@ -841,9 +876,14 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	//will break execution if one method returns NO
 	NSArray *conditionalDownloadSequence = [NSArray arrayWithObjects: @"sessionloop_beginDownloadSession",
 																		@"sessionloop_setupSession",
+																		
+																		@"sessionloop_checkRemotefile",
+																		@"sessionloop_loginRemote",
+
 																		@"sessionloop_doDownload",
 																		@"finalizeDownload",
 																		nil];
+	
 	
 	
 	//will be executed no matter what the prior method returns
