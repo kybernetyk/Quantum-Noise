@@ -8,6 +8,7 @@
 
 #import "QNAddDownloadLinksWindowController.h"
 #import "NSString+Search.h"
+#import "QNLinkExtractor.h"
 
 #pragma mark -
 #pragma mark private setters
@@ -22,6 +23,7 @@
 @implementation QNAddDownloadLinksWindowController
 @synthesize links;
 @synthesize passwordHint;
+@synthesize parseForLinks;
 
 - (void) dealloc
 {
@@ -54,14 +56,28 @@
 
 - (IBAction) continueButton: (id) sender
 {
-	NSArray *tempArray = [[linkInputTextField stringValue] componentsSeparatedByCharactersInSet:
+	NSMutableArray *linkArray = [NSMutableArray array];
+	
+	if ([self parseForLinks])
+	{
+		NSString *urlToParse = [linkInputTextField stringValue];
+		
+		[linkArray addObjectsFromArray: 
+		 [QNLinkExtractor linksExtractedFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com"]];
+		
+		
+	}
+	else
+	{
+		NSArray *tempArray = [[linkInputTextField stringValue] componentsSeparatedByCharactersInSet:
 						  [NSCharacterSet characterSetWithCharactersInString:@" ,\n\r\t"]];
 	
-	NSMutableArray *linkArray = [NSMutableArray array];
-	for (NSString *link in tempArray)
-	{
-		if ([link containsString:@"http://"])
-			[linkArray addObject: link];
+	
+		for (NSString *link in tempArray)
+		{
+			if ([link containsString:@"http://"])
+				[linkArray addObject: link];
+		}
 	}
 	
 	[self setPasswordHint:@"irfree.com"];

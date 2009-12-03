@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0377276C10C488EB00A559E1 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0377276B10C488EB00A559E1 /* PFMoveApplication.m */; };
 		0377278310C4896700A559E1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0377278210C4896700A559E1 /* Security.framework */; };
+		0382F4AB10C84B990093B99E /* QNLinkExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0382F4AA10C84B990093B99E /* QNLinkExtractor.m */; };
 		0397196D10A7959C00E34BB8 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0397196C10A7959C00E34BB8 /* icon.icns */; };
 		03A0EE3710B34F6C0032BA3A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A0EE3610B34F6C0032BA3A /* MainWindow.xib */; };
 		03A0EEDA10B3541B0032BA3A /* MainWindow_small.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A0EED910B3541B0032BA3A /* MainWindow_small.xib */; };
@@ -64,6 +65,8 @@
 		0377276A10C488EB00A559E1 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
 		0377276B10C488EB00A559E1 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
 		0377278210C4896700A559E1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0382F4A910C84B990093B99E /* QNLinkExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNLinkExtractor.h; sourceTree = "<group>"; };
+		0382F4AA10C84B990093B99E /* QNLinkExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNLinkExtractor.m; sourceTree = "<group>"; };
 		0397196C10A7959C00E34BB8 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		03A0EE3610B34F6C0032BA3A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		03A0EED910B3541B0032BA3A /* MainWindow_small.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_small.xib; sourceTree = "<group>"; };
@@ -343,6 +346,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0382F4A910C84B990093B99E /* QNLinkExtractor.h */,
+				0382F4AA10C84B990093B99E /* QNLinkExtractor.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 				03F8D3BC108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m in Sources */,
 				03BE8E6910B338EA0022EB82 /* QNUnrarOperation.m in Sources */,
 				0377276C10C488EB00A559E1 /* PFMoveApplication.m in Sources */,
+				0382F4AB10C84B990093B99E /* QNLinkExtractor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
