@@ -55,7 +55,7 @@
 	[operationQueue setSuspended: YES];
 	
 	//must be after opQueue creation!!!!
-	[self setMaxConcurrentDownloads: 8];
+	[self setMaxConcurrentDownloads: [[NSUserDefaults standardUserDefaults] integerForKey:@"maxConcurrentDownloadOperations"]];
 	
 	[self loadState];
 	

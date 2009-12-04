@@ -43,8 +43,22 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	if (!curlHandle)
 		return NO;
 	
-	NSString *username = @"1839287";
-	NSString *password =  @"OYNjH8YziW";
+	NSDictionary *hosters = [[NSUserDefaults standardUserDefaults] dictionaryForKey: @"supportedHosters"];
+	NSDictionary *rapidshare = [hosters objectForKey: @"rapidshare.com"];
+	
+	if (!rapidshare)
+	{
+		[self setStatus: @"Login Failed: No Credentials Found for Rapidshare.com"];
+		
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
+		
+		return NO;
+	}
+	
+	
+	NSString *username = [rapidshare objectForKey: @"username"];
+	NSString *password =  [rapidshare objectForKey: @"password"];
+
 	
 	///////////////////////////////////////////////////////////////////////////
 	// API Account Check

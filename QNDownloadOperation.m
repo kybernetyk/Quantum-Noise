@@ -11,6 +11,7 @@
 
 #import "QNDownloadOperation.h"
 #import "QNDownloadOperation+Private.h"
+#import "QNDownloadBundleManager.h"
 #import <curl/curl.h>
 #import <sys/time.h>
 #import "NSString+Search.h"
@@ -567,7 +568,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	NSFileManager *myThreadSafeFileManagerInstance = [[[NSFileManager alloc] init] autorelease];
 	
 
-	[self setStatus:@"Checking Files"];
+	//[self setStatus:@"Checking Files"];
 
 	
 	//-
@@ -594,7 +595,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	if ([myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
 	{
 		NSError *err = nil;
-		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
+		//[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
 		
 		NSLog(@"removeItemAtPath: %@ returned => %@",[self temporaryDownloadFilename], [err localizedDescription]);
 	}
@@ -604,11 +605,45 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	// let's build our final download filename (with full path)
 	NSString *destinationFilename;
     NSString *homeDirectory=NSHomeDirectory();
+	NSString *bundleName = [[[QNDownloadBundleManager sharedManager] downloadBundleForURI: [self URI]] title];
 	
-	//the download location is: ~/Downloads/
-	//TODO: make this a setting which can be changed by the user
-	destinationFilename=[[homeDirectory stringByAppendingPathComponent:@"Downloads"]
-						 stringByAppendingPathComponent:filename];
+	if (![[NSUserDefaults standardUserDefaults] boolForKey: @"createDirectoriesForBundles"])
+		bundleName = nil;
+	
+	if (bundleName)
+	{
+		NSString *bundleDir = [[homeDirectory stringByAppendingPathComponent:@"Downloads"]
+							   stringByAppendingPathComponent: bundleName];
+		destinationFilename = [bundleDir stringByAppendingPathComponent: filename];
+		
+		BOOL isdir = NO;
+		
+		if (![myThreadSafeFileManagerInstance fileExistsAtPath: bundleDir isDirectory: &isdir])
+		{
+			NSError *error = nil;
+			
+			if ([myThreadSafeFileManagerInstance createDirectoryAtPath: bundleDir withIntermediateDirectories: YES attributes: nil error: &error])
+			{
+				NSLog(@"created directory %@ [%@]",bundleDir, [error localizedDescription]);
+			}
+			else
+			{
+				NSLog(@"could not create dir %@",[error localizedDescription]);
+				[self setOperationError: 
+				 [self errorWithDescription:@"Could not create download dir" code: 1 andErrorLevel:kQNDownloadOperationErrorRecoverable]];
+				return NO;
+			}
+		}
+	}
+	else
+	{
+		NSLog(@"NO BUNDLE FOR ME!");
+		//the download location is: ~/Downloads/
+		//TODO: make this a setting which can be changed by the user
+		destinationFilename=[[homeDirectory stringByAppendingPathComponent:@"Downloads"]
+							 stringByAppendingPathComponent:filename];
+	}
+
 	
 	[self setFileName: destinationFilename];
 	
@@ -626,6 +661,8 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	//if there's no file create an empty one for our filehandle
 	if (![myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
 	{	
+		NSLog(@"creating temp filename: %@",[self temporaryDownloadFilename]);
+		
 		[myThreadSafeFileManagerInstance createFileAtPath: [self temporaryDownloadFilename] contents:[NSData dataWithBytes: 0 length: 0] attributes: nil];
 	}
 	else //remove old temp filename and create a new one
