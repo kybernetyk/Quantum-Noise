@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03750D5D10CB206C00C04D0F /* General_Prefs.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5810CB206C00C04D0F /* General_Prefs.tiff */; };
+		03750D5E10CB206C00C04D0F /* GeneralPreferencePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */; };
+		03750D5F10CB206C00C04D0F /* GeneralPreferencePaneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5B10CB206C00C04D0F /* GeneralPreferencePaneView.xib */; };
+		03750DFF10CB22D700C04D0F /* Updating_Prefs.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 03750DFA10CB22D700C04D0F /* Updating_Prefs.tiff */; };
+		03750E0110CB22D700C04D0F /* UpdatingPreferencePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03750DFD10CB22D700C04D0F /* UpdatingPreferencePaneController.m */; };
+		03750E0210CB22D700C04D0F /* UpdatingPreferencePaneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03750DFE10CB22D700C04D0F /* UpdatingPreferencePaneView.xib */; };
+		03750E1410CB237700C04D0F /* UpdatingPreferencePane.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 03750DF010CB223D00C04D0F /* UpdatingPreferencePane.bundle */; };
 		0377276C10C488EB00A559E1 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0377276B10C488EB00A559E1 /* PFMoveApplication.m */; };
 		0377278310C4896700A559E1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0377278210C4896700A559E1 /* Security.framework */; };
 		0382F4AB10C84B990093B99E /* QNLinkExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0382F4AA10C84B990093B99E /* QNLinkExtractor.m */; };
+		0383661810CB1F0C00929778 /* GeneralPreferencePane.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0383658A10CB1E0D00929778 /* GeneralPreferencePane.bundle */; };
 		0397196D10A7959C00E34BB8 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0397196C10A7959C00E34BB8 /* icon.icns */; };
 		03A0EE3710B34F6C0032BA3A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A0EE3610B34F6C0032BA3A /* MainWindow.xib */; };
 		03A0EEDA10B3541B0032BA3A /* MainWindow_small.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A0EED910B3541B0032BA3A /* MainWindow_small.xib */; };
@@ -41,12 +49,30 @@
 		03F8D3B7108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F8D3B5108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m */; };
 		03F8D3BB108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F8D3B8108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib */; };
 		03F8D3BC108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F8D3BA108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m */; };
+		03FB7DAB10CB13CA00C88868 /* SS_PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FB7DAA10CB13CA00C88868 /* SS_PrefsController.m */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* QuantumNoiseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* QuantumNoiseAppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03071C3710CB25D1001FF8B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0383658910CB1E0C00929778 /* GeneralPreferencePane */;
+			remoteInfo = GeneralPreferencePane;
+		};
+		03071C3910CB25D1001FF8B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03750DEF10CB223D00C04D0F /* UpdatingPreferencePane */;
+			remoteInfo = UpdatingPreferencePane;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		03A14A3610A06F53002BF9B1 /* CopyFiles */ = {
@@ -62,11 +88,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		03750D5810CB206C00C04D0F /* General_Prefs.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General_Prefs.tiff; sourceTree = "<group>"; };
+		03750D5910CB206C00C04D0F /* GeneralPreferencePaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencePaneController.h; sourceTree = "<group>"; };
+		03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencePaneController.m; sourceTree = "<group>"; };
+		03750D5B10CB206C00C04D0F /* GeneralPreferencePaneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePaneView.xib; sourceTree = "<group>"; };
+		03750D5C10CB206C00C04D0F /* GeneralPreferencePane-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GeneralPreferencePane-Info.plist"; sourceTree = "<group>"; };
+		03750DF010CB223D00C04D0F /* UpdatingPreferencePane.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UpdatingPreferencePane.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		03750DFA10CB22D700C04D0F /* Updating_Prefs.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Updating_Prefs.tiff; sourceTree = "<group>"; };
+		03750DFB10CB22D700C04D0F /* UpdatingPreferencePane-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UpdatingPreferencePane-Info.plist"; sourceTree = "<group>"; };
+		03750DFC10CB22D700C04D0F /* UpdatingPreferencePaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatingPreferencePaneController.h; sourceTree = "<group>"; };
+		03750DFD10CB22D700C04D0F /* UpdatingPreferencePaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatingPreferencePaneController.m; sourceTree = "<group>"; };
+		03750DFE10CB22D700C04D0F /* UpdatingPreferencePaneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatingPreferencePaneView.xib; sourceTree = "<group>"; };
 		0377276A10C488EB00A559E1 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
 		0377276B10C488EB00A559E1 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
 		0377278210C4896700A559E1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0382F4A910C84B990093B99E /* QNLinkExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNLinkExtractor.h; sourceTree = "<group>"; };
 		0382F4AA10C84B990093B99E /* QNLinkExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNLinkExtractor.m; sourceTree = "<group>"; };
+		0383658A10CB1E0D00929778 /* GeneralPreferencePane.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeneralPreferencePane.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0397196C10A7959C00E34BB8 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		03A0EE3610B34F6C0032BA3A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		03A0EED910B3541B0032BA3A /* MainWindow_small.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_small.xib; sourceTree = "<group>"; };
@@ -122,6 +160,9 @@
 		03F8D3B8108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QNCreateNewDownloadBundleWindow.xib; sourceTree = "<group>"; };
 		03F8D3B9108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNCreateNewDownloadBundleWindowController.h; sourceTree = "<group>"; };
 		03F8D3BA108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNCreateNewDownloadBundleWindowController.m; sourceTree = "<group>"; };
+		03FB7DA810CB13CA00C88868 /* SS_PreferencePaneProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SS_PreferencePaneProtocol.h; sourceTree = "<group>"; };
+		03FB7DA910CB13CA00C88868 /* SS_PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SS_PrefsController.h; sourceTree = "<group>"; };
+		03FB7DAA10CB13CA00C88868 /* SS_PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SS_PrefsController.m; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -137,6 +178,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		03750DEE10CB223D00C04D0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0383658810CB1E0C00929778 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,6 +206,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03750D5710CB206C00C04D0F /* General Preference Pane */ = {
+			isa = PBXGroup;
+			children = (
+				03750D5810CB206C00C04D0F /* General_Prefs.tiff */,
+				03750D5910CB206C00C04D0F /* GeneralPreferencePaneController.h */,
+				03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */,
+				03750D5B10CB206C00C04D0F /* GeneralPreferencePaneView.xib */,
+				03750D5C10CB206C00C04D0F /* GeneralPreferencePane-Info.plist */,
+			);
+			path = "General Preference Pane";
+			sourceTree = "<group>";
+		};
+		03750DF910CB22D700C04D0F /* Updating Preference Pane */ = {
+			isa = PBXGroup;
+			children = (
+				03750DFA10CB22D700C04D0F /* Updating_Prefs.tiff */,
+				03750DFB10CB22D700C04D0F /* UpdatingPreferencePane-Info.plist */,
+				03750DFC10CB22D700C04D0F /* UpdatingPreferencePaneController.h */,
+				03750DFD10CB22D700C04D0F /* UpdatingPreferencePaneController.m */,
+				03750DFE10CB22D700C04D0F /* UpdatingPreferencePaneView.xib */,
+			);
+			path = "Updating Preference Pane";
+			sourceTree = "<group>";
+		};
+		038365EA10CB1E4C00929778 /* Preference Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				03750DF910CB22D700C04D0F /* Updating Preference Pane */,
+				03750D5710CB206C00C04D0F /* General Preference Pane */,
+			);
+			name = "Preference Bundles";
+			sourceTree = "<group>";
+		};
 		03A14A2E10A06EC3002BF9B1 /* App Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +261,7 @@
 		03C20D2B108E14BA009C905A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				03FB7D9210CB132000C88868 /* Preferences Window */,
 				03A14A2E10A06EC3002BF9B1 /* App Delegate */,
 				03F8D3B1108E4E4A00B8E7E2 /* Create New Bundle Sheet */,
 				03F8D3B0108E4E4000B8E7E2 /* Add Links Sheet */,
@@ -343,6 +432,16 @@
 			name = "Create New Bundle Sheet";
 			sourceTree = "<group>";
 		};
+		03FB7D9210CB132000C88868 /* Preferences Window */ = {
+			isa = PBXGroup;
+			children = (
+				03FB7DA810CB13CA00C88868 /* SS_PreferencePaneProtocol.h */,
+				03FB7DA910CB13CA00C88868 /* SS_PrefsController.h */,
+				03FB7DAA10CB13CA00C88868 /* SS_PrefsController.m */,
+			);
+			name = "Preferences Window";
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +474,8 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* QuantumNoise.app */,
+				0383658A10CB1E0D00929778 /* GeneralPreferencePane.bundle */,
+				03750DF010CB223D00C04D0F /* UpdatingPreferencePane.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -382,6 +483,7 @@
 		29B97314FDCFA39411CA2CEA /* QuantumNoise */ = {
 			isa = PBXGroup;
 			children = (
+				038365EA10CB1E4C00929778 /* Preference Bundles */,
 				03BE8E6410B338E00022EB82 /* Unrar */,
 				03C20E21108E1A69009C905A /* Cocoa Extensions */,
 				03C20DF8108E19B1009C905A /* Download Stuff */,
@@ -433,6 +535,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		03750DEF10CB223D00C04D0F /* UpdatingPreferencePane */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03750DF410CB223E00C04D0F /* Build configuration list for PBXNativeTarget "UpdatingPreferencePane" */;
+			buildPhases = (
+				03750DEC10CB223D00C04D0F /* Resources */,
+				03750DED10CB223D00C04D0F /* Sources */,
+				03750DEE10CB223D00C04D0F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UpdatingPreferencePane;
+			productName = UpdatingPreferencePane;
+			productReference = 03750DF010CB223D00C04D0F /* UpdatingPreferencePane.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		0383658910CB1E0C00929778 /* GeneralPreferencePane */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0383658E10CB1E0D00929778 /* Build configuration list for PBXNativeTarget "GeneralPreferencePane" */;
+			buildPhases = (
+				0383658610CB1E0C00929778 /* Resources */,
+				0383658710CB1E0C00929778 /* Sources */,
+				0383658810CB1E0C00929778 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GeneralPreferencePane;
+			productName = GeneralPrefPane;
+			productReference = 0383658A10CB1E0D00929778 /* GeneralPreferencePane.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8D1107260486CEB800E47090 /* QuantumNoise */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "QuantumNoise" */;
@@ -446,6 +582,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				03071C3810CB25D1001FF8B0 /* PBXTargetDependency */,
+				03071C3A10CB25D1001FF8B0 /* PBXTargetDependency */,
 			);
 			name = QuantumNoise;
 			productInstallPath = "$(HOME)/Applications";
@@ -466,15 +604,37 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* QuantumNoise */,
+				0383658910CB1E0C00929778 /* GeneralPreferencePane */,
+				03750DEF10CB223D00C04D0F /* UpdatingPreferencePane */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		03750DEC10CB223D00C04D0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03750DFF10CB22D700C04D0F /* Updating_Prefs.tiff in Resources */,
+				03750E0210CB22D700C04D0F /* UpdatingPreferencePaneView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0383658610CB1E0C00929778 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03750D5D10CB206C00C04D0F /* General_Prefs.tiff in Resources */,
+				03750D5F10CB206C00C04D0F /* GeneralPreferencePaneView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03750E1410CB237700C04D0F /* UpdatingPreferencePane.bundle in Resources */,
+				0383661810CB1F0C00929778 /* GeneralPreferencePane.bundle in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				03C20D67108E156F009C905A /* LeftSidebarView.xib in Resources */,
@@ -510,6 +670,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		03750DED10CB223D00C04D0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03750E0110CB22D700C04D0F /* UpdatingPreferencePaneController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0383658710CB1E0C00929778 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03750D5E10CB206C00C04D0F /* GeneralPreferencePaneController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -535,10 +711,24 @@
 				03BE8E6910B338EA0022EB82 /* QNUnrarOperation.m in Sources */,
 				0377276C10C488EB00A559E1 /* PFMoveApplication.m in Sources */,
 				0382F4AB10C84B990093B99E /* QNLinkExtractor.m in Sources */,
+				03FB7DAB10CB13CA00C88868 /* SS_PrefsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		03071C3810CB25D1001FF8B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0383658910CB1E0C00929778 /* GeneralPreferencePane */;
+			targetProxy = 03071C3710CB25D1001FF8B0 /* PBXContainerItemProxy */;
+		};
+		03071C3A10CB25D1001FF8B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03750DEF10CB223D00C04D0F /* UpdatingPreferencePane */;
+			targetProxy = 03071C3910CB25D1001FF8B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -560,6 +750,106 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		03750DF210CB223E00C04D0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Updating Preference Pane/UpdatingPreferencePane-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UpdatingPreferencePane;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		03750DF310CB223E00C04D0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Updating Preference Pane/UpdatingPreferencePane-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UpdatingPreferencePane;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		0383658C10CB1E0D00929778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "General Preference Pane/GeneralPreferencePane-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GeneralPreferencePane;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		0383658D10CB1E0D00929778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "General Preference Pane/GeneralPreferencePane-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GeneralPreferencePane;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -630,6 +920,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		03750DF410CB223E00C04D0F /* Build configuration list for PBXNativeTarget "UpdatingPreferencePane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03750DF210CB223E00C04D0F /* Debug */,
+				03750DF310CB223E00C04D0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0383658E10CB1E0D00929778 /* Build configuration list for PBXNativeTarget "GeneralPreferencePane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0383658C10CB1E0D00929778 /* Debug */,
+				0383658D10CB1E0D00929778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "QuantumNoise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

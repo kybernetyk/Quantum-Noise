@@ -23,6 +23,27 @@
 	[[mainWindowController window] makeKeyAndOrderFront: self];
 }
 
+- (IBAction) openPreferencesWindow: (id) sender
+{
+	if (preferencesWindowController)
+	{
+		[preferencesWindowController showPreferencesWindow];
+		return;
+	}
+	
+	// Determine path to the sample preference panes
+     NSString *pathToPanes = [[NSString stringWithFormat:@"%@/Contents/Resources/", [[NSBundle mainBundle] bundlePath]]
+								 stringByStandardizingPath];
+	
+	preferencesWindowController = [[SS_PrefsController alloc] initWithPanesSearchPath:pathToPanes bundleExtension:@"bundle"];
+	
+	// Set which panes are included, and their order.
+	[preferencesWindowController setPanesOrder:[NSArray arrayWithObjects:@"General", @"Updating", @"A Non-Existent Preference Pane", nil]];
+	// Show the preferences window.
+	[preferencesWindowController showPreferencesWindow];
+
+}
+
 - (void) registerUserDefaults
 {
 	NSUserDefaults *defs = [[NSUserDefaults alloc] init];
