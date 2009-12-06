@@ -46,43 +46,23 @@
 
 - (void) registerUserDefaults
 {
-	NSUserDefaults *defs = [[NSUserDefaults alloc] init];
-	
-	[defs setBool: YES forKey: @"createDirectoriesForBundles"];
-	[defs setInteger: 4 forKey: @"maxConcurrentDownloadOperations"];
-	
-	NSDictionary *rapidshare = [NSDictionary dictionaryWithObjectsAndKeys: @"1839287", @"username",
-								@"OYNjH8YziW",@"password",
-								nil];
-	
-	NSDictionary *hosters = [NSDictionary dictionaryWithObject: rapidshare forKey: @"rapidshare.com"];
-	[defs setObject: hosters forKey: @"supportedHosters"];
-	
-	/*
-	NSDictionary *hosters = [[NSUserDefaults standardUserDefaults] dictionaryForKey: @"supportedHosters"];
-	NSDictionary *rapidshare = [hosters objectForKey: @"rapidshare"];
-	
-	if (!rapidshare)
-	{
-		[self setStatus: @"Login Failed: No Credentials Found for Rapidshare.com"];
-		
-		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
-		
-		return NO;
-	}
-	
-	
-	NSString *username = [rapidshare objectForKey: @"username"];
-	NSString *password =  [rapidshare objectForKey: @"password"];
-	
-	NSString *username = @"1839287";
-	NSString *password =  @"OYNjH8YziW";
-*/	
-	
-	[[NSUserDefaults standardUserDefaults] registerDefaults: [defs dictionaryRepresentation]];
-	
-	[defs release];
+	NSDictionary *hosters = [NSDictionary dictionaryWithObject: [NSDictionary dictionaryWithObjectsAndKeys: @"1839287", @"username",  @"OYNjH8YziW",@"password", nil]
+								forKey: @"rapidshareCom"];
 
+	
+	NSDictionary *userDefs = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [NSNumber numberWithBool: YES], @"createDirectoriesForBundles",
+							  [NSNumber numberWithInt: 4], @"maxConcurrentDownloadOperations",
+							  [NSNumber numberWithInt: 0],@"maxBandwidthUsage",
+							  @"1839287",@"rapidShareCom_username",
+							  @"OYNjH8YziW",@"rapidShareCom_password",
+							  nil];
+	
+	
+	[[NSUserDefaults standardUserDefaults] registerDefaults: userDefs];
+	
+	
+	
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
