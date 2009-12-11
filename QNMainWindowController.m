@@ -766,6 +766,9 @@
 		
 	}
 	
+	[downloadManager saveState];
+	[bundleManager saveState];
+	
 }
 
 //well let's call it checkForCompleteBundlesAndUnrarThem

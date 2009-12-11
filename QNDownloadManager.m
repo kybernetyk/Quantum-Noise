@@ -13,7 +13,7 @@
 #import "QNDownloadOperation+Factory.h"
 #import "DDInvocationGrabber.h"
 #import "NSObject+DDExtensions.h"
-
+#import "NSString+Search.h"
 
 
 @implementation QNDownloadManager
@@ -374,7 +374,7 @@
 		NSString *URI						=		[downloadDict objectForKey: @"URI"];
 		NSString *fileName					=		[downloadDict objectForKey: @"fileName"];
 		NSString *temporaryDownloadFilename =		[downloadDict objectForKey: @"temporaryDownloadFilename"];
-	//	NSString *status					=		[downloadDict objectForKey: @"status"];
+		NSString *status					=		[downloadDict objectForKey: @"status"];
 		
 		double progress						=		[[downloadDict objectForKey: @"progress"] doubleValue];
 		double speed						=		[[downloadDict objectForKey: @"speed"] doubleValue];
@@ -406,6 +406,7 @@
 		
 		
 		//operation not finished
+		//we don't support resume yet so we reset the operation
 		if (progress < 1.0)
 		{
 			[downloadOperation setStatus: kQNDownloadStatusIdle];
@@ -417,7 +418,12 @@
 		}
 		else 
 		{
-			[downloadOperation setStatus: kQNDownloadStatusSuccess];
+			//if the state was saved while extraction we should show the state before extraction
+			if ([status containsString: @"extracting" ignoringCase: YES])
+				[downloadOperation setStatus: kQNDownloadStatusSuccess];
+			else
+				[downloadOperation setStatus: status];
+			
 			[downloadOperation setProgress: progress];
 			[downloadOperation setDownloadSpeed: speed];
 			[downloadOperation setReceivedBytes: receivedBytes];
