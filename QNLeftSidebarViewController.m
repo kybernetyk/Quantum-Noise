@@ -176,7 +176,10 @@
 	NSLog(@"item to select: %@",itemToSelect);
 	NSLog(@"row to select: %i",rowToSelect);
 
-	[outlineView selectRow: rowToSelect byExtendingSelection: NO];
+	
+//	- (void)selectRowIndexes:(NSIndexSet *)indexes byExtendingSelection:(BOOL)extend
+	//[outlineView selectRow: rowToSelect byExtendingSelection: NO];
+	[outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex: rowToSelect] byExtendingSelection: NO];
 }
 
 #pragma mark user selected items

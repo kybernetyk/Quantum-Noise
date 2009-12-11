@@ -7,6 +7,9 @@
  *
  */
 
+//set this to 1 to disable NSLog output.
+#define DISABLE_NSLOG 0
+
 //our download operation status strings
 #define kQNDownloadStatusDownloading @"Downloading"
 #define kQNDownloadStatusPaused @"Paused"
@@ -36,3 +39,7 @@
 #define THIS_FILE ((strrchr(__FILE__, '/') ?: __FILE__ - 1) + 1)
 #define SOURCE_LOCATION [NSString stringWithFormat:@"(File: %s Line: %i Method: %s)",THIS_FILE,__LINE__, __PRETTY_FUNCTION__]
 #define LOG_LOCATION(); NSLog(@"%@", SOURCE_LOCATION);
+
+#if DISABLE_NSLOG
+#define NSLog(format, ...)
+#endif
