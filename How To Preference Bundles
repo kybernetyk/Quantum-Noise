@@ -1,0 +1,18 @@
+Hai, this will tell you how to create preference pane Bundles!
+
+1. Make a copy of an existing preference pane in the project's directory (WITH FINDER!)
+2. Edit the source file names and contents in the copy to reflect your new pane's name.
+3. Rightclick 'Quantumnoise' in the Groups&Files view and select 'Add new Target -> Loadable Bundle'
+4. Add the folder to your XCode project. (Drag & Drop from finder to xcode.) Don't check 'copy files'. 
+	->>>> Select your newly created Target in the dialog!!!! <<<<-
+5. Select the QuantumNoise Target -> Get Info. Add your new Target to the 'Direct dependencies'-list.
+6. Now it's time to change the .nib and the XXX-Info.plist of your bundle to reflect the changes.
+
+7. When you're ready to test your preference pane, open 'QuantumNoiseAppDelegate.m" and edit add your pane to
+	- (IBAction) openPreferencesWindow: (id) sender
+		->
+		[preferencesWindowController setPanesOrder:[NSArray arrayWithObjects:@"General", @"Updating", @"Your Pane's Name", nil]];	
+		
+	your pane's name can be set in
+		YourPaneController.m
+			- (NSString *)paneName;

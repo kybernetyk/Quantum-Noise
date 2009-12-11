@@ -51,7 +51,6 @@
 	isPaused = NO;
 	
 	//queue must halt!
-	//[operationQueue setMaxConcurrentOperationCount: 2];
 	[operationQueue setSuspended: YES];
 	
 	//must be after opQueue creation!!!!

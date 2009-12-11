@@ -45,6 +45,7 @@
 		03C20E34108E1AB8009C905A /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C20E33108E1AB8009C905A /* libcurl.dylib */; };
 		03C20E64108E1ECE009C905A /* QNDownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E63108E1ECE009C905A /* QNDownloadsViewController.m */; };
 		03C20E66108E1EDC009C905A /* DownloadsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20E65108E1EDC009C905A /* DownloadsView.xib */; };
+		03C5792D10D2A10F00BECFEE /* How To Threadsafe Delegates in Resources */ = {isa = PBXBuildFile; fileRef = 03C5792C10D2A10F00BECFEE /* How To Threadsafe Delegates */; };
 		03F8D3B6108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F8D3B3108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib */; };
 		03F8D3B7108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F8D3B5108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m */; };
 		03F8D3BB108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F8D3B8108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib */; };
@@ -154,6 +155,8 @@
 		03C20E62108E1ECE009C905A /* QNDownloadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadsViewController.h; sourceTree = "<group>"; };
 		03C20E63108E1ECE009C905A /* QNDownloadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNDownloadsViewController.m; sourceTree = "<group>"; };
 		03C20E65108E1EDC009C905A /* DownloadsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadsView.xib; sourceTree = "<group>"; };
+		03C5792710D29FBE00BECFEE /* How To Preference Bundles */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "How To Preference Bundles"; sourceTree = "<group>"; };
+		03C5792C10D2A10F00BECFEE /* How To Threadsafe Delegates */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "How To Threadsafe Delegates"; sourceTree = "<group>"; };
 		03F8D3B3108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QNAddDownloadLinksWindow.xib; sourceTree = "<group>"; };
 		03F8D3B4108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNAddDownloadLinksWindowController.h; sourceTree = "<group>"; };
 		03F8D3B5108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNAddDownloadLinksWindowController.m; sourceTree = "<group>"; };
@@ -412,6 +415,15 @@
 			name = "Downloads View";
 			sourceTree = "<group>";
 		};
+		03C5791A10D29F8A00BECFEE /* TXT & NFO */ = {
+			isa = PBXGroup;
+			children = (
+				03C5792710D29FBE00BECFEE /* How To Preference Bundles */,
+				03C5792C10D2A10F00BECFEE /* How To Threadsafe Delegates */,
+			);
+			name = "TXT & NFO";
+			sourceTree = "<group>";
+		};
 		03F8D3B0108E4E4000B8E7E2 /* Add Links Sheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +503,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				03C5791A10D29F8A00BECFEE /* TXT & NFO */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -648,6 +661,7 @@
 				03A0EEDA10B3541B0032BA3A /* MainWindow_small.xib in Resources */,
 				03A0EEDF10B354460032BA3A /* LeftSidebarView_small.xib in Resources */,
 				03A0EEE110B354550032BA3A /* DownloadsView_small.xib in Resources */,
+				03C5792D10D2A10F00BECFEE /* How To Threadsafe Delegates in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

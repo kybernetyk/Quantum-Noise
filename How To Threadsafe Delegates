@@ -1,0 +1,13 @@
+If you should ever want to send a delegate messages from a thread that is not the delegate's main thread, don't send them directyl with
+	[myDelegate aMessage];
+
+Use -performOnMainThread: instead! Many Cocoa classes are main thread only and you NEVER know if your delegate might be using them. If your delegate
+manipulates the UI then -performOnMainThread: IS THE ONLY WAY to send messages to the delegate. Cocoa's UI is NOT THREADSAFE and it is MAIN THREAD ONLY!
+
+example:
+
+	[delegate performSelectorOnMainThread: @selector(downloadOperationDownloadProgressDidChange:) 
+							   withObject: self 
+							waitUntilDone: NO];
+
+or use the dd_invokeOnMainThread helper message from "NSObject+DDExtensions.h" to send messages with more than one argument!	

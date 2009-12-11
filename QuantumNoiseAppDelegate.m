@@ -38,7 +38,7 @@
 	preferencesWindowController = [[SS_PrefsController alloc] initWithPanesSearchPath:pathToPanes bundleExtension:@"bundle"];
 	
 	// Set which panes are included, and their order.
-	[preferencesWindowController setPanesOrder:[NSArray arrayWithObjects:@"General", @"Updating", @"A Non-Existent Preference Pane", nil]];
+	[preferencesWindowController setPanesOrder:[NSArray arrayWithObjects:@"General",@"Updating", @"A Non-Existent Preference Pane", nil]];
 	// Show the preferences window.
 	[preferencesWindowController showPreferencesWindow];
 
@@ -54,6 +54,7 @@
 							  [NSNumber numberWithBool: YES], @"createDirectoriesForBundles",
 							  [NSNumber numberWithInt: 4], @"maxConcurrentDownloadOperations",
 							  [NSNumber numberWithInt: 0],@"maxBandwidthUsage",
+							  [NSNumber numberWithBool: NO], @"proxyEnabled",
 							  @"1839287",@"rapidShareCom_username",
 							  @"OYNjH8YziW",@"rapidShareCom_password",
 							  nil];
