@@ -390,19 +390,6 @@
 		[downloadOperation setFileName: fileName];
 		[downloadOperation setTemporaryDownloadFilename: temporaryDownloadFilename];
 
-		//let us "reset" the packages that were not downloaded comepletly.
-		//later let's resume them. now we gonna restart them as the currently saved
-		//"resume" information is inaccurate. 
-/*		if ([status isEqualToString: @"Downloading"])
-		{
-			[downloadOperation setStatus: @"Idle"];
-			[downloadOperation setProgress: 0.0];
-			[downloadOperation setDownloadSpeed: 0.0];
-			[downloadOperation setReceivedBytes: 0.0];
-			[downloadOperation setDownloadSpeed: 0.0];
-		}
-		else */
-			
 		
 		
 		//operation not finished
@@ -428,11 +415,6 @@
 			[downloadOperation setDownloadSpeed: speed];
 			[downloadOperation setReceivedBytes: receivedBytes];
 			
-	/*		QNDownloadBundle *bundle = [[QNDownloadBundleManager sharedManager] downloadBundleForURI: URI];
-			if (bundle)
-			{
-				
-			}*/
 		}
 
 
