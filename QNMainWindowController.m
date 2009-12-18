@@ -21,6 +21,9 @@
 #import "QNUnrarOperation.h"
 
 @implementation QNMainWindowController
+//@synthesize userDownloadRateLimitInKbits;
+//@synthesize userMaxConcurrentDownloads;
+
 #define kMinOutlineViewSplit	100.0f
 
 #pragma mark ctor/dtor
@@ -135,8 +138,20 @@
 	[leftSidebarViewController reloadContent];
 }
 
+
 - (void)windowDidLoad
 {
+	NSUserDefaultsController *defc = [NSUserDefaultsController sharedUserDefaultsController];
+
+	//[[NSUserDefaults standardUserDefaults] integerForKey:@"maxConcurrentDownloadOperations"]
+	
+	[defc addObserver: self forKeyPath: @"values.maxBandwidthUsage" options: NSKeyValueObservingOptionNew context: @"maxBandwidthUsage"];
+	[defc addObserver: self forKeyPath: @"values.maxConcurrentDownloadOperations" options: NSKeyValueObservingOptionNew context: @"maxConcurrentDownloadOperations"];
+	//register observers for user interface changes
+	//[self addObserver: self forKeyPath: @"userDownloadRateLimitInKbits" options: NSKeyValueObservingOptionNew context: @"userDownloadRateLimitInKbits"];
+	//[self addObserver: self forKeyPath: @"userMaxConcurrentDownloads" options: NSKeyValueObservingOptionNew context: @"userMaxConcurrentDownloads"];
+	
+	
 	NSString *title =  [NSString stringWithFormat: @"%@ %@ (Build %@)",
 						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"], 
 						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
@@ -164,6 +179,36 @@
 	//- (void) leftSidebarViewController: (QNLeftSidebarViewController *) aController selectedItemsChangedTo: (NSSet *) selectedItems
 	//[[leftSidebarViewController outlineView] selectRow: 0 byExtendingSelection: NO];
 }
+
+#pragma mark -
+#pragma mark KVO observing
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+	NSString *contextString = (NSString *)context;
+	
+	if ([contextString isEqualToString: @"maxBandwidthUsage"])
+	{
+		NSLog(@"setting new dl limit to: %i kbit/s",[[NSUserDefaults standardUserDefaults] integerForKey: @"maxBandwidthUsage"]);
+		[[QNDownloadManager sharedManager] setMaxDownloadSpeed: [[NSUserDefaults standardUserDefaults] integerForKey: @"maxBandwidthUsage"] * 1000];
+		return;
+	}
+	
+	if ([contextString isEqualToString: @"maxConcurrentDownloadOperations"])
+	{
+		NSLog(@"setting new max concurrent DLs to: %i",[[NSUserDefaults standardUserDefaults] integerForKey:@"maxConcurrentDownloadOperations"]);
+		[[QNDownloadManager sharedManager] setMaxConcurrentDownloads: [[NSUserDefaults standardUserDefaults] integerForKey:@"maxConcurrentDownloadOperations"]];
+		return;
+	}
+	
+	[super observeValueForKeyPath:keyPath
+						 ofObject:object
+						   change:change
+						  context:context];
+}
+
 
 #pragma mark Left Sidebar View Controller Delegate
 - (void) leftSidebarViewController: (QNLeftSidebarViewController *) aController selectedItemsChangedTo: (NSSet *) selectedItems
@@ -606,6 +651,11 @@
 		NSString *pass = nil;
 		if ([controller bundleArchivePassword])
 			pass = [NSString stringWithString: [controller bundleArchivePassword]];
+		
+		
+		
+		
+		
 		
 		
 		QNDownloadBundle *bundle = [bundleManager downloadBundleWithTitle: title

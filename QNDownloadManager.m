@@ -55,6 +55,7 @@
 	
 	//must be after opQueue creation!!!!
 	[self setMaxConcurrentDownloads: [[NSUserDefaults standardUserDefaults] integerForKey:@"maxConcurrentDownloadOperations"]];
+	[self setMaxDownloadSpeed: [[NSUserDefaults standardUserDefaults] integerForKey: @"maxBandwidthUsage"] * 1000];
 	
 	[self loadState];
 	
