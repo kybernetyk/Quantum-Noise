@@ -147,11 +147,16 @@
 	{
 		if ([[bundle title] isEqualToString: title])
 		{
-			NSLog(@"Bundle exists already!");
+			NSLog(@"Bundle exists already! adding links to existing bundle");
 			LOG_LOCATION();
 			
-			//omg we got bundle already
-			return nil;
+			QNDownloadBundle *dlb = [self downloadBundleForTitle: title];
+			
+			for (NSString *uri in URIs)
+				[dlb addURI: uri];
+
+			[self saveState];
+			return dlb;
 		}
 	}
 	
