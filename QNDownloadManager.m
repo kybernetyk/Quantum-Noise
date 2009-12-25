@@ -577,7 +577,20 @@
 	[self applyDownloadSpeedLimitToActiveDownloads];
 	
 	
+	/*
+	 
+	NSNotification *notification;
 	
+	notification = [NSNotification notificationWithName: MYBarViewWillChangeValueNotification object:self];
+	
+	if([[self delegate] respondsToSelector: @selector(barViewWillChangeValue:)])
+	{
+		[[self delegate] barViewWillChangeValue:notification];
+	} 
+	
+	[[NSNotificationCenter defaultCenter] postNotification:notification];
+	
+	*/
 	
 	
 	[[delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
