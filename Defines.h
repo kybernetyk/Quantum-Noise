@@ -8,7 +8,7 @@
  */
 
 //set this to 1 to disable NSLog output.
-#define DISABLE_NSLOG 0
+#define DISABLE_NSLOG 1
 
 //our download operation status strings
 #define kQNDownloadStatusDownloading @"Downloading"
