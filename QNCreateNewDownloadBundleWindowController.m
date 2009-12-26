@@ -19,6 +19,40 @@
 
 #pragma mark -
 #pragma mark init/dealloc
+/*- (NSString *) bundleTitleForLink: (NSString *) link
+{
+	NSArray *comps = [link pathComponents];
+	
+	NSLog(@"%@",comps);
+	NSLog(@"last item: %@",[comps lastObject]);
+	NSLog(@"path ext: %@",[link pathExtension]);
+	
+	NSRange range;
+	range.location = 0;
+	range.length = [[link lastPathComponent] length];
+	
+	NSString *title = [[link lastPathComponent] stringByReplacingOccurrencesOfString: [NSString stringWithFormat:@".%@",[link pathExtension]]
+																			   withString:@""
+																				  options: NSCaseInsensitiveSearch
+																					range: range
+					   ];
+	
+	//omg that's so lame
+	//we need REGEXP MAN!
+	for (int i = 0; i < 255; i++)
+	{
+		range.length = [title length];
+		title = [title stringByReplacingOccurrencesOfString: [NSString stringWithFormat:@".part%i", i]
+												 withString: @""
+													options: NSCaseInsensitiveSearch
+													  range: range
+				 
+				 ];
+	}
+	
+	return title;
+}*/
+
 - (void) dealloc
 {
 	[links release];
@@ -47,38 +81,10 @@
 		
 		
 		//lets extract a name for our bundle from the first link
-		NSString *firstLink = [links objectAtIndex: 0];
-		NSArray *comps = [firstLink pathComponents];
-		
-		NSLog(@"%@",comps);
-		NSLog(@"last item: %@",[comps lastObject]);
-		NSLog(@"path ext: %@",[firstLink pathExtension]);
-		
-		NSRange range;
-		range.location = 0;
-		range.length = [[firstLink lastPathComponent] length];
-		
-		NSString *title = [[firstLink lastPathComponent] stringByReplacingOccurrencesOfString: [NSString stringWithFormat:@".%@",[firstLink pathExtension]]
-																				   withString:@""
-																					  options: NSCaseInsensitiveSearch
-																						range: range
-						   ];
-		
-		//omg that's so lame
-		//we need REGEXP MAN!
-		for (int i = 0; i < 255; i++)
-		{
-			range.length = [title length];
-			title = [title stringByReplacingOccurrencesOfString: [NSString stringWithFormat:@".part%i", i]
-													 withString: @""
-														options: NSCaseInsensitiveSearch
-														  range: range
-					 
-					 ];
-		}
+		NSString *firstLink = [[links objectAtIndex: 0] objectAtIndex: 0];
 		
 		//set this new title
-		[self setBundleTitle: title];
+		[self setBundleTitle: [firstLink pathBaseFilename]];
 	}
 
 }
@@ -144,13 +150,13 @@
 #pragma mark table view datasource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [links count];
+	return [[links objectAtIndex: 0] count];
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	if ([[aTableColumn identifier] isEqualToString:@"url"])
-		return [links objectAtIndex: rowIndex];
+		return [[links objectAtIndex: 0] objectAtIndex: rowIndex];
 	
 	if ([[aTableColumn identifier] isEqualToString:@"status"])
 		return @"ok";

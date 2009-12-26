@@ -609,7 +609,11 @@
 		
 		if ([[controller links] count] > 0)
 			[self createNewDownloadBundleSheetWithLinks: [controller links] andPasswordHint: [controller passwordHint]];
-		else 
+
+		
+
+		
+		if ([[controller links] count] == 0)
 		{
 			NSLog(@"LOL NO LINKS!");
 			LOG_LOCATION();
@@ -645,24 +649,20 @@
 		QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
 		QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
 		
-				
-		NSArray *links = [NSArray arrayWithArray: [controller links]];
-		NSString *title = [NSString stringWithString: [controller bundleTitle]];
-		NSString *pass = nil;
-		if ([controller bundleArchivePassword])
-			pass = [NSString stringWithString: [controller bundleArchivePassword]];
+
+		for (NSArray *bundleArray in [controller links])
+		{
+			NSArray *links = [NSArray arrayWithArray: bundleArray];
+			NSString *title = [[links objectAtIndex: 0] pathBaseFilename];
+			NSString *pass = nil;
+			if ([controller bundleArchivePassword])
+				pass = [NSString stringWithString: [controller bundleArchivePassword]];
 		
-		
-		
-		
-		
-		
-		
-		QNDownloadBundle *bundle = [bundleManager downloadBundleWithTitle: title
+			QNDownloadBundle *bundle = [bundleManager downloadBundleWithTitle: title
 														  ArchivePassword: pass
 																  andURIs: links];
-		[downloadManager enqueueDownloadBundle: bundle];
-		
+			[downloadManager enqueueDownloadBundle: bundle];
+		}
 		
 		//save the currentyl selected row
 		/*[leftSidebarViewController setContents: [self dataSourceForLeftSidebar]];

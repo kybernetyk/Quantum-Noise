@@ -28,6 +28,7 @@
 @property (readwrite, copy) NSString *bundleTitle;
 @property (readwrite, copy) NSString *bundleArchivePassword;
 
+//- (NSString *) bundleTitleForLink: (NSString *) link;
 
 - (IBAction) addButton: (id) sender;
 - (IBAction) cancelButton: (id) sender;

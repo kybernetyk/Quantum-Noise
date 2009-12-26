@@ -62,9 +62,11 @@
 	{
 		NSString *urlToParse = [linkInputTextField stringValue];
 		
-		[linkArray addObjectsFromArray: 
-		 [QNLinkExtractor linksExtractedFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com"]];
+	/*	[linkArray addObjectsFromArray: 
+		 [QNLinkExtractor linksExtractedFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com"]];*/
 		
+		[linkArray addObjectsFromArray: 
+		 [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com"]];
 		
 	}
 	else
@@ -72,12 +74,15 @@
 		NSArray *tempArray = [[linkInputTextField stringValue] componentsSeparatedByCharactersInSet:
 						  [NSCharacterSet characterSetWithCharactersInString:@" ,\n\r\t"]];
 	
+		NSMutableArray *contArray = [NSMutableArray array];
 	
 		for (NSString *link in tempArray)
 		{
 			if ([link containsString:@"http://"])
-				[linkArray addObject: link];
+				[contArray addObject: link];
 		}
+		
+		[linkArray addObject: contArray];
 	}
 	
 	[self setPasswordHint:@"irfree.com"];

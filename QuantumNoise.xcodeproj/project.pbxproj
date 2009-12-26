@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0334A8FD10E6894B00C1F551 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0334A8FC10E6894B00C1F551 /* RegexKitLite.m */; };
+		0334A91910E68B0D00C1F551 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334A91810E68B0D00C1F551 /* libicucore.dylib */; };
+		0334AAFC10E6A77A00C1F551 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */; };
 		03750D5D10CB206C00C04D0F /* General_Prefs.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5810CB206C00C04D0F /* General_Prefs.tiff */; };
 		03750D5E10CB206C00C04D0F /* GeneralPreferencePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */; };
 		03750D5F10CB206C00C04D0F /* GeneralPreferencePaneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5B10CB206C00C04D0F /* GeneralPreferencePaneView.xib */; };
@@ -89,6 +92,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0334A8FB10E6894B00C1F551 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		0334A8FC10E6894B00C1F551 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		0334A91810E68B0D00C1F551 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		03750D5810CB206C00C04D0F /* General_Prefs.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General_Prefs.tiff; sourceTree = "<group>"; };
 		03750D5910CB206C00C04D0F /* GeneralPreferencePaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencePaneController.h; sourceTree = "<group>"; };
 		03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencePaneController.m; sourceTree = "<group>"; };
@@ -203,6 +210,8 @@
 				03C20E34108E1AB8009C905A /* libcurl.dylib in Frameworks */,
 				03A14A2110A06E56002BF9B1 /* Sparkle.framework in Frameworks */,
 				0377278310C4896700A559E1 /* Security.framework in Frameworks */,
+				0334A91910E68B0D00C1F551 /* libicucore.dylib in Frameworks */,
+				0334AAFC10E6A77A00C1F551 /* libcrypto.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +466,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0334A8FB10E6894B00C1F551 /* RegexKitLite.h */,
+				0334A8FC10E6894B00C1F551 /* RegexKitLite.m */,
 				0382F4A910C84B990093B99E /* QNLinkExtractor.h */,
 				0382F4AA10C84B990093B99E /* QNLinkExtractor.m */,
 			);
@@ -506,6 +517,7 @@
 				03C5791A10D29F8A00BECFEE /* TXT & NFO */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */,
 			);
 			name = QuantumNoise;
 			sourceTree = "<group>";
@@ -541,6 +553,7 @@
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 				03C20E33108E1AB8009C905A /* libcurl.dylib */,
+				0334A91810E68B0D00C1F551 /* libicucore.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -726,6 +739,7 @@
 				0377276C10C488EB00A559E1 /* PFMoveApplication.m in Sources */,
 				0382F4AB10C84B990093B99E /* QNLinkExtractor.m in Sources */,
 				03FB7DAB10CB13CA00C88868 /* SS_PrefsController.m in Sources */,
+				0334A8FD10E6894B00C1F551 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

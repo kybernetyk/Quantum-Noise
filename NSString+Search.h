@@ -14,4 +14,9 @@
 - (BOOL) containsString:(NSString *)aString;
 - (BOOL) containsString:(NSString *)aString ignoringCase:(BOOL)flag;
 
+- (NSString *) md5;
+- (NSString *) pathBaseFilename; //base filename for warez links
+
+- (NSString *) pathBaseHashValue; // [[self pathBaseFilename] md5]
+
 @end

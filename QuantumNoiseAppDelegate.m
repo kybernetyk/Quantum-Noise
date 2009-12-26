@@ -7,6 +7,7 @@
 //
 
 #import "QuantumNoiseAppDelegate.h"
+#import "QNLinkExtractor.h"
 #import "QNDownloadManager.h"
 #import "QNDownloadBundleManager.h"
 #import "PFMoveApplication.h"
@@ -72,6 +73,11 @@
 	// Note that if the user chooses to move the application,
 	// this call will never return. Therefore you can suppress
 	// any first run UI by putting it after this call.
+
+	
+/*	[QNLinkExtractor sortedLinksFromWebsite:@"http://www.irfree.com/2009/12/26/forget-me-not-2009-dvdrip-xvid-vomit/"  linkShouldContainString: @"rapidshare.com"];
+*/	
+	
 	
 	PFMoveToApplicationsFolderIfNecessary();
 	

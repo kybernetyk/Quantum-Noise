@@ -19,6 +19,8 @@
  string given in shouldContain and returns them if so 
 
 */
++ (NSArray *) urlsFromWebsite: (NSString *) siteURI;
 + (NSArray *) linksExtractedFromWebsite: (NSString *) siteURI linkShouldContainString: (NSString *) shouldContain;
++ (NSArray *) sortedLinksFromWebsite: (NSString *) siteURI linkShouldContainString: (NSString *) shouldContain;
 
 @end
