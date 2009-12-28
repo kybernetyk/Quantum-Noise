@@ -76,10 +76,14 @@
 	int i = 0;
 	for (NSNumber *key in dict)
 	{
-		NSLog(@"%i array: %@",i++, [dict objectForKey: key]);
-		[ret addObject: [dict objectForKey: key]];
+		//NSLog(@"%i array: %@",i++, [dict objectForKey: key]);
+		NSArray *arr = [dict objectForKey: key];
+		arr = [arr sortedArrayUsingSelector: @selector(localizedCompare:)];
+		[ret addObject: arr];
 	}
 	
+	
+
 	return [NSArray arrayWithArray: ret];
 	
 }

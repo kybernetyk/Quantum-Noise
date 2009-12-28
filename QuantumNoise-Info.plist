@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildNumber</key>
-	<string>804</string>
+	<string>816</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -33,7 +33,7 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>ThisVersionBuildNumber</key>
-	<string>86</string>
+	<string>98</string>
 	<key>com.apple.PreferenceSync.ExcludeSyncKeys</key>
 	<array>
 		<string>QNDownloadManagerState</string>

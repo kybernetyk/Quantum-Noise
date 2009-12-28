@@ -649,7 +649,15 @@
 		QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
 		QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
 		
-
+		//NSArray *blubb = [[controller links]  sortedArrayUsingSelector: @selector(localizedCompare:)];
+		
+		
+		/**
+		 TODO: make the ugly sort hack go away and implement a custom sorting function or something
+		 */
+		NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
+		NSMutableArray *sortArray = [NSMutableArray array];
+		
 		for (NSArray *bundleArray in [controller links])
 		{
 			NSArray *links = [NSArray arrayWithArray: bundleArray];
@@ -658,10 +666,38 @@
 			if ([controller bundleArchivePassword])
 				pass = [NSString stringWithString: [controller bundleArchivePassword]];
 		
+			//QNDownloadBundle *bundle = [bundleManager downloadBundleWithTitle: title
+			//											  ArchivePassword: pass
+			//													  andURIs: links];
+//			[downloadManager enqueueDownloadBundle: bundle];
+			
+			NSMutableDictionary *bundleDict = [NSMutableDictionary dictionary];
+			
+			[bundleDict setObject: links forKey: @"links"];
+			[bundleDict setObject: title forKey: @"title"];
+			if (pass)
+				[bundleDict setObject: pass forKey: @"pass"];
+			
+			
+			[tempDict setObject: bundleDict forKey: title];
+			[sortArray addObject: title];
+		}
+		
+		sortArray = [sortArray sortedArrayUsingSelector: @selector(localizedCompare:)];
+		
+		for (NSString *key in sortArray)
+		{
+			NSMutableDictionary *bundleDict = [tempDict objectForKey: key];
+			NSArray *links = [bundleDict objectForKey: @"links"];
+			NSString *title = [bundleDict objectForKey: @"title"];
+			NSString *pass = [bundleDict objectForKey: @"pass"];
+			
+			
 			QNDownloadBundle *bundle = [bundleManager downloadBundleWithTitle: title
-														  ArchivePassword: pass
-																  andURIs: links];
+															  ArchivePassword: pass
+																	  andURIs: links];
 			[downloadManager enqueueDownloadBundle: bundle];
+			
 		}
 		
 		//save the currentyl selected row
