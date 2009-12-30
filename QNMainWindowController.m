@@ -19,11 +19,9 @@
 #import "QNCreateNewDownloadBundleWindowController.h"
 
 #import "QNUnrarOperation.h"
+#import "NSString+Additions.h"
 
 @implementation QNMainWindowController
-//@synthesize userDownloadRateLimitInKbits;
-//@synthesize userMaxConcurrentDownloads;
-
 #define kMinOutlineViewSplit	100.0f
 
 #pragma mark ctor/dtor
@@ -41,13 +39,15 @@
 - (void) dealloc
 {
 	NSLog(@"MainWindowController dealloc");
+	//stop observing
+	[[NSNotificationCenter defaultCenter] removeObserver: self];
 	
 	[leftSidebarViewController release];
 	leftSidebarViewController = nil;
 	
-	//[currentDownloadsViewController release];
 
 	[downloadsViewControllerCache release];
+	
 	
 	[super dealloc];
 }
@@ -141,17 +141,15 @@
 
 - (void)windowDidLoad
 {
+	/*
+	 register ourself to receive changes in the user defaults
+	 */
 	NSUserDefaultsController *defc = [NSUserDefaultsController sharedUserDefaultsController];
-
-	//[[NSUserDefaults standardUserDefaults] integerForKey:@"maxConcurrentDownloadOperations"]
-	
 	[defc addObserver: self forKeyPath: @"values.maxBandwidthUsage" options: NSKeyValueObservingOptionNew context: @"maxBandwidthUsage"];
 	[defc addObserver: self forKeyPath: @"values.maxConcurrentDownloadOperations" options: NSKeyValueObservingOptionNew context: @"maxConcurrentDownloadOperations"];
-	//register observers for user interface changes
-	//[self addObserver: self forKeyPath: @"userDownloadRateLimitInKbits" options: NSKeyValueObservingOptionNew context: @"userDownloadRateLimitInKbits"];
-	//[self addObserver: self forKeyPath: @"userMaxConcurrentDownloads" options: NSKeyValueObservingOptionNew context: @"userMaxConcurrentDownloads"];
 	
 	
+	//build window title
 	NSString *title =  [NSString stringWithFormat: @"%@ %@ (Build %@)",
 						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"], 
 						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
@@ -159,6 +157,9 @@
 	[[self window] setTitle: title];
 	
 	
+	//create the left sidebar view
+	//it will reload its selection state from user defaults
+	//and then create the appropriate right side view (by messaging us back that its selection did change. see delegate methods)
 	leftSidebarViewController = [[QNLeftSidebarViewController alloc] initWithNibName:@"LeftSidebarView" bundle: nil];
 	[leftSidebarViewController setDelegate: self];
 	[leftSidebarView addSubview: [leftSidebarViewController view]];
@@ -168,20 +169,18 @@
 	[leftSidebarViewController setContents: myDatasource];
 	[leftSidebarViewController reloadContent];
 
-	//our unrar operation queue
+	//create the unrar operation queue
 	unrarOperationQueue = [[NSOperationQueue alloc] init];
 	[unrarOperationQueue setMaxConcurrentOperationCount: 1];
 
-	
-//	[self startDownloading: self];
-	//our right content view will be created by this selection
-	//the controller will call us back in 
-	//- (void) leftSidebarViewController: (QNLeftSidebarViewController *) aController selectedItemsChangedTo: (NSSet *) selectedItems
-	//[[leftSidebarViewController outlineView] selectRow: 0 byExtendingSelection: NO];
+	//autostart downloading
+//	[self pauseResume ...
+
 }
 
 #pragma mark -
-#pragma mark KVO observing
+#pragma mark KVO observing (for user defaults)
+/* we observe the user defaults controller to act when the user changes maxBandwidthUsage or maxConcurrentDownloadOperations */
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -213,11 +212,11 @@
 #pragma mark Left Sidebar View Controller Delegate
 - (void) leftSidebarViewController: (QNLeftSidebarViewController *) aController selectedItemsChangedTo: (NSSet *) selectedItems
 {
-	NSLog(@"LOL LEFT BAR SELECTION DID CHANGE!");
-	
+//TODO: this method is too long. we should cut it down. and remove the hard coded branching stuff
+
 	if ([selectedItems count] == 0)
 	{
-		NSLog (@"LOL NO SELECTED ITEMS!");
+//		NSLog (@"LOL NO SELECTED ITEMS!");
 		[[currentDownloadsViewController view] removeFromSuperview];
 		[currentDownloadsViewController release];
 		currentDownloadsViewController = nil;
@@ -226,7 +225,7 @@
 		
 	if (![[[selectedItems allObjects] objectAtIndex: 0] title])
 	{
-		NSLog(@"NO TITLE ITEM LOL");
+//		NSLog(@"NO TITLE ITEM LOL");
 		return;
 	}
 	
@@ -239,7 +238,7 @@
 	{
 		if ([[[[selectedItems allObjects] objectAtIndex: 0] title] isEqualToString: @"Active Downloads"])
 		{
-			NSLog(@"right controller: Active Downloads");
+			//NSLog(@"right controller: Active Downloads");
 			[[QNDownloadManager sharedManager] selectUnfinishedDownloads];
 			QNDownloadsViewController *cachedController = [downloadsViewControllerCache objectForKey: @"Active Downloads"];
 			if (!cachedController)
@@ -255,7 +254,7 @@
 		
 		if ([[[[selectedItems allObjects] objectAtIndex: 0] title] isEqualToString: @"Finished Downloads"])
 		{
-				NSLog(@"right controller: Finished Downloads");
+			//NSLog(@"right controller: Finished Downloads");
 			[[QNDownloadManager sharedManager] selectFinishedDownloads];
 			QNDownloadsViewController *cachedController = [downloadsViewControllerCache objectForKey: @"Finished Downloads"];
 			if (!cachedController)
@@ -272,7 +271,7 @@
 	
 		if ([[[[selectedItems allObjects] objectAtIndex: 0] title] isEqualToString: @"All Downloads"])
 		{
-			NSLog(@"right controller: All Downloads");
+			//NSLog(@"right controller: All Downloads");
 			[[QNDownloadManager sharedManager] selectAllDownloads];
 			QNDownloadsViewController *cachedController = [downloadsViewControllerCache objectForKey: @"All Downloads"];
 			if (!cachedController)
@@ -306,10 +305,9 @@
 
 	[[QNDownloadManager sharedManager] reloadSelection];
 	[currentDownloadsViewController setDataSource: [[QNDownloadManager sharedManager] selectedDownloads]];
-	[currentDownloadsViewController reloadContent];	
+	[currentDownloadsViewController reloadContent];	//update the view to the current state
 	[rightContentView addSubview: [currentDownloadsViewController view]];
 	[[currentDownloadsViewController view] setFrame: [rightContentView bounds]];
-
 }
 
 
@@ -358,7 +356,7 @@
 		[left setFrame:leftFrame];
 		[right setFrame:rightFrame];
 	}
-/*	else
+/*	else //we don't have a horizontal split (yet)
 	{	
 		//[splitView adjustSubviews];
 		//return;
@@ -399,90 +397,42 @@
 
 - (void) downloadManager: (QNDownloadManager *) theDownloadManager downloadOperationDownloadProgressDidChange: (QNDownloadOperation *) aDownloadOperation
 {
-//	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
-	
 	//make sure the operation is part of the current selection
-	//this has to be checked here again cause of MULTI CORE
-	
+	//and then reload the current right side table view
 	if ([[currentDownloadsViewController dataSource] containsObject: aDownloadOperation])
 		[[currentDownloadsViewController tableView] reloadDataForRowIndexes:  [NSIndexSet indexSetWithIndex: [[currentDownloadsViewController dataSource]  indexOfObject: aDownloadOperation]]  columnIndexes: [NSIndexSet indexSetWithIndex: 	[[currentDownloadsViewController tableView] columnWithIdentifier: @"progress"]]];
-	
-	//NSLog(@"prog: %f",[[QNDownloadManager sharedManager] overallDownloadSpeed]);
-	
-//	[bundlesTable reloadData];
-//	[self updateUIElements];
 	
 }
 
 - (void) downloadManager: (QNDownloadManager *) theDownloadManager downloadOperationDownloadSpeedDidChange: (QNDownloadOperation *) aDownloadOperation
 {
-//	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
-	
 	NSArray *dataSource = [currentDownloadsViewController dataSource];
 	NSTableView *table = [currentDownloadsViewController tableView];
 	
 	//make sure the operation is part of the current selection
-	//this has to be checked here again cause of MULTI CORE
+	//and then reload the current right side table view
 	if ([dataSource containsObject: aDownloadOperation])
 		[table reloadDataForRowIndexes: [NSIndexSet indexSetWithIndex: [dataSource indexOfObject: aDownloadOperation]]
 								 columnIndexes: [NSIndexSet indexSetWithIndex: 	[table columnWithIdentifier: @"speed"]]];
-	
-	
-	
-	//[self updateUIElements];
-	
 }
 
 - (void) downloadManager: (QNDownloadManager *) theDownloadManager downloadOperationDidFinish: (QNDownloadOperation *) aDownloadOperation
 {
-	//QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
-	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
-	
 	NSLog(@"operation finished! %@",aDownloadOperation);
-	
-	//[activeDownloads removeObject: aDownloadOperation];
-	//[finishedDownloads addObject: aDownloadOperation];
-	//[aDownloadOperation release];
-	
-	//[downloadTable reloadData];
-	//[finishedTable reloadData];
-	
-	
-	//update our UI
 
-	/*[[QNDownloadManager sharedManager] reloadSelection];
-	[currentDownloadsViewController setDataSource: [[QNDownloadManager sharedManager] selectedDownloads]];
-	[currentDownloadsViewController reloadContent];
-		
-	[leftSidebarViewController setContents: [self dataSourceForLeftSidebar]];
-	[leftSidebarViewController reloadContent];*/
+	//if we don't do this here the progress for the operation may show only 99.xx% in the UI and won't get updated anymore
+	//as the operation stopped executing (and sending delegate messages)
 	[self synchronizeViewsWithManagers];
-	
+
+	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
 	QNDownloadBundle *bundle = [bundleManager downloadBundleForURI: [aDownloadOperation URI]];
-	float bundleprog = [bundle downloadProgress]; //[downloadManager downloadProgressForDownloadBundle: bundle];
-	NSLog(@"progress for the bundle %@: %.2f %%",[bundle title], bundleprog * 100.0);
+
+	float bundleprog = [bundle downloadProgress]; 
+	//NSLog(@"progress for the bundle %@: %.2f %%",[bundle title], bundleprog * 100.0);
 	if (bundleprog >= 1.0)
 	{
-		NSLog(@"##########################################################");
-		NSLog(@"# OMG WIR HABEN 100%% FUER DAS BUNDLE '%@'",[bundle title]);
-		NSLog(@"# WO IST DER SCHEISS UNRAR? WO? OPFER!");
-		NSLog(@"##########################################################");
-
-		
-
+		//extract all completed bundles
 		[self checkForCompleteBundlesAndProcessThem];
-		
-		//thats bullshit:
-		//if the download threads wait for completition of this operation
-		//we will get this condition (bundleprog >= 1.0) only once
-		//if (DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM == YES)
-		//		{
-		//			[self checkForCompleteBundlesAndProcessThem];
-		//		}		
-		//else the extraction timer will poll for this condition every 2 seconds
-		//cause if the threads don't wait a 2nd thread might update this right before
-		//our calculation and so there could be 2 events for bundleprog == 1.0
-		
 	}
 	
 }
@@ -492,7 +442,8 @@
 	NSArray *dataSource = [currentDownloadsViewController dataSource];
 	NSTableView *table = [currentDownloadsViewController tableView];
 
-	
+	//make sure the operation is part of the current selection
+	//and then reload the current right side table view
 	if ([dataSource containsObject: aDownloadOperation])
 	{
 		[table reloadDataForRowIndexes: [NSIndexSet indexSetWithIndex: [dataSource indexOfObject: aDownloadOperation]]
@@ -506,11 +457,6 @@
 
 #pragma mark -
 #pragma mark button handlers
-- (IBAction) startDownloading: (id) sender
-{
-	NSLog(@"no downloading autostart, sir!");
-}
-
 - (IBAction) pauseResumeDownloading: (id) sender
 {
 	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
@@ -546,8 +492,6 @@
 
 - (IBAction) cleanupDownloads: (id) sender
 {
-	LOG_LOCATION();
-	
 	NSArray *managedDownloadBundles = [NSArray arrayWithArray: [[QNDownloadBundleManager sharedManager] managedDownloadBundles]];
 	
 	for (QNDownloadBundle *bundle in managedDownloadBundles)
@@ -586,9 +530,11 @@
 }
 
 #pragma mark -
-#pragma mark add links sheet
+#pragma mark add links sheet (step 1 of adding links)
 - (IBAction) addNewLinks: (id) sender
 {
+	LOG_LOCATION();
+	
 	QNAddDownloadLinksWindowController *adlwc = [[QNAddDownloadLinksWindowController alloc] initWithWindowNibName:@"QNAddDownloadLinksWindow"];
 	
 	[NSApp beginSheet: [adlwc window] 
@@ -600,6 +546,7 @@
 
 - (void) addLinksSheetDidEnd:(NSWindow *)sheet returnCode: (NSInteger)returnCode addLinksController: (QNAddDownloadLinksWindowController *) controller
 {
+//	LOG_LOCATION();
 	if (returnCode == kAddDownloadLinksSheetReturnCodeContinue)
 	{	
 		NSLog(@"sheet did end omfg! %@ with retcode %i",controller,returnCode);
@@ -625,9 +572,10 @@
 }
 
 #pragma mark -
-#pragma mark create new bundle sheet
+#pragma mark create new bundle sheet (step 2 of adding links)
 - (void) createNewDownloadBundleSheetWithLinks: (NSArray *) links andPasswordHint: (NSString *) passwordHint
 {
+//	LOG_LOCATION();
 	QNCreateNewDownloadBundleWindowController *cndbwc = [[QNCreateNewDownloadBundleWindowController alloc] initWithWindowNibName: @"QNCreateNewDownloadBundleWindow"];
 	
 	[cndbwc setLinks: links];
@@ -642,6 +590,7 @@
 
 - (void) createDownloadBundleSheetDidEnd:(NSWindow *)sheet returnCode: (NSInteger)returnCode createBundleController: (QNCreateNewDownloadBundleWindowController *) controller
 {
+//	LOG_LOCATION();
 	if (returnCode == kCreateDownloadBundleSheetReturnCodeContinue)
 	{
 		NSLog(@"we will add a new bundle: %@ with password %@ and links %@",[controller bundleTitle], [controller bundleArchivePassword],[controller links]);
@@ -649,12 +598,21 @@
 		QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
 		QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
 		
-		//NSArray *blubb = [[controller links]  sortedArrayUsingSelector: @selector(localizedCompare:)];
-		
-		
-		/**
+		/*
+		  sort the bundles alphabetically
+		 
 		 TODO: make the ugly sort hack go away and implement a custom sorting function or something
-		 */
+		 
+		 what we do here is:
+			1. we iterate through [controller links] to get the links for each bundle we will create.
+			2. we compute the bundle name for each bundle by using the links pathBAseFilename.
+			3. for each bundle to create we create a dictionary and store the bundle's title to a sort array.
+			4. we sort the sort array alphabetically.
+			5. now we created the bundles in order of the sorted array.
+		 
+			yep, it's ugly and hacky 
+		 
+		*/
 		NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
 		NSMutableArray *sortArray = [NSMutableArray array];
 		
@@ -666,11 +624,6 @@
 			if ([controller bundleArchivePassword])
 				pass = [NSString stringWithString: [controller bundleArchivePassword]];
 		
-			//QNDownloadBundle *bundle = [bundleManager downloadBundleWithTitle: title
-			//											  ArchivePassword: pass
-			//													  andURIs: links];
-//			[downloadManager enqueueDownloadBundle: bundle];
-			
 			NSMutableDictionary *bundleDict = [NSMutableDictionary dictionary];
 			
 			[bundleDict setObject: links forKey: @"links"];
@@ -684,7 +637,6 @@
 		}
 		
 		sortArray = [sortArray sortedArrayUsingSelector: @selector(localizedCompare:)];
-		
 		for (NSString *key in sortArray)
 		{
 			NSMutableDictionary *bundleDict = [tempDict objectForKey: key];
@@ -700,46 +652,8 @@
 			
 		}
 		
-		//save the currentyl selected row
-		/*[leftSidebarViewController setContents: [self dataSourceForLeftSidebar]];
-		[leftSidebarViewController reloadContent];
-		
-	
-		[downloadManager reloadSelection];
-		[currentDownloadsViewController setDataSource: [[QNDownloadManager sharedManager] selectedDownloads]];
-		[currentDownloadsViewController reloadContent];*/
 		[self synchronizeViewsWithManagers];
 
-		
-//		[leftSidebarViewController expandAllItems];
-		
-/*		if (selectedRow == 0)
-		{
-			[currentDownloadsViewController setDataSource: [[QNDownloadManager sharedManager] selectedDownloads]];	
-			[currentDownloadsViewController reloadContent];
-		}
-*/		
-		
-		//[[leftSidebarViewController outlineView] deselectAll: self];
-		
-		/*//kill our left sidebar view
-		[[leftSidebarViewController view] removeFromSuperview];
-		[leftSidebarViewController release];
-		
-		NSLog(@"%i",[leftSidebarViewController retainCount]);
-		
-		//create new controller + view
-		leftSidebarViewController = [[QNLeftSidebarViewController alloc] initWithNibName:@"LeftSidebarView" bundle: nil];
-		[leftSidebarViewController setDelegate: self];
-		[leftSidebarView addSubview: [leftSidebarViewController view]];
-		[[leftSidebarViewController view] setFrame: [leftSidebarView bounds]];
-		
-		NSArray *myDatasource = [self dataSourceForLeftSidebar];
-		[leftSidebarViewController setContents: myDatasource];
-		[leftSidebarViewController reloadData];
-		[[leftSidebarViewController outlineView] selectRow: selectedRow byExtendingSelection: NO];
-		
-		*/
 		
 	}
 	

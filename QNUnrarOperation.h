@@ -5,6 +5,9 @@
 //  Created by jrk on 23/9/09.
 //  Copyright 2009 flux forge. All rights reserved.
 //
+//	contributors:
+//	jrk
+//	prattel
 
 #import <Cocoa/Cocoa.h>
 #import "QNUnrarOperationDelegateProtocol.h"

@@ -7,7 +7,7 @@
 //
 
 #import "QNLinkExtractor.h"
-#import "NSString+Search.h"
+#import "NSString+Additions.h"
 #import "RegexKitLite.h"
 
 @implementation QNLinkExtractor
@@ -16,10 +16,8 @@
 	NSString *strSite = [NSString stringWithContentsOfURL: [NSURL URLWithString: siteURI]];
 	if (!strSite)
 		return nil;
-	//strSite = [strSite stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 	
 	NSArray *urls = [strSite componentsMatchedByRegex: @"https?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\-\\.]*(\\?\\S+)?)?)?"];
-//	NSArray *urls = [theString componentsMatchedByRegex: @"((https?|ftp|gopher|telnet|file|notes|ms-help):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\.&]*)"];
 
 	NSLog(@"%@",urls);
 	return urls;
@@ -46,24 +44,24 @@
 + (NSArray *) sortedLinksFromWebsite: (NSString *) siteURI linkShouldContainString: (NSString *) shouldContain
 {
 	NSArray *links = [self linksExtractedFromWebsite: siteURI linkShouldContainString: shouldContain];
-	
-	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
-	//let's sort our links by their OMEGA values
-	//and return an array of arrays. each array is a bundle
+	/*
+	 we got a list of N links. chances are that these links do not belong all to the same bundle.
+	 so we take the base name of each link's file (basename: rs.com/nnnn/a.release.name.partN.rar -> a.release.name)
+	 compute the md5 of this base name and group the links by this md5 value.
+	 
+	 */
+
+	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 	for (NSString *link in links)
 	{
-		//NSLog(@"Ω of %@ = %i",link, [link omegaValue]);
-		//NSInteger omega = [link omegaValue];
-		
 		NSString *hashValue = [link pathBaseHashValue];
-//		NSLog(@"phi of %@: %@",link, phi);
 		
-		NSMutableArray *omegaArray = [dict objectForKey: hashValue/*[NSNumber numberWithInteger: omega]*/];
+		NSMutableArray *omegaArray = [dict objectForKey: hashValue];
 		if (!omegaArray)
 		{
 			omegaArray = [NSMutableArray arrayWithObject: link];
-			[dict setObject: omegaArray forKey: hashValue /*[NSNumber numberWithInteger: omega]*/];
+			[dict setObject: omegaArray forKey: hashValue];
 		}
 		else 
 		{
@@ -71,24 +69,24 @@
 		}
 	}
 
+
+	/*
+	 now we will create an array of arrays from our dict dictionary and return it.
+	 
+	 we also sort the links alphabetically within each bundle.
+	*/
 	NSMutableArray *ret = [NSMutableArray array];
-	
 	int i = 0;
 	for (NSNumber *key in dict)
 	{
-		//NSLog(@"%i array: %@",i++, [dict objectForKey: key]);
 		NSArray *arr = [dict objectForKey: key];
 		arr = [arr sortedArrayUsingSelector: @selector(localizedCompare:)];
 		[ret addObject: arr];
 	}
-	
-	
-
 	return [NSArray arrayWithArray: ret];
-	
 }
 
-
+//old xml parsing. will only work for html sites - not for plain text pages containing links. so we dropped it
 /*+ (NSArray *) linksExtractedFromWebsite: (NSString *) siteURI linkShouldContainString: (NSString *) shouldContain
 {
 	NSError *error;	

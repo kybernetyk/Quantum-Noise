@@ -14,7 +14,7 @@
 #import "QNDownloadBundleManager.h"
 #import <curl/curl.h>
 #import <sys/time.h>
-#import "NSString+Search.h"
+#import "NSString+Additions.h"
 #import <sys/time.h>
 
 

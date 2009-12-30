@@ -7,12 +7,12 @@
 //
 
 #import "QNAddDownloadLinksWindowController.h"
-#import "NSString+Search.h"
+#import "NSString+Additions.h"
 #import "QNLinkExtractor.h"
 
 #pragma mark -
 #pragma mark private setters
-@interface QNAddDownloadLinksWindowController () //jap, () muss so sein ... is halt n hack >.< von http://theocacao.com/document.page/516
+@interface QNAddDownloadLinksWindowController () //yep, no category name for real privat accessors. see: http://theocacao.com/document.page/516
 @property (readwrite, copy) NSArray *links;
 @property (readwrite, copy) NSString *passwordHint;
 @end
@@ -61,6 +61,9 @@
 	if ([self parseForLinks])
 	{
 		NSString *urlToParse = [linkInputTextField stringValue];
+
+		if ([urlToParse containsString: @"irfree.com" ignoringCase: YES])
+			[self setPasswordHint:@"irfree.com"];
 		
 	/*	[linkArray addObjectsFromArray: 
 		 [QNLinkExtractor linksExtractedFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com"]];*/
@@ -85,7 +88,7 @@
 		[linkArray addObject: contArray];
 	}
 	
-	[self setPasswordHint:@"irfree.com"];
+	
 
 	//no need to copy but anyways
 	[self setLinks: [NSArray arrayWithArray: linkArray]];

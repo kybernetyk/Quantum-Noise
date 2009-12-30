@@ -6,7 +6,7 @@
 //  Copyright 2009 flux forge. All rights reserved.
 //
 
-#import "NSString+Search.h"
+#import "NSString+Additions.h"
 #import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (SearchingAdditions)

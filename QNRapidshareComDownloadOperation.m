@@ -9,7 +9,7 @@
 #import "QNRapidshareComDownloadOperation.h"
 #import "QNRapidshareComDownloadOperation+Private.h"
 #import "QNDownloadOperation+Private.h"
-#import "NSString+Search.h"
+#import "NSString+Additions.h"
 
 #pragma mark C99 curl callbacks
 size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t nmemb, void *inSelf)

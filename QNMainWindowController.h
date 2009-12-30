@@ -1,3 +1,10 @@
+/*!
+ @header MainWindowController
+ @author	Jaroslaw Szpilewski
+ @copyright Jaroslaw Szpilewski
+ @abstract Controller for the Main Window
+ */
+
 //
 //  MainWindowController.h
 //  QuantumNoise
@@ -11,6 +18,9 @@
 #import "QNDownloadsViewController.h"
 #import "QNDownloadManagerDelegateProtocol.h"
 
+/*!
+ our main window controller.
+ */
 @interface QNMainWindowController : NSWindowController <QNDownloadManagerDelegateProtocol>
 {
 	IBOutlet NSView *leftSidebarView;
@@ -18,23 +28,25 @@
 	IBOutlet NSToolbarItem *pauseResumeButton;
 	
 	
-	QNLeftSidebarViewController *leftSidebarViewController;
-	QNDownloadsViewController *currentDownloadsViewController;
+	QNLeftSidebarViewController *leftSidebarViewController;			//our left sidebar
+	QNDownloadsViewController *currentDownloadsViewController;		//currently active right side view controller
 	
-	NSMutableDictionary *downloadsViewControllerCache;
-	NSOperationQueue *unrarOperationQueue;
+	NSMutableDictionary *downloadsViewControllerCache;				//cache for right side views.
+	NSOperationQueue *unrarOperationQueue;							//operation queue for unrars
 }
 
-//starts the download manager at all
-//is called automatically
-- (IBAction) startDownloading: (id) sender;
-
-//our pause/resume button
+/*!
+ pauses/resumes the download manager (or starts if it has not been run yet)
+ */
 - (IBAction) pauseResumeDownloading: (id) sender;
 
-//opens the add new links sheet
+/*!
+ initiates the add links dialog
+ */
 - (IBAction) addNewLinks: (id) sender;
 
-//will remove all finished and failed download bundles and their associated downloads
+/*!
+ will remove all finished and failed download bundles and their associated downloads
+ */
 - (IBAction) cleanupDownloads: (id) sender;
 @end

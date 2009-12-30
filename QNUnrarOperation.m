@@ -76,7 +76,7 @@
 			}
 		}
 		
-		NSLog(@"%@",outputString);
+	//	NSLog(@"%@",outputString);
 		//NSLog(@"%i",[outputString intValue]);
 		[outputString release];
 
@@ -100,6 +100,7 @@
 		if (!taskPipe)
 		{
 			[self setReturnCode: -666];
+			return;
 		}
 		NSTask *aTask = [[NSTask alloc] init];
 		

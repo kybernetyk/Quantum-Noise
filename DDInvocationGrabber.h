@@ -59,7 +59,7 @@
 
 #import <Foundation/Foundation.h>
 
-/**
+/*!
  * @class DDInvocationGrabber
  * @discussion DDInvocationGrabber is a helper object that makes it very easy to construct instances of NSInvocation for later use. The object is inspired by NSUndoManager's prepareWithInvocationTarget method. To use a DDInvocationGrabber object, you set its target to some object, then send it a message as if it were the target object (the DDInvocationGrabber object acts as a proxy), if the target message understands the message the DDInvocationGrabber object stores the message invocation.
  
@@ -84,7 +84,7 @@
     BOOL _waitUntilDone;
 }
 
-/**
+/*!
  * @method invocationGrabber
  * @abstract Returns a newly allocated, inited, autoreleased DDInvocationGrabber object.
  */
@@ -108,9 +108,12 @@
 
 @end
 
+/*!
+ @interface convinence
+*/
 @interface DDInvocationGrabber (DDInvocationGrabber_Conveniences)
 
-/**
+/*!
  * @method prepareWithInvocationTarget:
  * @abstract Sets the target object of the receiver and returns itself. The sender can then send a message to the 
  */

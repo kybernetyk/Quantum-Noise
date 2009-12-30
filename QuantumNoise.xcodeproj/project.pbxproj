@@ -6,10 +6,25 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		0310670710EB87E100C2656F /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 0310670B10EB87FF00C2656F /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				0310670610EB87E100C2656F /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		0334A8FD10E6894B00C1F551 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0334A8FC10E6894B00C1F551 /* RegexKitLite.m */; };
 		0334A91910E68B0D00C1F551 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334A91810E68B0D00C1F551 /* libicucore.dylib */; };
 		0334AAFC10E6A77A00C1F551 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */; };
+		0342D77810EBD494008E2103 /* How To Generate Source Documentation in Resources */ = {isa = PBXBuildFile; fileRef = 0342D77710EBD494008E2103 /* How To Generate Source Documentation */; };
 		03750D5D10CB206C00C04D0F /* General_Prefs.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5810CB206C00C04D0F /* General_Prefs.tiff */; };
 		03750D5E10CB206C00C04D0F /* GeneralPreferencePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */; };
 		03750D5F10CB206C00C04D0F /* GeneralPreferencePaneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5B10CB206C00C04D0F /* GeneralPreferencePaneView.xib */; };
@@ -42,7 +57,7 @@
 		03C20E0E108E19F6009C905A /* QNRapidshareComDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E0A108E19F6009C905A /* QNRapidshareComDownloadOperation.m */; };
 		03C20E1A108E1A2D009C905A /* QNDownloadBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E19108E1A2D009C905A /* QNDownloadBundle.m */; };
 		03C20E1D108E1A37009C905A /* QNDownloadBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E1C108E1A37009C905A /* QNDownloadBundleManager.m */; };
-		03C20E28108E1A7B009C905A /* NSString+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E27108E1A7B009C905A /* NSString+Search.m */; };
+		03C20E28108E1A7B009C905A /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E27108E1A7B009C905A /* NSString+Additions.m */; };
 		03C20E2F108E1A8F009C905A /* DDInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E2C108E1A8F009C905A /* DDInvocationGrabber.m */; };
 		03C20E30108E1A8F009C905A /* NSObject+DDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E2E108E1A8F009C905A /* NSObject+DDExtensions.m */; };
 		03C20E34108E1AB8009C905A /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C20E33108E1AB8009C905A /* libcurl.dylib */; };
@@ -96,6 +111,7 @@
 		0334A8FC10E6894B00C1F551 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		0334A91810E68B0D00C1F551 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		0342D77710EBD494008E2103 /* How To Generate Source Documentation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "How To Generate Source Documentation"; sourceTree = "<group>"; };
 		03750D5810CB206C00C04D0F /* General_Prefs.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General_Prefs.tiff; sourceTree = "<group>"; };
 		03750D5910CB206C00C04D0F /* GeneralPreferencePaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencePaneController.h; sourceTree = "<group>"; };
 		03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencePaneController.m; sourceTree = "<group>"; };
@@ -152,8 +168,8 @@
 		03C20E1B108E1A37009C905A /* QNDownloadBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNDownloadBundleManager.h; sourceTree = "<group>"; };
 		03C20E1C108E1A37009C905A /* QNDownloadBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNDownloadBundleManager.m; sourceTree = "<group>"; };
 		03C20E1E108E1A3E009C905A /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
-		03C20E26108E1A7B009C905A /* NSString+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Search.h"; sourceTree = "<group>"; };
-		03C20E27108E1A7B009C905A /* NSString+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Search.m"; sourceTree = "<group>"; };
+		03C20E26108E1A7B009C905A /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		03C20E27108E1A7B009C905A /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		03C20E2B108E1A8F009C905A /* DDInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDInvocationGrabber.h; sourceTree = "<group>"; };
 		03C20E2C108E1A8F009C905A /* DDInvocationGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDInvocationGrabber.m; sourceTree = "<group>"; };
 		03C20E2D108E1A8F009C905A /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
@@ -396,8 +412,8 @@
 		03C20E22108E1A71009C905A /* NSString */ = {
 			isa = PBXGroup;
 			children = (
-				03C20E26108E1A7B009C905A /* NSString+Search.h */,
-				03C20E27108E1A7B009C905A /* NSString+Search.m */,
+				03C20E26108E1A7B009C905A /* NSString+Additions.h */,
+				03C20E27108E1A7B009C905A /* NSString+Additions.m */,
 			);
 			name = NSString;
 			sourceTree = "<group>";
@@ -429,6 +445,7 @@
 			children = (
 				03C5792710D29FBE00BECFEE /* How To Preference Bundles */,
 				03C5792C10D2A10F00BECFEE /* How To Threadsafe Delegates */,
+				0342D77710EBD494008E2103 /* How To Generate Source Documentation */,
 			);
 			name = "TXT & NFO";
 			sourceTree = "<group>";
@@ -632,6 +649,7 @@
 				8D1107260486CEB800E47090 /* QuantumNoise */,
 				0383658910CB1E0C00929778 /* GeneralPreferencePane */,
 				03750DEF10CB223D00C04D0F /* UpdatingPreferencePane */,
+				0310670710EB87E100C2656F /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -675,12 +693,26 @@
 				03A0EEDF10B354460032BA3A /* LeftSidebarView_small.xib in Resources */,
 				03A0EEE110B354550032BA3A /* DownloadsView_small.xib in Resources */,
 				03C5792D10D2A10F00BECFEE /* How To Threadsafe Delegates in Resources */,
+				0342D77810EBD494008E2103 /* How To Generate Source Documentation in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0310670610EB87E100C2656F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -r docs\nheaderdoc2html -o docs ./\ngatherheaderdoc docs\nopen ./docs\nexit 0";
+		};
 		03A14AB910A07411002BF9B1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -729,7 +761,7 @@
 				03C20E0E108E19F6009C905A /* QNRapidshareComDownloadOperation.m in Sources */,
 				03C20E1A108E1A2D009C905A /* QNDownloadBundle.m in Sources */,
 				03C20E1D108E1A37009C905A /* QNDownloadBundleManager.m in Sources */,
-				03C20E28108E1A7B009C905A /* NSString+Search.m in Sources */,
+				03C20E28108E1A7B009C905A /* NSString+Additions.m in Sources */,
 				03C20E2F108E1A8F009C905A /* DDInvocationGrabber.m in Sources */,
 				03C20E30108E1A8F009C905A /* NSObject+DDExtensions.m in Sources */,
 				03C20E64108E1ECE009C905A /* QNDownloadsViewController.m in Sources */,
@@ -778,6 +810,27 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0310670810EB87E100C2656F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Documentation;
+			};
+			name = Debug;
+		};
+		0310670910EB87E100C2656F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Documentation;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		03750DF210CB223E00C04D0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -948,6 +1001,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0310670B10EB87FF00C2656F /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0310670810EB87E100C2656F /* Debug */,
+				0310670910EB87E100C2656F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		03750DF410CB223E00C04D0F /* Build configuration list for PBXNativeTarget "UpdatingPreferencePane" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

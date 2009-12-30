@@ -1,0 +1,2 @@
+Either run ./gendocs.sh or build the Documentation target.
+docs will be written to the docs-directory in the project directory.

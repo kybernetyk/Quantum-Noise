@@ -47,10 +47,10 @@
 
 - (void) registerUserDefaults
 {
-	NSDictionary *hosters = [NSDictionary dictionaryWithObject: [NSDictionary dictionaryWithObjectsAndKeys: @"1839287", @"username",  @"OYNjH8YziW",@"password", nil]
-								forKey: @"rapidshareCom"];
-
-	
+	/*
+	 yes, we save the rs.com credentials in plain text.
+	 TODO: use security.framework functions to store credentials in the key chain
+	 */
 	NSDictionary *userDefs = [NSDictionary dictionaryWithObjectsAndKeys:
 							  [NSNumber numberWithBool: YES], @"createDirectoriesForBundles",
 							  [NSNumber numberWithInt: 4], @"maxConcurrentDownloadOperations",
@@ -73,12 +73,6 @@
 	// Note that if the user chooses to move the application,
 	// this call will never return. Therefore you can suppress
 	// any first run UI by putting it after this call.
-
-	
-/*	[QNLinkExtractor sortedLinksFromWebsite:@"http://www.irfree.com/2009/12/26/forget-me-not-2009-dvdrip-xvid-vomit/"  linkShouldContainString: @"rapidshare.com"];
-*/	
-	
-	
 	PFMoveToApplicationsFolderIfNecessary();
 	
 	[self registerUserDefaults];

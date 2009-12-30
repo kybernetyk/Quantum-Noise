@@ -13,7 +13,7 @@
 #import "QNDownloadOperation+Factory.h"
 #import "DDInvocationGrabber.h"
 #import "NSObject+DDExtensions.h"
-#import "NSString+Search.h"
+#import "NSString+Additions.h"
 
 
 @implementation QNDownloadManager
@@ -62,7 +62,9 @@
 	//select all
 	[self selectAllDownloads];
 	
-	NSLog(@"operations in queue: %@",[operationQueue operations]);
+//	NSLog(@"operations in queue: %@",[operationQueue operations]);
+	
+//	NSLog(@"max concurrent DLs: %i", [[NSUserDefaults standardUserDefaults] integerForKey:@"maxConcurrentDownloadOperations"]);
 	
 	return self;
 }

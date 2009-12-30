@@ -10,6 +10,10 @@
 #import "QNMainWindowController.h"
 #import "SS_PrefsController.h"
 
+/*!
+ @brief the app delegate
+ @discussion yup
+ */
 @interface QuantumNoiseAppDelegate : NSObject <NSApplicationDelegate> 
 {
 	QNMainWindowController *mainWindowController;
@@ -21,6 +25,10 @@
  @discussion will create new window if theres no controller / else it will reopen the existing window
 */
 - (IBAction) openMainWindow: (id) sender;
+
+/*!
+ @brief open the preferences window
+*/
 - (IBAction) openPreferencesWindow: (id) sender;
 
 @end

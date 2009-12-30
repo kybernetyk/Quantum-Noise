@@ -20,7 +20,7 @@
 
 #pragma mark -
 #pragma mark private setters
-@interface QNDownloadManager () //jap, () muss so sein ... is halt n hack >.< von http://theocacao.com/document.page/516
+@interface QNDownloadManager () //yep, no category name for real privat accessors. see: http://theocacao.com/document.page/516
 @property (readwrite, copy) NSArray *selectedDownloads;
 @property (readwrite, assign) float overallDownloadProgress;
 @property (readwrite, assign) float overallDownloadSpeed;

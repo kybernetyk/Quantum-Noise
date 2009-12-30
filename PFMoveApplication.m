@@ -10,7 +10,7 @@
 //	  Andy Kim
 //    John Brayton
 //    Chad Sellers
-//    Eita Hayashi (Japanese localization)
+//    Eita Hayashi (#import "NSString+Additions.h"anese localization)
 //
 
 #import "PFMoveApplication.h"
