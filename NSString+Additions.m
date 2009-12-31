@@ -24,11 +24,11 @@
 
 - (NSString *) pathBaseFilename //base filename for warez links
 {
-	NSArray *comps = [self pathComponents];
+	//NSArray *comps = [self pathComponents];
 	
-	NSLog(@"%@",comps);
-	NSLog(@"last item: %@",[comps lastObject]);
-	NSLog(@"path ext: %@",[self pathExtension]);
+//	NSLog(@"%@",comps);
+//	NSLog(@"last item: %@",[comps lastObject]);
+//	NSLog(@"path ext: %@",[self pathExtension]);
 	
 	NSRange range;
 	range.location = 0;
@@ -39,10 +39,20 @@
 																			 options: NSCaseInsensitiveSearch
 																			   range: range
 					   ];
-	
 	//omg that's so lame
 	//we need REGEXP MAN!
-	for (int i = 0; i < 255; i++)
+	for (int i = 9; i >= 0; i--)
+	{
+		range.length = [title length];
+		title = [title stringByReplacingOccurrencesOfString: [NSString stringWithFormat:@".part0%i", i]
+												 withString: @""
+													options: NSCaseInsensitiveSearch
+													  range: range
+				 
+				 ];
+	}
+	
+	for (int i = 255; i >= 0; i--)
 	{
 		range.length = [title length];
 		title = [title stringByReplacingOccurrencesOfString: [NSString stringWithFormat:@".part%i", i]
@@ -51,6 +61,8 @@
 													  range: range
 				 
 				 ];
+		
+	//	NSLog(@"%@",title);
 	}
 	
 	return title;
