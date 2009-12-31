@@ -55,6 +55,7 @@
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 	for (NSString *link in links)
 	{
+		NSLog(@"path base: %@",[link pathBaseFilename]);
 		NSString *hashValue = [link pathBaseHashValue];
 		
 		NSMutableArray *omegaArray = [dict objectForKey: hashValue];
