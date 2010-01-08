@@ -7,7 +7,7 @@
 //
 
 #import "QNDownloadOperation+Factory.h"
-
+#import "NSString+Additions.h"
 #import "QNDownloadOperation.h"
 #import "QNRapidshareComDownloadOperation.h"
 
@@ -33,12 +33,13 @@
 	//and look for the apropriate class
 	//but for now we're hoff coding it!
 	
-	//NSLog(@"which hoster for %@?",aURI);
+	NSLog(@"which hoster for %@?",aURI);
+	NSLog(@"host string: %@",[hostString lowercaseString]);
 	
 	id ret = nil;
 	
 	//uh oh rape it shaer!
-	if ([[hostString lowercaseString] isEqualToString:@"rapidshare.com"])
+	if ([[hostString lowercaseString] containsString: @"rapidshare.com" ignoringCase: YES])
 	{	
 		ret = [[[QNRapidshareComDownloadOperation alloc] initWithURI: aURI] autorelease];
 	}
