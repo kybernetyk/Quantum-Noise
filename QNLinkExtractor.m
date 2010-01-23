@@ -34,7 +34,11 @@
 	for (NSString *url in urls)
 	{
 		if ([url containsString: shouldContain ignoringCase: YES])
+		{	
+			NSLog(@"adding: %@", url);
 			[tempSet addObject: url]; 
+			
+		}
 	}
 	
 	return [tempSet allObjects];

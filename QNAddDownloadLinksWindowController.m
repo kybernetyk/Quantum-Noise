@@ -69,7 +69,7 @@
 		 [QNLinkExtractor linksExtractedFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com"]];*/
 		
 		[linkArray addObjectsFromArray: 
-		 [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com"]];
+		 [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com/files/"]];
 		
 	}
 	else
