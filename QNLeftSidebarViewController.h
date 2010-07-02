@@ -14,7 +14,7 @@
 //@public
 	NSArray						*contents; //array of LeftSidebaritems
 	NSSet						*selectedItems; //set of QNLeftSidebarItem
-	NSArray						*keywordsFilteredBySelectedItems; //array of QNKeyword
+	//NSArray						*keywordsFilteredBySelectedItems; //array of QNKeyword
 	id							delegate;
 	
 
