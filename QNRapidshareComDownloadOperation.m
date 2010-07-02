@@ -145,7 +145,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	NSString *returnString = [[NSString alloc] initWithData: receivedData encoding: NSUTF8StringEncoding];
 	[returnString autorelease];
 	
-//	NSLog(@"returnString: %@",returnString);
+	NSLog(@"RS LOGIN returnString: %@",returnString);
 	NSString *errorString = [self errorStringForRapidshareErrorPage: returnString];
 //	NSLog(@"errorstring: %@",errorString);
 	

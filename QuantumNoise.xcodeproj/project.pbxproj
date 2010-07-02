@@ -620,7 +620,6 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				03A14A3610A06F53002BF9B1 /* CopyFiles */,
-				03A14AB910A07411002BF9B1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -712,19 +711,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "rm -r docs\nheaderdoc2html -o docs ./\ngatherheaderdoc docs\nopen ./docs\nexit 0";
-		};
-		03A14AB910A07411002BF9B1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/python;
-			shellScript = "#!/usr/bin/python\n\nfrom AppKit import NSMutableDictionary\n\nimport os\n\n# reading info.plist file\nprojectPlist = NSMutableDictionary.dictionaryWithContentsOfFile_('QuantumNoise-Info.plist')\n\n#overall build\nversion = projectPlist['BuildNumber']\nincrementVersion = long(version) + 1\nprojectPlist['BuildNumber'] = str(incrementVersion)\n\n#this version build\nversion = projectPlist['ThisVersionBuildNumber']\nincrementVersion = long(version) + 1\nprojectPlist['ThisVersionBuildNumber'] = str(incrementVersion)\n\nprojectPlist.writeToFile_atomically_('QuantumNoise-Info.plist', True)\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

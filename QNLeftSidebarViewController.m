@@ -68,8 +68,8 @@
 	selectedItems = nil;
 	
 	
-	[keywordsFilteredBySelectedItems release];
-	keywordsFilteredBySelectedItems = nil;
+//	[keywordsFilteredBySelectedItems release];
+//	keywordsFilteredBySelectedItems = nil;
 	
 	[iconCache release];
 	iconCache = nil;
