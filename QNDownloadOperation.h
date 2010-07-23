@@ -109,6 +109,10 @@
 */
 - (NSDictionary *) dictionaryRepresentation;
 
+
+size_t header_callback (void *buffer, size_t size, size_t nmemb, void *inSelf);
+size_t write_data_callback (void *buffer, size_t size, size_t nmemb, void *inSelf);
+int progress_callback (void *inSelf, double dltotal, double dlnow, double ultotal, double ulnow);
 @end
 
 

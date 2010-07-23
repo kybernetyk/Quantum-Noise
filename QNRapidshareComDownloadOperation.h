@@ -13,6 +13,7 @@
 {
 	//received login data from rapidshare
 	NSMutableData *receivedData;
+	NSString *rsCookie;
 }
 
 - (NSString *) errorStringForRapidshareErrorPage: (NSString *) errorPageHtmlString;

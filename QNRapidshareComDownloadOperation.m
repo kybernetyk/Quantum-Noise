@@ -6,6 +6,7 @@
 //  Copyright 2009 flux forge. All rights reserved.
 //
 
+#import "QNDownloadOperation.h"
 #import "QNRapidshareComDownloadOperation.h"
 #import "QNRapidshareComDownloadOperation+Private.h"
 #import "QNDownloadOperation+Private.h"
@@ -33,8 +34,31 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	return blockSize * numberOfBlocks;
 }
 
+/* will get the cookie from the API's response ... */
+- (NSString *) cookieFromAPIString: (NSString *) APIString
+{
+	NSArray *apiLines = [APIString componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
+	
+	for (NSString *line in apiLines)
+	{
+		if ([line containsString: @"cookie" ignoringCase: YES])
+		{
+			NSLog(@"cookieline = %@",line);
+			
+			NSArray *linecomps = [line componentsSeparatedByCharactersInSet: [NSCharacterSet characterSetWithCharactersInString: @"="]];
+			
+			
+			return [linecomps lastObject];
+		}
+	}
+	
+	return nil;
+}
+
+
 /*
  will try to login to rapidshare premium and get a premium cookie for the following download
+ 
  
  */
 //- (BOOL) loginToRapidshareWithUsername: (NSString *) username andPassword: (NSString *) password
@@ -64,7 +88,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	//////////////////////////////////////////////////////////////////////////
 	[self setStatus: @"Checking Login"];
 	NSString *apiURL = [NSString stringWithFormat:
-						@"https://api.rapidshare.com/cgi-bin/rsapi.cgi?sub=getaccountdetails_v1&type=prem&login=%@&password=%@",
+						@"https://api.rapidshare.com/cgi-bin/rsapi.cgi?sub=getaccountdetails_v1&withcookie=1&type=prem&login=%@&password=%@",
 						username,
 						password];
 
@@ -107,9 +131,15 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 		return NO;
 	}
 
+	NSString *cookie = [self cookieFromAPIString: apiReturn];
+	NSLog(@"cookie: %@", cookie);
+
+	rsCookie = [[NSString alloc] initWithFormat: @"enc=%@", cookie];
+	
 	[receivedData release];
 	receivedData = nil;
 	
+	return YES;
 	///////////////////////////////////////////////////////////////////////////
 	// Login + Cookie generation
 	//////////////////////////////////////////////////////////////////////////
@@ -172,6 +202,59 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	return YES;
 	
 }
+
+- (BOOL) performFileDownload
+{
+	if (!curlHandle)
+	{	
+		[self setStatus: @"performFileDownload: No curl handle! Fatal!"];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
+		return NO;
+	}
+	
+	const char *cookie = [rsCookie cStringUsingEncoding: NSUTF8StringEncoding];
+	printf("cookie: %s\n",cookie);
+	//setup curl for http get
+	curl_easy_setopt(curlHandle, CURLOPT_HTTPGET,1);
+	curl_easy_setopt(curlHandle, CURLOPT_URL, [[self URI] UTF8String]);
+	curl_easy_setopt(curlHandle, CURLOPT_FOLLOWLOCATION, 1);
+	curl_easy_setopt(curlHandle, CURLOPT_COOKIE, cookie);
+	
+	//
+	//curl_easy_setopt(curlHandle, CURLOPT_MAX_RECV_SPEED_LARGE, 250000);
+	//header
+	curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, header_callback);
+	curl_easy_setopt(curlHandle, CURLOPT_WRITEHEADER, self);
+	
+	//file writing
+	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, write_data_callback);
+	curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, self);
+	
+	//progress
+	curl_easy_setopt(curlHandle, CURLOPT_NOPROGRESS, 0);
+	curl_easy_setopt(curlHandle, CURLOPT_PROGRESSFUNCTION, progress_callback);
+	curl_easy_setopt(curlHandle, CURLOPT_PROGRESSDATA, self);	
+	
+	CURLcode res = curl_easy_perform(curlHandle);
+	
+	NSLog(@"CURL DOWNLOAD RETURNED: %i = %s",res, curl_easy_strerror(res));
+	
+	if (res != CURLE_OK)
+	{	
+		// if res == CURLE_WRITE_ERROR there was a file writing error
+		//and our status/error string is set already. so we won't overwrite them
+		//(atm there is no return 0 in the writeHandler so this won't get called)
+		if (res != CURLE_WRITE_ERROR) //writing abort through handler return 0
+		{	
+			[self setStatus: [NSString stringWithFormat: @"Download Failed: %s", curl_easy_strerror(res)]];
+			[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorRecoverable]];
+		}
+		return NO;
+	}
+	
+	return YES;	
+}
+
 
 #pragma mark check file rs api
 /*
