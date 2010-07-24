@@ -11,9 +11,8 @@
 
 @interface QNRapidshareComDownloadOperation : QNDownloadOperation 
 {
-	//received login data from rapidshare
-	NSMutableData *receivedData;
-	NSString *rsCookie;
+	NSMutableData *receivedData;    //received login data from rapidshare
+	NSString *rsCookie;             //our cookie string saving our login state
 }
 
 - (NSString *) errorStringForRapidshareErrorPage: (NSString *) errorPageHtmlString;

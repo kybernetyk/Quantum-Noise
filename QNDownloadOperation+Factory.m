@@ -10,6 +10,7 @@
 #import "NSString+Additions.h"
 #import "QNDownloadOperation.h"
 #import "QNRapidshareComDownloadOperation.h"
+#import "QNHotfileDownloadOperation.h"
 
 #pragma mark Factory
 @implementation QNDownloadOperation (Factory)
@@ -43,7 +44,11 @@
 	{	
 		ret = [[[QNRapidshareComDownloadOperation alloc] initWithURI: aURI] autorelease];
 	}
-	else 
+	else if ([[hostString lowercaseString] containsString: @"hotfile.com" ignoringCase: YES])
+    {    
+        ret = [[[QNHotfileDownloadOperation alloc] initWithURI: aURI] autorelease];
+    }
+    else
 	{	//fall back to default handler
 		ret = [[[QNDownloadOperation alloc] initWithURI: aURI] autorelease];
 	}
