@@ -15,8 +15,4 @@
 - (void) unrarOperationProgressDidChange: (QNUnrarOperation *) anUnrarOperation;
 - (void) unrarOperationDidEnd: (QNUnrarOperation *) anUnrarOperation;
 
-
-
-
-
 @end

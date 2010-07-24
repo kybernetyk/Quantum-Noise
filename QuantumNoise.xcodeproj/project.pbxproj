@@ -25,6 +25,8 @@
 		0334A91910E68B0D00C1F551 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334A91810E68B0D00C1F551 /* libicucore.dylib */; };
 		0334AAFC10E6A77A00C1F551 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */; };
 		0342D77810EBD494008E2103 /* How To Generate Source Documentation in Resources */ = {isa = PBXBuildFile; fileRef = 0342D77710EBD494008E2103 /* How To Generate Source Documentation */; };
+		0358787711FB4DC600F53F47 /* QNHotfileDownloadOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0358787511FB4DC600F53F47 /* QNHotfileDownloadOperation.h */; };
+		0358787811FB4DC600F53F47 /* QNHotfileDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0358787611FB4DC600F53F47 /* QNHotfileDownloadOperation.m */; };
 		03750D5D10CB206C00C04D0F /* General_Prefs.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5810CB206C00C04D0F /* General_Prefs.tiff */; };
 		03750D5E10CB206C00C04D0F /* GeneralPreferencePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */; };
 		03750D5F10CB206C00C04D0F /* GeneralPreferencePaneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5B10CB206C00C04D0F /* GeneralPreferencePaneView.xib */; };
@@ -101,6 +103,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				03A14A3510A06F32002BF9B1 /* Sparkle.framework in CopyFiles */,
+				0358787711FB4DC600F53F47 /* QNHotfileDownloadOperation.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +115,8 @@
 		0334A91810E68B0D00C1F551 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		0342D77710EBD494008E2103 /* How To Generate Source Documentation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "How To Generate Source Documentation"; sourceTree = "<group>"; };
+		0358787511FB4DC600F53F47 /* QNHotfileDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNHotfileDownloadOperation.h; sourceTree = "<group>"; };
+		0358787611FB4DC600F53F47 /* QNHotfileDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNHotfileDownloadOperation.m; sourceTree = "<group>"; };
 		03750D5810CB206C00C04D0F /* General_Prefs.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General_Prefs.tiff; sourceTree = "<group>"; };
 		03750D5910CB206C00C04D0F /* GeneralPreferencePaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPreferencePaneController.h; sourceTree = "<group>"; };
 		03750D5A10CB206C00C04D0F /* GeneralPreferencePaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPreferencePaneController.m; sourceTree = "<group>"; };
@@ -234,6 +239,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0358787311FB4D9500F53F47 /* Rapid Share Com */ = {
+			isa = PBXGroup;
+			children = (
+				03C20E09108E19F6009C905A /* QNRapidshareComDownloadOperation.h */,
+				03C20E0A108E19F6009C905A /* QNRapidshareComDownloadOperation.m */,
+				03C20E0B108E19F6009C905A /* QNRapidshareComDownloadOperation+Private.h */,
+			);
+			name = "Rapid Share Com";
+			sourceTree = "<group>";
+		};
+		0358787411FB4DA800F53F47 /* Hotfile */ = {
+			isa = PBXGroup;
+			children = (
+				0358787511FB4DC600F53F47 /* QNHotfileDownloadOperation.h */,
+				0358787611FB4DC600F53F47 /* QNHotfileDownloadOperation.m */,
+			);
+			name = Hotfile;
+			sourceTree = "<group>";
+		};
 		03750D5710CB206C00C04D0F /* General Preference Pane */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,15 +393,14 @@
 		03C20E01108E19DF009C905A /* Download Operation */ = {
 			isa = PBXGroup;
 			children = (
+				0358787411FB4DA800F53F47 /* Hotfile */,
 				03C20E03108E19F5009C905A /* QNDownloadOperation.h */,
 				03C20E04108E19F5009C905A /* QNDownloadOperation.m */,
 				03C20E05108E19F5009C905A /* QNDownloadOperation+Factory.h */,
 				03C20E06108E19F5009C905A /* QNDownloadOperation+Factory.m */,
 				03C20E07108E19F5009C905A /* QNDownloadOperation+Private.h */,
 				03C20E08108E19F5009C905A /* QNDownloadOperationDelegateProtocol.h */,
-				03C20E09108E19F6009C905A /* QNRapidshareComDownloadOperation.h */,
-				03C20E0A108E19F6009C905A /* QNRapidshareComDownloadOperation.m */,
-				03C20E0B108E19F6009C905A /* QNRapidshareComDownloadOperation+Private.h */,
+				0358787311FB4D9500F53F47 /* Rapid Share Com */,
 			);
 			name = "Download Operation";
 			sourceTree = "<group>";
@@ -640,7 +663,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "QuantumNoise" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* QuantumNoise */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -758,6 +785,7 @@
 				0382F4AB10C84B990093B99E /* QNLinkExtractor.m in Sources */,
 				03FB7DAB10CB13CA00C88868 /* SS_PrefsController.m in Sources */,
 				0334A8FD10E6894B00C1F551 /* RegexKitLite.m in Sources */,
+				0358787811FB4DC600F53F47 /* QNHotfileDownloadOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
