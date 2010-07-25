@@ -34,6 +34,7 @@
 		03750E0110CB22D700C04D0F /* UpdatingPreferencePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03750DFD10CB22D700C04D0F /* UpdatingPreferencePaneController.m */; };
 		03750E0210CB22D700C04D0F /* UpdatingPreferencePaneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03750DFE10CB22D700C04D0F /* UpdatingPreferencePaneView.xib */; };
 		03750E1410CB237700C04D0F /* UpdatingPreferencePane.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 03750DF010CB223D00C04D0F /* UpdatingPreferencePane.bundle */; };
+		0375BBA411FC4F67004E6E86 /* How To Download Client Modules in Resources */ = {isa = PBXBuildFile; fileRef = 0375BBA311FC4F67004E6E86 /* How To Download Client Modules */; };
 		0377276C10C488EB00A559E1 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0377276B10C488EB00A559E1 /* PFMoveApplication.m */; };
 		0377278310C4896700A559E1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0377278210C4896700A559E1 /* Security.framework */; };
 		0382F4AB10C84B990093B99E /* QNLinkExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0382F4AA10C84B990093B99E /* QNLinkExtractor.m */; };
@@ -128,6 +129,7 @@
 		03750DFC10CB22D700C04D0F /* UpdatingPreferencePaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatingPreferencePaneController.h; sourceTree = "<group>"; };
 		03750DFD10CB22D700C04D0F /* UpdatingPreferencePaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatingPreferencePaneController.m; sourceTree = "<group>"; };
 		03750DFE10CB22D700C04D0F /* UpdatingPreferencePaneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatingPreferencePaneView.xib; sourceTree = "<group>"; };
+		0375BBA311FC4F67004E6E86 /* How To Download Client Modules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "How To Download Client Modules"; sourceTree = "<group>"; };
 		0377276A10C488EB00A559E1 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
 		0377276B10C488EB00A559E1 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
 		0377278210C4896700A559E1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -469,6 +471,7 @@
 				03C5792710D29FBE00BECFEE /* How To Preference Bundles */,
 				03C5792C10D2A10F00BECFEE /* How To Threadsafe Delegates */,
 				0342D77710EBD494008E2103 /* How To Generate Source Documentation */,
+				0375BBA311FC4F67004E6E86 /* How To Download Client Modules */,
 			);
 			name = "TXT & NFO";
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				03A0EEE110B354550032BA3A /* DownloadsView_small.xib in Resources */,
 				03C5792D10D2A10F00BECFEE /* How To Threadsafe Delegates in Resources */,
 				0342D77810EBD494008E2103 /* How To Generate Source Documentation in Resources */,
+				0375BBA411FC4F67004E6E86 /* How To Download Client Modules in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
