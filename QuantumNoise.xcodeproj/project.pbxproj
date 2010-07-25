@@ -21,10 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0334A8FD10E6894B00C1F551 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0334A8FC10E6894B00C1F551 /* RegexKitLite.m */; };
 		0334A91910E68B0D00C1F551 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334A91810E68B0D00C1F551 /* libicucore.dylib */; };
 		0334AAFC10E6A77A00C1F551 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */; };
 		0342D77810EBD494008E2103 /* How To Generate Source Documentation in Resources */ = {isa = PBXBuildFile; fileRef = 0342D77710EBD494008E2103 /* How To Generate Source Documentation */; };
+		034AF27811FB5C3D00224FEE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 034AF27711FB5C3D00224FEE /* RegexKitLite.m */; };
 		0358787711FB4DC600F53F47 /* QNHotfileDownloadOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0358787511FB4DC600F53F47 /* QNHotfileDownloadOperation.h */; };
 		0358787811FB4DC600F53F47 /* QNHotfileDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0358787611FB4DC600F53F47 /* QNHotfileDownloadOperation.m */; };
 		03750D5D10CB206C00C04D0F /* General_Prefs.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 03750D5810CB206C00C04D0F /* General_Prefs.tiff */; };
@@ -110,11 +110,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0334A8FB10E6894B00C1F551 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		0334A8FC10E6894B00C1F551 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		0334A91810E68B0D00C1F551 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		0334AAFB10E6A77A00C1F551 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		0342D77710EBD494008E2103 /* How To Generate Source Documentation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "How To Generate Source Documentation"; sourceTree = "<group>"; };
+		034AF27611FB5C3D00224FEE /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		034AF27711FB5C3D00224FEE /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		0358787511FB4DC600F53F47 /* QNHotfileDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNHotfileDownloadOperation.h; sourceTree = "<group>"; };
 		0358787611FB4DC600F53F47 /* QNHotfileDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNHotfileDownloadOperation.m; sourceTree = "<group>"; };
 		03750D5810CB206C00C04D0F /* General_Prefs.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General_Prefs.tiff; sourceTree = "<group>"; };
@@ -506,8 +506,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0334A8FB10E6894B00C1F551 /* RegexKitLite.h */,
-				0334A8FC10E6894B00C1F551 /* RegexKitLite.m */,
+				034AF27611FB5C3D00224FEE /* RegexKitLite.h */,
+				034AF27711FB5C3D00224FEE /* RegexKitLite.m */,
 				0382F4A910C84B990093B99E /* QNLinkExtractor.h */,
 				0382F4AA10C84B990093B99E /* QNLinkExtractor.m */,
 			);
@@ -663,7 +663,6 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "QuantumNoise" */;
 			compatibilityVersion = "Xcode 3.1";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
@@ -784,8 +783,8 @@
 				0377276C10C488EB00A559E1 /* PFMoveApplication.m in Sources */,
 				0382F4AB10C84B990093B99E /* QNLinkExtractor.m in Sources */,
 				03FB7DAB10CB13CA00C88868 /* SS_PrefsController.m in Sources */,
-				0334A8FD10E6894B00C1F551 /* RegexKitLite.m in Sources */,
 				0358787811FB4DC600F53F47 /* QNHotfileDownloadOperation.m in Sources */,
+				034AF27811FB5C3D00224FEE /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,6 +993,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lstdc++";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
@@ -1007,6 +1007,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-lstdc++";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};

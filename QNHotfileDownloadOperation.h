@@ -15,5 +15,5 @@
 	NSMutableData *receivedData;    //received login data from rapidshare
 	NSString *hfCookie;             //our cookie string saving our login state
 }
-
+- (size_t) hotfileLoginWriteDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks;
 @end
