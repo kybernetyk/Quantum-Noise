@@ -37,3 +37,7 @@
 
 - (BOOL) performSelectorSequence: (NSArray *) selectorNames abortOnError: (BOOL) shouldAbortOnError;
 @end 
+
+#pragma mark -
+#pragma mark C99
+int generate_uid_cookie_filename(id object, char *out_cookie_filename);

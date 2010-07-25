@@ -29,7 +29,25 @@ unsigned int SystemTimeInMilliSeconds (void)
 	return (v.tv_sec * 1000) + (v.tv_usec / 1000);
 }
 
+/*
+ returns an instance unique filename for the current curl session to use
+ ascurl's cookie store filenma.e
+ 
+ you know - multithreading could fuck up the shit if it wasn't instance unique ...
+ 
+ object - the pointer on which the uid cookiename shall be based
+ out_cookie_filename - the char buffer where the uid filename will be written to
+ 
+ returns length of uid filename
+ 
+ */
 
+int generate_uid_cookie_filename(id object, char *out_cookie_filename)
+{
+	sprintf(out_cookie_filename,"/tmp/qn-cookie-0x%x\0",(unsigned int)object);
+	
+	return strlen(out_cookie_filename);
+}
 
 #pragma mark -
 #pragma mark C99 curl callbacks
@@ -467,6 +485,8 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	curl_easy_setopt(curlHandle, CURLOPT_URL, [[self URI] UTF8String]);
 	curl_easy_setopt(curlHandle, CURLOPT_FOLLOWLOCATION, 1);
 
+	
+	
 	//
 	//curl_easy_setopt(curlHandle, CURLOPT_MAX_RECV_SPEED_LARGE, 250000);
 	//header
@@ -949,8 +969,6 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	}
 	[thePool release];	
 }
-
-
 
 /*
 	The main: thread worker.

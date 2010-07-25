@@ -71,8 +71,17 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	curl_easy_setopt(curlHandle, CURLOPT_HTTPPOST,1);
 	curl_easy_setopt(curlHandle, CURLOPT_POSTFIELDS, postData);
 	curl_easy_setopt(curlHandle, CURLOPT_URL, "http://hotfile.com/login.php");
-	curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,"/tmp/hfcookie"); //ok we're using libcurls cookie storage here. watch out
-																	  //when changing the credentials. the cookie store might not get erased. so if you get weird login errors/fuckups with hotfile just look here first
+	
+	// get a unique cookie name for curl's internal storage and set it up for this session
+	char cookie_file[255];
+	if (generate_uid_cookie_filename(self,cookie_file) > 0)
+	{
+		printf("cookie uid fn: %s\n", cookie_file);
+		curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,cookie_file ); 
+		//ok we're using libcurls cookie storage here. watch out
+		//when changing the credentials. the cookie store might not get erased. 
+		//so if you get weird login errors/fuckups with hotfile just look here first
+	}
 	
 	//file writing
 	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, hotfile_login_write_data_callback);
@@ -133,7 +142,7 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 
 //TODO: that's pretty much the same as the super class's method
 //maybe we could ommit this and let the super do the work. (we only set here the cookie from the log in)
-- (BOOL) performFileDownload
+/*- (BOOL) performFileDownload
 {
 	if (!curlHandle)
 	{	
@@ -148,7 +157,7 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	curl_easy_setopt(curlHandle, CURLOPT_HTTPGET,1);
 	curl_easy_setopt(curlHandle, CURLOPT_URL, [[self URI] UTF8String]);
 	curl_easy_setopt(curlHandle, CURLOPT_FOLLOWLOCATION, 1);
-    curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,"/tmp/hfcookie");
+    //curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,"/tmp/hfcookie");
 	
 	//
 	//curl_easy_setopt(curlHandle, CURLOPT_MAX_RECV_SPEED_LARGE, 250000);
@@ -183,6 +192,6 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	}
 	
 	return YES;	
-}
+}*/
 
 @end

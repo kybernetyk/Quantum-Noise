@@ -91,7 +91,8 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	///////////////////////////////////////////////////////////////////////////
 	// API Account Check
 	//////////////////////////////////////////////////////////////////////////
-	[self setStatus: @"Checking Login"];
+	[self setStatus: @"Logging in"];
+
 	NSString *apiURL = [NSString stringWithFormat:
 						@"https://api.rapidshare.com/cgi-bin/rsapi.cgi?sub=getaccountdetails_v1&withcookie=1&type=prem&login=%@&password=%@",
 						username,
@@ -100,6 +101,19 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	curl_easy_setopt(curlHandle, CURLOPT_HTTPGET,1);
 	curl_easy_setopt(curlHandle, CURLOPT_URL, [apiURL UTF8String]);
 	curl_easy_setopt(curlHandle, CURLOPT_FOLLOWLOCATION, 1);
+
+	
+	// get a unique cookie name for curl's internal storage and set it up for this session
+	char cookie_file[255];
+	if (generate_uid_cookie_filename(self,cookie_file) > 0)
+	{
+		printf("cookie uid fn: %s\n", cookie_file);
+		curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,cookie_file ); 
+		//ok we're using libcurls cookie storage here. watch out
+		//when changing the credentials. the cookie store might not get erased. 
+		//so if you get weird login errors/fuckups with hotfile just look here first
+	}
+	
 	
 	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, rapidshare_login_write_data_callback);
 	curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, self);
@@ -142,10 +156,13 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	NSString *cookie = [self cookieFromAPIString: apiReturn];
 	NSLog(@"cookie: %@", cookie);
 
-	rsCookie = [[NSString alloc] initWithFormat: @"enc=%@", cookie];
+	NSString *rsCookie = [[NSString alloc] initWithFormat: @"enc=%@", cookie];
 	
 	[receivedData release];
 	receivedData = nil;
+
+	//let's set our cookie here 
+	curl_easy_setopt(curlHandle, CURLOPT_COOKIE, [rsCookie cStringUsingEncoding: NSUTF8StringEncoding]);
 	
 	return YES; //<-------------------------- check this out ... all below is legacy for RS's old login system before they hired that retarded turkish kid who fucked up everuthing with his javascirpt bullshit
 	
@@ -154,7 +171,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	///////////////////////////////////////////////////////////////////////////
 	// Login + Cookie generation
 	//////////////////////////////////////////////////////////////////////////
-	[self setStatus: @"Logging in"];
+	/*[self setStatus: @"Logging in"];
 
 	NSString *loginDataString = [NSString stringWithFormat:@"login=%@&password=%@",username,password];
 	const char *postData = [loginDataString UTF8String];
@@ -162,7 +179,9 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	curl_easy_setopt(curlHandle, CURLOPT_HTTPPOST,1);
 	curl_easy_setopt(curlHandle, CURLOPT_POSTFIELDS, postData);
 	curl_easy_setopt(curlHandle, CURLOPT_URL, "https://ssl.rapidshare.com/cgi-bin/premiumzone.cgi");
+	
 	curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,"/dev/null");
+
 	
 	//file writing
 	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, rapidshare_login_write_data_callback);
@@ -173,14 +192,14 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	receivedData = [[NSMutableData alloc] init];
 	
 	
-	/*
+	
 	 
 	 if the length of receivedData is 0 then the log in was not successful
 	 and the free loader page was shown. we can handle it here or let it handle
 	 by the download module. (it will recognize that it received html-data and parse
 	 the html for an error.)
 	 
-	 */
+	
 	
 	res = curl_easy_perform(curlHandle);
 	NSString *returnString = [[NSString alloc] initWithData: receivedData encoding: NSUTF8StringEncoding];
@@ -211,9 +230,10 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	
 	[self setStatus: @"Login succeeded"];
 	return YES;
-	
+	*/
 }
 
+/*
 - (BOOL) performFileDownload
 {
 	if (!curlHandle)
@@ -265,7 +285,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	
 	return YES;	
 }
-
+*/
 
 #pragma mark check file rs api
 /*
