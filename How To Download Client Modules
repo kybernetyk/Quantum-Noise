@@ -6,14 +6,18 @@ Here's how:
 2. subclass that bitch
 3. get it to work (logging in, passing the cookie, downloading the file)
 	logging in + passing the cookie - that's most likely the only part you will have to implement
-	downloading the file - the super class should do it ... but well I was too tarded to build a general
-							cookie passing method so you most probably will have to override the 
-							- (BOOL) performFileDownload method to set the cookie as a header.
-							look at QNHotfileDownloadOperation.h/m - it is a pretty primitive download module
-							as there's no fancy shit going on. just log in and pass the cookie (through
-							using curl's internal cookie store.)
-							the rapidshare module is pretty much complex as there's an API and filechecking code
-							and the cookie string has to be extracted from the API ...
+	downloading the file - the super class should do it ... but if you have some really retarded kind of stupid
+							login scheme  then you will have override this one too to pass the login state
+	
+	
+							
+look at QNHotfileDownloadOperation.h/m - it is a pretty primitive 
+download module as there's no fancy shit going on. 
+just log in and pass the cookie (through using curl's internal cookie store.)
+
+
+the rapidshare module is pretty much complex as there's an API and filechecking code
+and the cookie string has to be extracted from the API ...
 
 
 yeah more to come ...
