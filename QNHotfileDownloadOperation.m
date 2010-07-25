@@ -42,8 +42,8 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	if (!curlHandle)
 		return NO;
     
-	//NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey: @"rapidShareCom_username"];
-	//NSString *password =  [[NSUserDefaults standardUserDefaults] objectForKey: @"rapidShareCom_password"];
+	//NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey: @"hotfile_username"];
+	//NSString *password =  [[NSUserDefaults standardUserDefaults] objectForKey: @"hotfile_password"];
     
     NSString *username = @"2556583";
     NSString *password = @"jcwlhi";
@@ -71,7 +71,8 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	curl_easy_setopt(curlHandle, CURLOPT_HTTPPOST,1);
 	curl_easy_setopt(curlHandle, CURLOPT_POSTFIELDS, postData);
 	curl_easy_setopt(curlHandle, CURLOPT_URL, "http://hotfile.com/login.php");
-	curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,"/tmp/hfcookie");
+	curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,"/tmp/hfcookie"); //ok we're using libcurls cookie storage here. watch out
+																	  //when changing the credentials. the cookie store might not get erased. so if you get weird login errors/fuckups with hotfile just look here first
 	
 	//file writing
 	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, hotfile_login_write_data_callback);
@@ -129,6 +130,9 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	
 }
 
+
+//TODO: that's pretty much the same as the super class's method
+//maybe we could ommit this and let the super do the work. (we only set here the cookie from the log in)
 - (BOOL) performFileDownload
 {
 	if (!curlHandle)
@@ -144,7 +148,6 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	curl_easy_setopt(curlHandle, CURLOPT_HTTPGET,1);
 	curl_easy_setopt(curlHandle, CURLOPT_URL, [[self URI] UTF8String]);
 	curl_easy_setopt(curlHandle, CURLOPT_FOLLOWLOCATION, 1);
-	//curl_easy_setopt(curlHandle, CURLOPT_COOKIE, cookie);
     curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,"/tmp/hfcookie");
 	
 	//

@@ -244,6 +244,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		NSRange start = [header rangeOfString:@"filename="];
 		start.location = start.location + start.length;
 		
+		//let's remove unwanted chars from the filename the server sends us
 		NSString *fname = [header substringFromIndex: start.location];
 		fname = [fname stringByReplacingOccurrencesOfString:@"\r" withString:@""];
 		fname = [fname stringByReplacingOccurrencesOfString:@"\n" withString:@""];

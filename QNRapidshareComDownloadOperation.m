@@ -35,6 +35,12 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 }
 
 /* will get the cookie from the API's response ... */
+/* hello my name is mustafa and I AM A FUCKING RETARDED 12 yo OLD TURKISH KID WHO SCORED A JOB
+   AS "CODER" FOR THE RS.COM SUBHUMANS. THE FIRST THING I DID IS TO KILL THE OLD LOG IN SYSTEM (which was pretty much retarded too)
+   AND SEND COOKIE STRINGS OVER JAVASCRIPT BULLSHIT FAGGOT GAY RETARD FUCK SO THAT THE CLIENT HAS TO SET THAT COOKIE MANUALLY THEN.
+   YES I AM FROM ANKHARA AND MY FATHER FUCKS GOATS FOR A LIVING SO I AM TOOOOO RETARDED TO GET HTTP HEADERS. NOW YOU HAVE TO
+   EXTRACT THE COOKIE FROM THE API RESPONSE AND SET IT THEN MANUALLY CAUSE I DROOOOOOOL ALL OVER MY KEYBOARD WHEN I DRAM OF FUCKING
+   DONKEYS */
 - (NSString *) cookieFromAPIString: (NSString *) APIString
 {
 	NSArray *apiLines = [APIString componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
@@ -61,7 +67,6 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
  
  
  */
-//- (BOOL) loginToRapidshareWithUsername: (NSString *) username andPassword: (NSString *) password
 - (BOOL) performRemoteLogin
 {
 	if (!curlHandle)
@@ -131,6 +136,9 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 		return NO;
 	}
 
+	//let's extract our login cookie from the response
+	//(no that's not a header cookie. it is plain text what you will have to set as a cookie manually.
+	// yes rs.com html login system does this shit over javascript ... they are pretty much retards)
 	NSString *cookie = [self cookieFromAPIString: apiReturn];
 	NSLog(@"cookie: %@", cookie);
 
@@ -139,7 +147,10 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	[receivedData release];
 	receivedData = nil;
 	
-	return YES;
+	return YES; //<-------------------------- check this out ... all below is legacy for RS's old login system before they hired that retarded turkish kid who fucked up everuthing with his javascirpt bullshit
+	
+	
+	
 	///////////////////////////////////////////////////////////////////////////
 	// Login + Cookie generation
 	//////////////////////////////////////////////////////////////////////////
