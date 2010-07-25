@@ -247,6 +247,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		NSString *fname = [header substringFromIndex: start.location];
 		fname = [fname stringByReplacingOccurrencesOfString:@"\r" withString:@""];
 		fname = [fname stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+		fname = [fname stringByReplacingOccurrencesOfString:@"\"" withString:@""];
 		
 		if (![self setupDownloadPathForFilename: fname])
 		{	
