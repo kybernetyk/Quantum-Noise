@@ -372,7 +372,6 @@
 		03C20DF8108E19B1009C905A /* Download Stuff */ = {
 			isa = PBXGroup;
 			children = (
-				03C20E1E108E1A3E009C905A /* Defines.h */,
 				03C20E12108E1A19009C905A /* Download Bundle Manager */,
 				03C20E11108E1A11009C905A /* Download Bundle */,
 				03C20E01108E19DF009C905A /* Download Operation */,
@@ -568,6 +567,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				03C20E1E108E1A3E009C905A /* Defines.h */,
 				0377276A10C488EB00A559E1 /* PFMoveApplication.h */,
 				0377276B10C488EB00A559E1 /* PFMoveApplication.m */,
 				256AC3F00F4B6AF500CF3369 /* QuantumNoise_Prefix.pch */,

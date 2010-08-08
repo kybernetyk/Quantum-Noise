@@ -39,6 +39,11 @@
 																			 options: NSCaseInsensitiveSearch
 																			   range: range
 					   ];
+	
+	
+	//remove .rar from <filename>.rar.html
+	title = [title stringByReplacingOccurrencesOfString: @".rar" withString: @""];
+
 	//omg that's so lame
 	//we need REGEXP MAN!
 	for (int i = 9; i >= 0; i--)
@@ -64,6 +69,8 @@
 		
 	//	NSLog(@"%@",title);
 	}
+	
+	
 	
 	return title;
 }

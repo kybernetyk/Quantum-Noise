@@ -620,6 +620,12 @@
 		{
 			NSArray *links = [NSArray arrayWithArray: bundleArray];
 			NSString *title = [[links objectAtIndex: 0] pathBaseFilename];
+			
+			/* WARNING: this will not work with multiple bundles from one big link list with multiple links */
+			//TODO: make this work with multiple links
+/*			if ([controller bundleTitle])
+				bundleTitle = [NSString stringWithString: [controller bundleTitle]];*/
+			
 			NSString *pass = nil;
 			if ([controller bundleArchivePassword])
 				pass = [NSString stringWithString: [controller bundleArchivePassword]];
@@ -644,6 +650,9 @@
 			NSString *title = [bundleDict objectForKey: @"title"];
 			NSString *pass = [bundleDict objectForKey: @"pass"];
 			
+			
+			LOG_LOCATION();
+			NSLog(@"making new bundle with: title: %@ - pass: %@",title,pass);
 			
 			QNDownloadBundle *bundle = [bundleManager downloadBundleWithTitle: title
 															  ArchivePassword: pass

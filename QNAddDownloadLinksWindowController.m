@@ -70,11 +70,18 @@
 		
 		[linkArray addObjectsFromArray: 
 		 [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com/files/"]];
+
+		[linkArray addObjectsFromArray: 
+		 [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"hotfile.com/dl/"]];
+		
 		
 	}
 	else
 	{
-		NSArray *tempArray = [[linkInputTextField stringValue] componentsSeparatedByCharactersInSet:
+		[linkArray addObjectsFromArray:
+		 [QNLinkExtractor sortedLinksFromString: [linkInputTextField stringValue]]];
+		
+/*		NSArray *tempArray = [[linkInputTextField stringValue] componentsSeparatedByCharactersInSet:
 						  [NSCharacterSet characterSetWithCharactersInString:@" ,\n\r\t"]];
 	
 		NSMutableArray *contArray = [NSMutableArray array];
@@ -83,9 +90,9 @@
 		{
 			if ([link containsString:@"http://"])
 				[contArray addObject: link];
-		}
+		}*/
 		
-		[linkArray addObject: contArray];
+		//[linkArray addObject: contArray];
 	}
 	
 	

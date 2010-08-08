@@ -23,7 +23,9 @@
  */
 + (NSArray *) sortedLinksFromWebsite: (NSString *) siteURI linkShouldContainString: (NSString *) shouldContain;
 
-
+//same as above. only from string ... yeah, duplicated functionality
+//TODO: make ...FromWebsite use ...FromString
++ (NSArray *) sortedLinksFromString: (NSString *) aString;
 
 + (NSArray *) urlsFromWebsite: (NSString *) siteURI;
 + (NSArray *) linksExtractedFromWebsite: (NSString *) siteURI linkShouldContainString: (NSString *) shouldContain;

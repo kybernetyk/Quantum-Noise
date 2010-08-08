@@ -75,7 +75,7 @@
 		
 		//set up bindings so that the view will get changes of our properties
 		//this is only one way! for biderectional read http://www.ericmethot.com/code/cocoa/bidirectional-bindings/
-		//but that would be overkill
+		//but that would be 
 		[bundleNameTextField bind:@"stringValue" toObject: self withKeyPath:@"bundleTitle" options: options];
 		[archivePasswordTextField bind:@"stringValue" toObject: self withKeyPath:@"bundleArchivePassword" options: options];
 		
@@ -83,8 +83,15 @@
 		//lets extract a name for our bundle from the first link
 		NSString *firstLink = [[links objectAtIndex: 0] objectAtIndex: 0];
 		
-		//set this new title
-		[self setBundleTitle: [firstLink pathBaseFilename]];
+		if ([links count] > 1)
+		{	
+			[self setBundleTitle: @"<Multiple>"];
+		}
+		else
+		{	//set this new title
+			[self setBundleTitle: [firstLink pathBaseFilename]];	
+		}
+		
 	}
 
 }
@@ -134,7 +141,7 @@
 		[self setBundleArchivePassword: [archivePasswordTextField stringValue]];
 	else 
 		[self setBundleArchivePassword: nil];
-	
+
 	[[self window] close];
 	[NSApp endSheet: [self window] returnCode: kCreateDownloadBundleSheetReturnCodeContinue];
 }
@@ -150,16 +157,28 @@
 #pragma mark table view datasource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [[links objectAtIndex: 0] count];
+	NSArray *totalArry = [[[NSArray alloc] init] autorelease];
+	for (NSArray *subarry in links)
+		totalArry = [totalArry arrayByAddingObjectsFromArray: subarry];
+	
+	return [totalArry count];
+//	return [[links objectAtIndex: 0] count];
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-	if ([[aTableColumn identifier] isEqualToString:@"url"])
-		return [[links objectAtIndex: 0] objectAtIndex: rowIndex];
+	NSArray *totalArry = [[[NSArray alloc] init] autorelease];
+	for (NSArray *subarry in links)
+		totalArry = [totalArry arrayByAddingObjectsFromArray: subarry];
 	
-	if ([[aTableColumn identifier] isEqualToString:@"status"])
-		return @"ok";
+	if ([[aTableColumn identifier] isEqualToString:@"url"])
+		return [totalArry objectAtIndex: rowIndex];
+	
+/*	if ([[aTableColumn identifier] isEqualToString:@"url"])
+		return [[links objectAtIndex: 0] objectAtIndex: rowIndex];*/
+	
+	if ([[aTableColumn identifier] isEqualToString:@"bundle"])
+		return [[totalArry objectAtIndex: rowIndex] pathBaseFilename];
 	
 	return @"WTF?";
 }

@@ -259,14 +259,37 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	NSString *header = [[NSString alloc] initWithData: d encoding: NSUTF8StringEncoding];
 	if ([header containsString:@"Content-Disposition: Attachment;" ignoringCase: YES])
 	{
+		NSLog(@"We got a Content-Disposition: Attachment; header. Setting new filename ...");
+		
 		NSRange start = [header rangeOfString:@"filename="];
+		if (start.location == NSNotFound)
+		{
+			NSLog(@"WARNING BAIL OUT: filename in content-disposition header was invalid!");
+			LOG_LOCATION();
+			exit(99); //this should really never happen. let's explode!
+			
+			return 0;
+		}
+		
 		start.location = start.location + start.length;
+
+		if (start.location == NSNotFound)
+		{
+			NSLog(@"WARNING BAIL OUT: filename+length overflows INTEGER MAX!");
+			LOG_LOCATION();
+			exit(100);
+			
+			return 0;
+		}
 		
 		//let's remove unwanted chars from the filename the server sends us
 		NSString *fname = [header substringFromIndex: start.location];
 		fname = [fname stringByReplacingOccurrencesOfString:@"\r" withString:@""];
 		fname = [fname stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 		fname = [fname stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+		
+		NSLog(@"Old filename is: %@",[self temporaryDownloadFilename]);
+		NSLog(@"New filename is: %@",fname);
 		
 		if (![self setupDownloadPathForFilename: fname])
 		{	
@@ -617,7 +640,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	if ([myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
 	{
 		NSError *err = nil;
-		//[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
+		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
 		
 		NSLog(@"removeItemAtPath: %@ returned => %@",[self temporaryDownloadFilename], [err localizedDescription]);
 	}
