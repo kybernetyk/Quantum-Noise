@@ -150,10 +150,10 @@
 	
 	
 	//build window title
-	NSString *title =  [NSString stringWithFormat: @"%@ %@ (Build %@)",
+	NSString *title =  [NSString stringWithFormat: @"%@ %@ (Codename: %@)",
 						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"], 
 						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
-						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"ThisVersionBuildNumber"]];
+						[[NSBundle mainBundle] objectForInfoDictionaryKey:@"Codename"]];
 	[[self window] setTitle: title];
 	
 	
