@@ -105,10 +105,36 @@
 		//[linkArray addObject: contArray];
 	}
 	
+	//lets make the filenames uniqe
+	//TODO: create somehow unique temporary filenames/endfilenames for the files
+	//		but the server will send us a filename that will overwrite the unique name
+	//		so we make the filenames unique :[
 	
+	NSLog(@"link array: %@",linkArray);
 
+	NSMutableArray *endArray = [NSMutableArray array];
+	//we get an array of arrays from the extractor. each array represents one bundle
+	//we will go through each bundle and throw out links that point to the same filename
+	for (NSArray *bundleArray in linkArray)
+	{
+		NSMutableArray *temp = [NSMutableArray array];
+		NSMutableDictionary *uniquenessBaby = [NSMutableDictionary dictionaryWithCapacity: 32];
+		for (NSString *link in bundleArray)
+		{
+			NSLog(@"beficke: %@",link);
+			NSString *filename = [link pathBaseFilename];
+
+			if ([[uniquenessBaby objectForKey: filename] boolValue])
+				continue;
+			[temp addObject: [NSString stringWithString: link]];
+			[uniquenessBaby setObject: [NSNumber numberWithBool: YES] forKey: filename];
+			
+		}
+		[endArray addObject: temp];
+	}
+	
 	//no need to copy but anyways
-	[self setLinks: [NSArray arrayWithArray: linkArray]];
+	[self setLinks: [NSArray arrayWithArray: endArray]];
 	
 	//[[self window] orderOut: sender];
 	[[self window] close];
