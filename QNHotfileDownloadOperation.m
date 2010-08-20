@@ -42,13 +42,13 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	if (!curlHandle)
 		return NO;
     
-	//NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey: @"hotfile_username"];
-	//NSString *password =  [[NSUserDefaults standardUserDefaults] objectForKey: @"hotfile_password"];
+	NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey: @"hotfileCom_username"];
+	NSString *password =  [[NSUserDefaults standardUserDefaults] objectForKey: @"hotfileCom_password"];
 //username:	2817150
 //password:	ztnmzo
 
-    NSString *username = @"2817150";
-    NSString *password = @"ztnmzo";
+/*    NSString *username = @"2817150";
+    NSString *password = @"ztnmzo";*/
 	
 	if (!username || !password)
 	{
