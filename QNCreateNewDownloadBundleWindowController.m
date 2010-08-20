@@ -117,7 +117,6 @@
 {
 	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
 	
-	
 	for (NSArray *bundleArray in [self links])
 	{
 		NSArray *_links = [NSArray arrayWithArray: bundleArray];
