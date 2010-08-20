@@ -118,23 +118,28 @@
 	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
 	
 	
-	//check if bundle exists and ask user what to do
-	QNDownloadBundle *testBundle = [bundleManager downloadBundleForTitle: [self bundleTitle]];
-	
-	if (testBundle)
+	for (NSArray *bundleArray in [self links])
 	{
-		NSAlert *al = [NSAlert alertWithMessageText: @"Bundle exists already" 
-									  defaultButton:@"Add To Existing Bundle" 
-									alternateButton: @"Cancel" 
-										otherButton: nil 
-						  informativeTextWithFormat: [NSString stringWithFormat: @"A bundle with the name %@ exists already. Would you like to add the links to the existing bundle?",[self bundleTitle]]];
-		NSInteger response = [al runModal];
+		NSArray *_links = [NSArray arrayWithArray: bundleArray];
+		NSString *title = [[_links objectAtIndex: 0] pathBaseFilename];
 		
-		if (response == NSAlertAlternateReturn) //let's cancel the operation
-			return;
+		//check if bundle exists and ask user what to do
+		QNDownloadBundle *testBundle = [bundleManager downloadBundleForTitle: title];
+	
+		if (testBundle)
+		{
+			NSAlert *al = [NSAlert alertWithMessageText: @"Bundle exists already" 
+										  defaultButton:@"Add To Existing Bundle" 
+										alternateButton: @"Cancel" 
+											otherButton: nil 
+							  informativeTextWithFormat: [NSString stringWithFormat: @"A bundle with the name %@ exists already. Would you like to add the links to the existing bundle?",title]];
+			NSInteger response = [al runModal];
+			
+			if (response == NSAlertAlternateReturn) //let's cancel the operation
+				return;
+		}
+
 	}
-	
-	
 	
 	[self setBundleTitle: [bundleNameTextField stringValue]];
 	if ([[archivePasswordTextField stringValue] length] > 0)
