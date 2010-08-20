@@ -56,10 +56,11 @@
 							  [NSNumber numberWithInt: 4], @"maxConcurrentDownloadOperations",
 							  [NSNumber numberWithInt: 0],@"maxBandwidthUsage",
 							  [NSNumber numberWithBool: NO], @"proxyEnabled",
-							  @"1839287",@"rapidShareCom_username",
+/*							  @"1839287",@"rapidShareCom_username",
 							  @"OYNjH8YziW",@"rapidShareCom_password",
+							  @"2817150",@"hotfileCom_username",
+							  @"ztnmzo",@"hotfileCom_password",*/
 							  nil];
-	
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults: userDefs];
 	
