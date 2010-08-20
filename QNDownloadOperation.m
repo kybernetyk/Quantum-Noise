@@ -203,6 +203,8 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	status = [[NSString stringWithString: newStatus] retain];
 	[self didChangeValueForKey: @"status"];
 	[temp release];
+	NSLog(@"new status: %@", newStatus);
+//	sleep(1);
 	
 	[delegate performSelectorOnMainThread: @selector(downloadOperationStatusDidChange:) 
 							   withObject: self 
@@ -254,7 +256,17 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 //this will be called from our pure-C curl callback method header_callback() (top of this file)
 - (size_t) curlHeaderCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks
 {
-
+	if ([self isCancelled])
+	{	
+		[self setStatus:@"Error: Operation was cancelled!"];
+		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
+		[self setHasBeenExecuted: YES];
+		return 0;
+	}
+	//if there's an error let's die
+	if ([self operationError])
+		return 0;
+	
 	NSData *d = [[NSData alloc] initWithBytes: data length: blockSize * numberOfBlocks];
 	NSString *header = [[NSString alloc] initWithData: d encoding: NSUTF8StringEncoding];
 	if ([header containsString:@"Content-Disposition: Attachment;" ignoringCase: YES])
@@ -336,7 +348,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
  called by: curl C99 callback write_data_callback()
  
  returns the ammount of written bytes if the download should continue
- returns -1 if curl should cancel the download
+ returns 0 if curl should cancel the download
  */
 - (size_t) curlWriteDataToDiskCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks
 {
@@ -346,8 +358,11 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		[self setStatus:@"Error: Operation was cancelled!"];
 		[self setOperationError: [self errorWithDescription: [self status] code: 1 andErrorLevel: kQNDownloadOperationErrorDontKnow]];
 		[self setHasBeenExecuted: YES];
-		return -1;
+		return 0;
 	}
+	//if there's an error let's die
+	if ([self operationError])
+		return 0;
 	
 	//if no temporary file handles were created
 	//no content-disposition attachement filename was received
@@ -422,6 +437,10 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 		return 1;
 	}
 	
+	//if there's an error let's die
+	if ([self operationError])
+		return 1;
+	
 	//get our average download speed from curl, convert it to kilobit/s and upload our property, which will message our delegate 
 	//of the change
 	double d = 0.0;
@@ -441,7 +460,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	[self setProgress: progress_];
 	
 
-	
+		
 	//if this download is paused set the max download speed to 100 byte/s
 	//TODO: implement a real pause and resume
 	if ([self isPaused])
@@ -713,7 +732,8 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	else //remove old temp filename and create a new one
 	{
 		//TODO: implement download resume - setting the download resume location here!
-
+		//TODO: if we have multiple download operations with urls that result into the same filename this gets fucked up
+		//		we should create somehow a unique filename here
 		NSError *err = nil;
 		[myThreadSafeFileManagerInstance removeItemAtPath: [self temporaryDownloadFilename] error: &err];
 		[myThreadSafeFileManagerInstance createFileAtPath: [self temporaryDownloadFilename] contents:[NSData dataWithBytes: 0 length: 0] attributes: nil];
