@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.21.01</string>
+	<string>0.21.02</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSMainNibFile</key>
@@ -32,8 +32,8 @@
 	<string>http://shine.fluxforge.com/appcast.php?id=3</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
-	<key>ThisVersionBuildNumber</key>
-	<string>1</string>
+	<key>Codename</key>
+	<string>Negro Neger</string>
 	<key>com.apple.PreferenceSync.ExcludeSyncKeys</key>
 	<array>
 		<string>QNDownloadManagerState</string>
