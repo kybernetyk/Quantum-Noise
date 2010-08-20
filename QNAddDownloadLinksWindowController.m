@@ -65,14 +65,24 @@
 		if ([urlToParse containsString: @"irfree.com" ignoringCase: YES])
 			[self setPasswordHint:@"irfree.com"];
 		
-	/*	[linkArray addObjectsFromArray: 
-		 [QNLinkExtractor linksExtractedFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com"]];*/
+		//TODO: make this cool and pretty. not lame like nao
+		//like iterate the hosters and get a match pattern from the userdefaults
+		//but who cares lol
+		BOOL isRSactive = NO;
+		BOOL isHFactive = NO;
 		
-		[linkArray addObjectsFromArray: 
-		 [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com/files/"]];
+		NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
 
-		[linkArray addObjectsFromArray: 
-		 [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"hotfile.com/dl/"]];
+		if (([[def objectForKey: @"rapidShareCom_username"] length] > 0) && ([[def objectForKey: @"rapidShareCom_password"] length] > 0))
+			isRSactive = YES;
+		if (([[def objectForKey: @"hotfileCom_username"] length] > 0) && ([[def objectForKey: @"hotfileCom_password"] length] > 0))
+			isHFactive = YES;
+		
+		if (isRSactive)
+			[linkArray addObjectsFromArray: [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"rapidshare.com/files/"]];
+
+		if (isHFactive)
+			[linkArray addObjectsFromArray: [QNLinkExtractor sortedLinksFromWebsite: urlToParse linkShouldContainString: @"hotfile.com/dl/"]];
 		
 		
 	}
