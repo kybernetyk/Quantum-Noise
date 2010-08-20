@@ -701,7 +701,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	NSLog(@"filename: %@", [self fileName]);
 	NSLog(@"tempfn: %@",[self temporaryDownloadFilename]);
 	LOG_LOCATION();
-	
+		
 	//check if there's a temporary file .. we could overwrite it later. or resume
 	//if there's no file create an empty one for our filehandle
 	if (![myThreadSafeFileManagerInstance fileExistsAtPath: [self temporaryDownloadFilename]])
