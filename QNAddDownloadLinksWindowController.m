@@ -122,8 +122,9 @@
 		for (NSString *link in bundleArray)
 		{
 			NSLog(@"beficke: %@",link);
-			NSString *filename = [link pathBaseFilename];
-
+			NSString *filename = [[link pathComponents] lastObject];
+			NSLog(@"filename: %@",filename);
+			
 			if ([[uniquenessBaby objectForKey: filename] boolValue])
 				continue;
 			[temp addObject: [NSString stringWithString: link]];
