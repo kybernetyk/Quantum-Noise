@@ -5,7 +5,7 @@
 //  Created by jrk on 21.09.09.
 //  Copyright 2009 flux forge. All rights reserved.
 //
-
+// LOL - lowercaseString HOLOCAUST INC
 #import "QNLinkExtractor.h"
 #import "NSString+Additions.h"
 #import "RegexKitLite.h"
@@ -13,7 +13,7 @@
 @implementation QNLinkExtractor
 + (NSArray *) urlsFromWebsite: (NSString *) siteURI
 {
-	NSString *strSite = [NSString stringWithContentsOfURL: [NSURL URLWithString: siteURI]];
+	NSString *strSite = [[NSString stringWithContentsOfURL: [NSURL URLWithString: siteURI]] lowercaseString];
 	if (!strSite)
 		return nil;
 	
@@ -35,8 +35,8 @@
 	{
 		if ([url containsString: shouldContain ignoringCase: YES])
 		{	
-			NSLog(@"adding: %@", url);
-			[tempSet addObject: url]; 
+			NSLog(@"adding: %@", [url lowercaseString]);
+			[tempSet addObject: [url lowercaseString]]; 
 			
 		}
 	}
@@ -66,12 +66,12 @@
 		NSMutableArray *omegaArray = [dict objectForKey: hashValue];
 		if (!omegaArray)
 		{
-			omegaArray = [NSMutableArray arrayWithObject: link];
+			omegaArray = [NSMutableArray arrayWithObject: [link lowercaseString]];
 			[dict setObject: omegaArray forKey: hashValue];
 		}
 		else 
 		{
-			[omegaArray addObject: link];
+			[omegaArray addObject: [link lowercaseString]];
 		}
 	}
 
@@ -114,12 +114,12 @@
 		NSMutableArray *omegaArray = [dict objectForKey: hashValue];
 		if (!omegaArray)
 		{
-			omegaArray = [NSMutableArray arrayWithObject: link];
+			omegaArray = [NSMutableArray arrayWithObject: [link lowercaseString]];
 			[dict setObject: omegaArray forKey: hashValue];
 		}
 		else 
 		{
-			[omegaArray addObject: link];
+			[omegaArray addObject: [link lowercaseString]];
 		}
 	}
 	
