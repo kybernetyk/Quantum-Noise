@@ -120,7 +120,7 @@
 	for (NSArray *bundleArray in [self links])
 	{
 		NSArray *_links = [NSArray arrayWithArray: bundleArray];
-		NSString *title = [[_links objectAtIndex: 0] pathBaseFilename];
+		NSString *title = [[[_links objectAtIndex: 0] pathBaseFilename] lowercaseString];
 		
 		//check if bundle exists and ask user what to do
 		QNDownloadBundle *testBundle = [bundleManager downloadBundleForTitle: title];
@@ -140,7 +140,7 @@
 
 	}
 	
-	[self setBundleTitle: [bundleNameTextField stringValue]];
+	[self setBundleTitle: [[bundleNameTextField stringValue] lowercaseString]];
 	if ([[archivePasswordTextField stringValue] length] > 0)
 		[self setBundleArchivePassword: [archivePasswordTextField stringValue]];
 	else 

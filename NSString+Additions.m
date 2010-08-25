@@ -21,7 +21,8 @@
     unsigned mask = (flag ? NSCaseInsensitiveSearch : 0);
     return [self rangeOfString:aString options:mask].length > 0;
 }
-
+@end
+@implementation NSString (HashingAdditions)
 - (NSString *) pathBaseFilename //base filename for warez links
 {
 	//NSArray *comps = [self pathComponents];
@@ -72,7 +73,7 @@
 	
 	
 	
-	return title;
+	return [title lowercaseString];
 }
 
 - (NSString *) md5

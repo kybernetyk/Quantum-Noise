@@ -115,23 +115,35 @@
 	NSMutableArray *endArray = [NSMutableArray array];
 	//we get an array of arrays from the extractor. each array represents one bundle
 	//we will go through each bundle and throw out links that point to the same filename
+	//in the same bundle
+	NSMutableDictionary *bundleUniqueness = [NSMutableDictionary dictionaryWithCapacity: 32];
 	for (NSArray *bundleArray in linkArray)
 	{
+		NSString *bundleTitle = [[[bundleArray objectAtIndex: 0] pathBaseFilename] lowercaseString];
+		NSLog(@"bundleTitle: %@", bundleTitle);
+		
 		NSMutableArray *temp = [NSMutableArray array];
-		NSMutableDictionary *uniquenessBaby = [NSMutableDictionary dictionaryWithCapacity: 32];
 		for (NSString *link in bundleArray)
 		{
+			NSMutableDictionary *trackingDict = [bundleUniqueness objectForKey: bundleTitle];
+			if (!trackingDict)
+			{	
+				trackingDict = [NSMutableDictionary dictionaryWithCapacity: 32];
+				[bundleUniqueness setObject: trackingDict forKey: bundleTitle];
+			}
+			
 			NSLog(@"beficke: %@",link);
-			NSString *filename = [[link pathComponents] lastObject];
+			NSString *filename = [[[link pathComponents] lastObject] lowercaseString];
 			NSLog(@"filename: %@",filename);
 			
-			if ([[uniquenessBaby objectForKey: filename] boolValue])
+			if ([[trackingDict objectForKey: filename] boolValue])
 				continue;
-			[temp addObject: [NSString stringWithString: link]];
-			[uniquenessBaby setObject: [NSNumber numberWithBool: YES] forKey: filename];
+			[temp addObject: [NSString stringWithString: [link lowercaseString]]];
+			[trackingDict setObject: [NSNumber numberWithBool: YES] forKey: filename];
 			
 		}
-		[endArray addObject: temp];
+		if ([temp count] > 0)
+			[endArray addObject: temp];
 	}
 	
 	//no need to copy but anyways

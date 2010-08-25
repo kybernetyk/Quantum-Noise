@@ -142,18 +142,20 @@
 
 - (id) downloadBundleWithTitle: (NSString *) title ArchivePassword: (NSString *) password andURIs: (NSArray *) URIs
 {
+	title = [title lowercaseString];
+	
 	//check if we got this bundle already?
 	for (QNDownloadBundle *bundle in managedDownloadBundles)
 	{
-		if ([[bundle title] isEqualToString: title])
+		if ([[[bundle title] lowercaseString] isEqualToString: [title lowercaseString]])
 		{
 			NSLog(@"Bundle exists already! adding links to existing bundle");
 			LOG_LOCATION();
 			
-			QNDownloadBundle *dlb = [self downloadBundleForTitle: title];
+			QNDownloadBundle *dlb = [self downloadBundleForTitle: [title lowercaseString]];
 			
 			for (NSString *uri in URIs)
-				[dlb addURI: uri];
+				[dlb addURI: [uri lowercaseString]];
 
 			[self saveState];
 			return dlb;
@@ -170,6 +172,7 @@
 
 - (QNDownloadBundle *) downloadBundleForURI: (NSString *) uri
 {
+	uri = [uri lowercaseString];
 	for (QNDownloadBundle *bundle in managedDownloadBundles)
 		if ([bundle containsURI: uri])
 			return bundle;
@@ -179,8 +182,9 @@
 
 - (QNDownloadBundle *) downloadBundleForTitle: (NSString *) title
 {
+	title = [title lowercaseString];
 	for (QNDownloadBundle *bundle in managedDownloadBundles)
-		if ([[bundle title] isEqualToString: title])
+		if ([[[bundle title] lowercaseString] isEqualToString: [title lowercaseString]])
 			return bundle;
 	
 	return nil;
@@ -196,7 +200,7 @@
 	
 		for (QNDownloadBundle *bundle in managedBundles)
 		{
-			if ([[bundle title] isEqualToString: [bundleToRemove title]])
+			if ([[[bundle title] lowercaseString] isEqualToString: [[bundleToRemove title] lowercaseString]])
 			{	
 				for (QNDownloadOperation *op in [[QNDownloadManager sharedManager] downloadOperationsForDownloadBundle: bundle])
 				{
