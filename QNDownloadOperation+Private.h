@@ -12,6 +12,7 @@
 @interface QNDownloadOperation (Private)
 - (size_t) curlWriteDataToDiskCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks;
 - (size_t) curlHeaderCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks;
+- (size_t) curlReceivedDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks;
 - (int) curlProgressCallbackWithDownloadedBytes: (double) bytesDownloaded andTotalBytesToDownload: (double) totalBytes;
 - (BOOL) performFileDownload;
 - (BOOL) performRemoteLogin;

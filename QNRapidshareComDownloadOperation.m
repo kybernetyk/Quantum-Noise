@@ -12,27 +12,8 @@
 #import "QNDownloadOperation+Private.h"
 #import "NSString+Additions.h"
 
-#pragma mark C99 curl callbacks
-size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t nmemb, void *inSelf)
-{
-	QNRapidshareComDownloadOperation *me = (QNRapidshareComDownloadOperation *)inSelf;
-	
-	return [me rapidshareLoginWriteDataCallbackWithDataPointer: buffer blockSize: size numberOfBlocks: nmemb];
-}
-
 #pragma mark Category implementation
 @implementation QNRapidshareComDownloadOperation
-
-/*
- will save the received data (the login anwer page) into receivedData
- which can be parsed later in main:
- */
-- (size_t) rapidshareLoginWriteDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks
-{
-	//save data >.<
-	[receivedData appendBytes: data length: (blockSize * numberOfBlocks)];
-	return blockSize * numberOfBlocks;
-}
 
 /* will get the cookie from the API's response ... */
 /* hello my name is mustafa and I AM A FUCKING RETARDED 12 yo OLD TURKISH KID WHO SCORED A JOB
@@ -111,11 +92,11 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 		curl_easy_setopt(curlHandle, CURLOPT_COOKIEFILE,cookie_file ); 
 		//ok we're using libcurls cookie storage here. watch out
 		//when changing the credentials. the cookie store might not get erased. 
-		//so if you get weird login errors/fuckups with hotfile just look here first
+		//so if you get weird login errors/fuckups just look here first
 	}
 	
 	
-	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, rapidshare_login_write_data_callback);
+	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, receive_data_callback);
 	curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, self);
 	
 	[receivedData release];
@@ -333,7 +314,7 @@ size_t rapidshare_login_write_data_callback (void *buffer, size_t size, size_t n
 	curl_easy_setopt(curlHandle, CURLOPT_URL, [apiURL UTF8String]);
 	curl_easy_setopt(curlHandle, CURLOPT_FOLLOWLOCATION, 1);
 	
-	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, rapidshare_login_write_data_callback);
+	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, receive_data_callback);
 	curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, self);
 	
 	[receivedData release];

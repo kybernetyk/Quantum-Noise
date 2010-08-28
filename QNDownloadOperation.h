@@ -65,6 +65,7 @@
 	
 	id <QNDownloadOperationDelegateProtocol> delegate; //our delegate
 	
+	NSMutableData *receivedData;
 	
 	
 	//these vars are used to limit our delegate update frequency (to save redraws of UI)
@@ -113,6 +114,7 @@
 size_t header_callback (void *buffer, size_t size, size_t nmemb, void *inSelf);
 size_t write_data_callback (void *buffer, size_t size, size_t nmemb, void *inSelf);
 int progress_callback (void *inSelf, double dltotal, double dlnow, double ultotal, double ulnow);
+size_t receive_data_callback (void *buffer, size_t size, size_t nmemb, void *inSelf);
 @end
 
 

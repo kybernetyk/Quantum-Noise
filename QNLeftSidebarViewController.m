@@ -241,11 +241,6 @@
 	
 	}
 	
-//	NSInteger row = [outlineView selectedRow];
-	
-//	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	//[defaults setObject: [NSNumber numberWithInteger: row] forKey: kQNLeftSidebarSelectedRowDefaultsKey];
-	
 	//message our delegate of the change
 	if ([delegate respondsToSelector:@selector(leftSidebarViewController: selectedItemsChangedTo:)])
 		[delegate leftSidebarViewController: self selectedItemsChangedTo: selectedItems];

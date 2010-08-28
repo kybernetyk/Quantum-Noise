@@ -69,5 +69,19 @@
 	}
 }
 
+- (void) synchronizeViewsWithManagers
+{
+	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
+	//QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
+	
+	[downloadManager reloadSelection];
+	[currentDownloadsViewController setDataSource: [[QNDownloadManager sharedManager] selectedDownloads]];
+	[currentDownloadsViewController reloadContent];
+	
+	[leftSidebarViewController setContents: [self dataSourceForLeftSidebar]];
+	[leftSidebarViewController reloadContent];
+}
+
+
 
 @end

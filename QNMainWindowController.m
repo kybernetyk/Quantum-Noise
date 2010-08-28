@@ -52,93 +52,7 @@
 	[super dealloc];
 }
 
-
 #pragma mark window delegate 
-/*- (void)windowWillClose:(NSNotification *)notification
-{
-	NSLog(@"window will klose");
-//	[self autorelease];
-}
-- (void)windowWillLoad
-{
-
-}
-*/
-
-- (NSArray *) dataSourceForLeftSidebar
-{
-	//all
-	QNLeftSidebarItem *root = [QNLeftSidebarItem leftSidebarItemWithTitle: @"All Downloads" andType: kQNFolderType];
-	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
-	for (QNDownloadBundle *bundle in [bundleManager managedDownloadBundles])
-	{
-		QNLeftSidebarItem *item = [QNLeftSidebarItem leftSidebarItemWithTitle: [bundle title] andType: kQNLeafType];
-		//[item setUserData: bundle]; don't rely on this!
-		NSLog(@"adding bundle: %@",[bundle title]);
-		[root addChildItem: item];
-	}
-
-	//active
-	QNLeftSidebarItem *root2 = [QNLeftSidebarItem leftSidebarItemWithTitle: @"Active Downloads" andType: kQNFolderType];
-	for (QNDownloadBundle *bundle in [bundleManager managedDownloadBundles])
-	{
-		if ([bundle downloadProgress] >= 1.0)
-			continue;
-		
-		QNLeftSidebarItem *item = [QNLeftSidebarItem leftSidebarItemWithTitle: [bundle title] andType: kQNLeafType];
-		//[item setUserData: bundle]; don't rely on this!
-		[root2 addChildItem: item];
-	}
-	
-	
-	//finished
-	QNLeftSidebarItem *root3 = [QNLeftSidebarItem leftSidebarItemWithTitle: @"Finished Downloads" andType: kQNFolderType];
-	for (QNDownloadBundle *bundle in [bundleManager managedDownloadBundles])
-	{
-		if ([bundle downloadProgress] < 1.0)
-			continue;
-		
-		QNLeftSidebarItem *item = [QNLeftSidebarItem leftSidebarItemWithTitle: [bundle title] andType: kQNLeafType];
-		//[item setUserData: bundle]; don't rely on this!
-		[root3 addChildItem: item];
-	}
-	
-	
-	
-	
-	QNLeftSidebarItem *spacerRow = [QNLeftSidebarItem leftSidebarItemWithTitle:@"\n" andType:kQNHeaderType];
-	
-	
-	
-	
-	/*QNLeftSidebarItem *item = [QNLeftSidebarItem leftSidebarItemWithTitle: @"ein tierporn" andType: kQNLeafType];
-	
-	[root addChildItem: item];
-	
-	QNLeftSidebarItem *spacerRow = [QNLeftSidebarItem leftSidebarItemWithTitle:@"\n" andType:kQNHeaderType];
-
-	QNLeftSidebarItem *root2 = [QNLeftSidebarItem leftSidebarItemWithTitle: @"Finished Downloads" andType: kQNFolderType];
-	QNLeftSidebarItem *item2 = [QNLeftSidebarItem leftSidebarItemWithTitle: @"another tierporn" andType: kQNLeafType];
-	
-	[root2 addChildItem: item2];*/
-	
-	return [NSArray arrayWithObjects: root,spacerRow,root2,spacerRow,root3, nil];
-}
-
-- (void) synchronizeViewsWithManagers
-{
-	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
-	//QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
-
-	[downloadManager reloadSelection];
-	[currentDownloadsViewController setDataSource: [[QNDownloadManager sharedManager] selectedDownloads]];
-	[currentDownloadsViewController reloadContent];
-	
-	[leftSidebarViewController setContents: [self dataSourceForLeftSidebar]];
-	[leftSidebarViewController reloadContent];
-}
-
-
 - (void)windowDidLoad
 {
 	/*
@@ -310,6 +224,47 @@
 	[[currentDownloadsViewController view] setFrame: [rightContentView bounds]];
 }
 
+- (NSArray *) dataSourceForLeftSidebar
+{
+	//all
+	QNLeftSidebarItem *root = [QNLeftSidebarItem leftSidebarItemWithTitle: @"All Downloads" andType: kQNFolderType];
+	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
+	for (QNDownloadBundle *bundle in [bundleManager managedDownloadBundles])
+	{
+		QNLeftSidebarItem *item = [QNLeftSidebarItem leftSidebarItemWithTitle: [bundle title] andType: kQNLeafType];
+		//[item setUserData: bundle]; don't rely on this!
+		NSLog(@"adding bundle: %@",[bundle title]);
+		[root addChildItem: item];
+	}
+	
+	//active
+	QNLeftSidebarItem *root2 = [QNLeftSidebarItem leftSidebarItemWithTitle: @"Active Downloads" andType: kQNFolderType];
+	for (QNDownloadBundle *bundle in [bundleManager managedDownloadBundles])
+	{
+		if ([bundle downloadProgress] >= 1.0)
+			continue;
+		
+		QNLeftSidebarItem *item = [QNLeftSidebarItem leftSidebarItemWithTitle: [bundle title] andType: kQNLeafType];
+		//[item setUserData: bundle]; don't rely on this!
+		[root2 addChildItem: item];
+	}
+	
+	
+	//finished
+	QNLeftSidebarItem *root3 = [QNLeftSidebarItem leftSidebarItemWithTitle: @"Finished Downloads" andType: kQNFolderType];
+	for (QNDownloadBundle *bundle in [bundleManager managedDownloadBundles])
+	{
+		if ([bundle downloadProgress] < 1.0)
+			continue;
+		
+		QNLeftSidebarItem *item = [QNLeftSidebarItem leftSidebarItemWithTitle: [bundle title] andType: kQNLeafType];
+		//[item setUserData: bundle]; don't rely on this!
+		[root3 addChildItem: item];
+	}
+	QNLeftSidebarItem *spacerRow = [QNLeftSidebarItem leftSidebarItemWithTitle:@"\n" andType:kQNHeaderType];
+	
+	return [NSArray arrayWithObjects: root,spacerRow,root2,spacerRow,root3, nil];
+}
 
 #pragma mark - Split View Delegate
 // -------------------------------------------------------------------------------

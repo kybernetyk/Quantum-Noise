@@ -36,8 +36,7 @@
 	NSOperationQueue *unrarOperationQueue;							//operation queue for unrars
 }
 
-- (void) synchronizeViewsWithManagers;
-
+- (NSArray *) dataSourceForLeftSidebar;
 /*!
  pauses/resumes the download manager (or starts if it has not been run yet)
  */
@@ -82,6 +81,7 @@
 @interface QNMainWindowController (Helper)
 - (void) setValue: (id) value forKey: (id) key forAllOperationsInBundle: (QNDownloadBundle *) bundle;
 - (void) checkForCompleteBundlesAndProcessThem;
+- (void) synchronizeViewsWithManagers;
 @end
 
 

@@ -11,12 +11,12 @@
 #import "NSString+Additions.h"
 
 #pragma mark C99 curl callbacks
-size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmemb, void *inSelf)
+/*size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmemb, void *inSelf)
 {
 	QNHotfileDownloadOperation *me = (QNHotfileDownloadOperation *)inSelf;
 	
 	return [me hotfileLoginWriteDataCallbackWithDataPointer: buffer blockSize: size numberOfBlocks: nmemb];
-}
+}*/
 
 @implementation QNHotfileDownloadOperation
 
@@ -24,12 +24,12 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
  will save the received data (the login anwer page) into receivedData
  which can be parsed later in main:
  */
-- (size_t) hotfileLoginWriteDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks
+/*- (size_t) hotfileLoginWriteDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks
 {
 	//save data >.<
 	[receivedData appendBytes: data length: (blockSize * numberOfBlocks)];
 	return blockSize * numberOfBlocks;
-}
+}*/
 
 /*
  will try to login to hotfile premium and get a premium cookie for the following download
@@ -86,7 +86,9 @@ size_t hotfile_login_write_data_callback (void *buffer, size_t size, size_t nmem
 	}
 	
 	//file writing
-	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, hotfile_login_write_data_callback);
+//	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, hotfile_login_write_data_callback);
+	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION,	receive_data_callback);
+
 	curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, self);
 	
 	//if you crash here, somebody forgot to set the receivedData refrence to nil

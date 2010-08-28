@@ -12,7 +12,7 @@
 
 @interface QNHotfileDownloadOperation : QNDownloadOperation
 {
-	NSMutableData *receivedData;    //tmp storage for received data (header/login stuff only)
+	//NSMutableData *receivedData;    //tmp storage for received data (header/login stuff only)
 }
-- (size_t) hotfileLoginWriteDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks;
+//- (size_t) hotfileLoginWriteDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks;
 @end

@@ -52,7 +52,6 @@ int generate_uid_cookie_filename(id object, char *out_cookie_filename)
 #pragma mark -
 #pragma mark C99 curl callbacks
 //header callback
-
 size_t header_callback (void *buffer, size_t size, size_t nmemb, void *inSelf)
 {
 	QNDownloadOperation *me = (QNDownloadOperation *)inSelf;
@@ -76,6 +75,15 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 {
 	QNDownloadOperation *me = (QNDownloadOperation *)inSelf;
 	return [me curlProgressCallbackWithDownloadedBytes: dlnow andTotalBytesToDownload: dltotal];
+}
+
+//general receive data
+//will put data into receivedData
+size_t receive_data_callback (void *buffer, size_t size, size_t nmemb, void *inSelf)
+{
+ QNDownloadOperation *me = (QNDownloadOperation *)inSelf;
+ 
+ return [me curlReceivedDataCallbackWithDataPointer: buffer blockSize: size numberOfBlocks: nmemb];
 }
 
 
@@ -129,6 +137,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	[fileName release];
 	[temporaryDownloadFilename release];
 	[operationError release];
+	[receivedData release], receivedData = nil;
     [super dealloc];
 }
 
@@ -481,6 +490,17 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	return 0;
 }
 
+
+
+/*
+ will save the received data (the login anwer page) into receivedData
+ which can be parsed later in main:
+ */
+- (size_t) curlReceivedDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks
+{
+	[receivedData appendBytes: data length: (blockSize * numberOfBlocks)];
+	return blockSize * numberOfBlocks;
+}
 
 /*
  override this with your remote login code.

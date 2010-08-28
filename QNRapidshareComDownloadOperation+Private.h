@@ -8,5 +8,4 @@
  */
 
 @interface QNRapidshareComDownloadOperation (Private)
-- (size_t) rapidshareLoginWriteDataCallbackWithDataPointer: (void *) data blockSize: (size_t) blockSize numberOfBlocks: (size_t) numberOfBlocks;
 @end
