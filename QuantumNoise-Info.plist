@@ -33,7 +33,7 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>Codename</key>
-	<string>Cottonfield [lolz Intel-liek code name xD]</string>
+	<string>Cottonfield</string>
 	<key>com.apple.PreferenceSync.ExcludeSyncKeys</key>
 	<array>
 		<string>QNDownloadManagerState</string>
