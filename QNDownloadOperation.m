@@ -44,7 +44,7 @@ unsigned int SystemTimeInMilliSeconds (void)
 
 int generate_uid_cookie_filename(id object, char *out_cookie_filename)
 {
-	sprintf(out_cookie_filename,"/tmp/qn-cookie-0x%x\0",(unsigned int)object);
+	sprintf(out_cookie_filename,"/tmp/qn-cookie-0x%x",(unsigned int)object);
 	
 	return strlen(out_cookie_filename);
 }
@@ -206,7 +206,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	NSLog(@"new status: %@", newStatus);
 //	sleep(1);
 	
-	[delegate performSelectorOnMainThread: @selector(downloadOperationStatusDidChange:) 
+	[(NSObject*)delegate performSelectorOnMainThread: @selector(downloadOperationStatusDidChange:) 
 							   withObject: self 
 							waitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM];
 }
@@ -229,7 +229,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	progressUpdateDelegateTimer = SystemTimeInMilliSeconds();
 	
 	
-	[delegate performSelectorOnMainThread: @selector(downloadOperationDownloadProgressDidChange:) 
+	[(NSObject*)delegate performSelectorOnMainThread: @selector(downloadOperationDownloadProgressDidChange:) 
 							   withObject: self 
 							waitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM];
 }
@@ -248,7 +248,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	speedUpdateDelegateTimer = SystemTimeInMilliSeconds();
 	
 	
-	[delegate performSelectorOnMainThread: @selector(downloadOperationDownloadSpeedDidChange:)
+	[(NSObject*)delegate performSelectorOnMainThread: @selector(downloadOperationDownloadSpeedDidChange:)
 							   withObject: self 
 							waitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM];
 }
@@ -837,7 +837,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	//if our operation neither was executed nor is cannceld let's start the download
     if (![self isCancelled] && ![self hasBeenExecuted])
 	{	
-		[delegate performSelectorOnMainThread: @selector(downloadOperationDidStart:) 
+		[(NSObject*)delegate performSelectorOnMainThread: @selector(downloadOperationDidStart:) 
 								   withObject: self 
 								waitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM];
 		[self setStatus: @"Connecting"];
@@ -911,7 +911,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 	[self setHasBeenExecuted: YES];
 	NSLog(@"DOWNLOAD OPERATION ENDED WITH STATUS: %@",[self status]);
 	
-	[delegate performSelectorOnMainThread: @selector(downloadOperationDidFinish:) 
+	[(NSObject*)delegate performSelectorOnMainThread: @selector(downloadOperationDidFinish:) 
 							   withObject: self 
 							waitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM];	
 	
@@ -954,7 +954,7 @@ int progress_callback (void *inSelf, double dltotal, double dlnow, double ultota
 			exit(1001);
 		}
 		
-		BOOL bContinue = [self performSelector: the_selector];
+		BOOL bContinue = (BOOL)[self performSelector: the_selector];
 		
 		//TODO: rewrite the session loop part methods to not return BOOL but instead check the 
 		//operationError property to abort the loop

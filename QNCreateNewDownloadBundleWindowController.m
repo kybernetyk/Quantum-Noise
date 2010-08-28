@@ -8,7 +8,7 @@
 
 #import "QNCreateNewDownloadBundleWindowController.h"
 #import "QNDownloadBundleManager.h"
-
+#import "NSString+Additions.h"
 
 #pragma mark -
 #pragma mark implementation

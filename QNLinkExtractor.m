@@ -82,7 +82,6 @@
 	 we also sort the links alphabetically within each bundle.
 	*/
 	NSMutableArray *ret = [NSMutableArray array];
-	int i = 0;
 	for (NSNumber *key in dict)
 	{
 		NSArray *arr = [dict objectForKey: key];
@@ -130,7 +129,6 @@
 	 we also sort the links alphabetically within each bundle.
 	 */
 	NSMutableArray *ret = [NSMutableArray array];
-	int i = 0;
 	for (NSNumber *key in dict)
 	{
 		NSArray *arr = [dict objectForKey: key];

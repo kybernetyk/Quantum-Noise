@@ -78,35 +78,6 @@
 }
 
 #pragma mark contents
-// -------------------------------------------------------------------------------
-//	setContents:newContents
-// -------------------------------------------------------------------------------
-/*- (void)setContents:(id)newContents
-{
-	if (contents != newContents)
-	{
-		[contents release];
-		contents = [[NSArray alloc] initWithArray:newContents];
-		
-		NSLog(@"setting new contents: %@",newContents);
-		
-		[outlineView reloadData];
-		
-		NSLog(@"after reload");
-		//if the outline view seems only to show headers
-		//do a expandAll!
-		[self expandAllItems];
-	}
-}
-
-// -------------------------------------------------------------------------------
-//	contents:
-// -------------------------------------------------------------------------------
-- (NSArray *)contents
-{
-	return contents;
-}*/
-
 - (void) reloadContent
 {
 	LOG_LOCATION();
@@ -340,22 +311,6 @@
 //	NSLog(@"expand item: %@",item);
 }
 
-/*- (void)outlineViewItemWillCollapse:(NSNotification *)notification
-{
-	LOG_LOCATION();
-	
-	QNLeftSidebarItem *item = [[notification userInfo]valueForKey:@"NSObject"];
-	QNLeftSidebarItem *selectedItem = [outlineView itemAtRow: [outlineView selectedRow]];
-
-	//[outlineView selectRow: byExpandingSelection: NO];
-	
-//	[outlineView selectRow: [outlineView rowForItem: item]  byExtendingSelection: NO];
-	
-	//if ([[item childItems] containsObject: selectedItem])
-//	{
-	//	[outlineView deselectAll: self];
-//	}
-}*/
 
 - (void)outlineViewItemDidCollapse:(NSNotification *)notification
 {
@@ -372,14 +327,6 @@
 	[expansionPersistanceStore setObject: [NSNumber numberWithBool: [item isExpanded]] forKey: [item title]];
 	[defaults setObject: expansionPersistanceStore forKey: kQNPersistanceStoreDefaultsKey];
 }
-/*
-- (id)outlineView:(NSOutlineView *)outlineView persistentObjectForItem:(id)item
-{
-	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-	[dict setObject: [NSNumber numberWithBool: [item isExpanded]] forKey: @"expanded"];
-	
-	 return dict;
-}*/
 
 #pragma mark outlineView data source
 - (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item

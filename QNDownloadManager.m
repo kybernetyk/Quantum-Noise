@@ -595,8 +595,8 @@
 	
 	*/
 	
-	
-	[[delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
+	//cast to (NSObject*) because of the NSObject dd extensions to get rid off the warning
+	[[(NSObject*)delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
 	 downloadManager: self downloadOperationDownloadProgressDidChange: aDownloadOperation];
 	
 
@@ -607,7 +607,7 @@
 	[self updateOverallDownloadSpeed];
 
 	
-	[[delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
+	[[(NSObject*)delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
 	 downloadManager: self downloadOperationDownloadSpeedDidChange: aDownloadOperation];
 
 }
@@ -621,7 +621,7 @@
 {
 	[self saveState];
 
-	[[delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
+	[[(NSObject*)delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
 	 downloadManager: self downloadOperationDidFinish: aDownloadOperation];
 
 }
@@ -629,7 +629,7 @@
 - (void) downloadOperationStatusDidChange: (QNDownloadOperation *) aDownloadOperation
 {
 	
-	[[delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
+	[[(NSObject*)delegate dd_invokeOnMainThreadAndWaitUntilDone: DOWNLOAD_OPERATION_THREAD_SHOULD_WAIT_FOR_DELEGATE_PERFORM]
 	 downloadManager: self downloadOperationStatusDidChange: aDownloadOperation];
 
 }

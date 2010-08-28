@@ -66,7 +66,7 @@
 				{	
 					[self setProgress: [part intValue]];
 
-					[delegate performSelectorOnMainThread: @selector(unrarOperationProgressDidChange:)
+					[(NSObject*)delegate performSelectorOnMainThread: @selector(unrarOperationProgressDidChange:)
 											   withObject: self 
 											waitUntilDone: NO];
 					
@@ -88,7 +88,7 @@
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	[delegate performSelectorOnMainThread: @selector(unrarOperationDidStart:)
+	[(NSObject*)delegate performSelectorOnMainThread: @selector(unrarOperationDidStart:)
 							   withObject: self 
 							waitUntilDone: NO];
 	
@@ -168,7 +168,7 @@
 		else 
 		{
 			[self setProgress: 100];
-			[delegate performSelectorOnMainThread: @selector(unrarOperationProgressDidChange:)
+			[(NSObject*)delegate performSelectorOnMainThread: @selector(unrarOperationProgressDidChange:)
 									   withObject: self 
 									waitUntilDone: NO];
 		}
@@ -180,7 +180,7 @@
 	
 		[aTask release];
 	}
-	[delegate performSelectorOnMainThread: @selector(unrarOperationDidEnd:)
+	[(NSObject*)delegate performSelectorOnMainThread: @selector(unrarOperationDidEnd:)
 							   withObject: self 
 							waitUntilDone: NO];
 	

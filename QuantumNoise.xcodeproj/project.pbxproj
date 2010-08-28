@@ -67,6 +67,10 @@
 		03C20E64108E1ECE009C905A /* QNDownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C20E63108E1ECE009C905A /* QNDownloadsViewController.m */; };
 		03C20E66108E1EDC009C905A /* DownloadsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C20E65108E1EDC009C905A /* DownloadsView.xib */; };
 		03C5792D10D2A10F00BECFEE /* How To Threadsafe Delegates in Resources */ = {isa = PBXBuildFile; fileRef = 03C5792C10D2A10F00BECFEE /* How To Threadsafe Delegates */; };
+		03E6B9561229024100C966C3 /* QNMainWindowController+Sheets.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B9551229024100C966C3 /* QNMainWindowController+Sheets.m */; };
+		03E6B96F122903CC00C966C3 /* QNMainWindowController+DownloadManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B96E122903CC00C966C3 /* QNMainWindowController+DownloadManagerDelegate.m */; };
+		03E6B9751229047200C966C3 /* QNMainWindowController+UnrarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B9741229047200C966C3 /* QNMainWindowController+UnrarDelegate.m */; };
+		03E6B97F1229058A00C966C3 /* QNMainWindowController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B97E1229058A00C966C3 /* QNMainWindowController+Helper.m */; };
 		03F8D3B6108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F8D3B3108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib */; };
 		03F8D3B7108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F8D3B5108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m */; };
 		03F8D3BB108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F8D3B8108E4E6100B8E7E2 /* QNCreateNewDownloadBundleWindow.xib */; };
@@ -187,6 +191,10 @@
 		03C20E65108E1EDC009C905A /* DownloadsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadsView.xib; sourceTree = "<group>"; };
 		03C5792710D29FBE00BECFEE /* How To Preference Bundles */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "How To Preference Bundles"; sourceTree = "<group>"; };
 		03C5792C10D2A10F00BECFEE /* How To Threadsafe Delegates */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "How To Threadsafe Delegates"; sourceTree = "<group>"; };
+		03E6B9551229024100C966C3 /* QNMainWindowController+Sheets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QNMainWindowController+Sheets.m"; sourceTree = "<group>"; };
+		03E6B96E122903CC00C966C3 /* QNMainWindowController+DownloadManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QNMainWindowController+DownloadManagerDelegate.m"; sourceTree = "<group>"; };
+		03E6B9741229047200C966C3 /* QNMainWindowController+UnrarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QNMainWindowController+UnrarDelegate.m"; sourceTree = "<group>"; };
+		03E6B97E1229058A00C966C3 /* QNMainWindowController+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QNMainWindowController+Helper.m"; sourceTree = "<group>"; };
 		03F8D3B3108E4E5800B8E7E2 /* QNAddDownloadLinksWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QNAddDownloadLinksWindow.xib; sourceTree = "<group>"; };
 		03F8D3B4108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNAddDownloadLinksWindowController.h; sourceTree = "<group>"; };
 		03F8D3B5108E4E5800B8E7E2 /* QNAddDownloadLinksWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNAddDownloadLinksWindowController.m; sourceTree = "<group>"; };
@@ -341,6 +349,10 @@
 				03A0EE3610B34F6C0032BA3A /* MainWindow.xib */,
 				03C20D52108E14FF009C905A /* QNMainWindowController.h */,
 				03C20D53108E14FF009C905A /* QNMainWindowController.m */,
+				03E6B9551229024100C966C3 /* QNMainWindowController+Sheets.m */,
+				03E6B96E122903CC00C966C3 /* QNMainWindowController+DownloadManagerDelegate.m */,
+				03E6B9741229047200C966C3 /* QNMainWindowController+UnrarDelegate.m */,
+				03E6B97E1229058A00C966C3 /* QNMainWindowController+Helper.m */,
 			);
 			name = "Main Window";
 			sourceTree = "<group>";
@@ -789,6 +801,10 @@
 				03FB7DAB10CB13CA00C88868 /* SS_PrefsController.m in Sources */,
 				0358787811FB4DC600F53F47 /* QNHotfileDownloadOperation.m in Sources */,
 				034AF27811FB5C3D00224FEE /* RegexKitLite.m in Sources */,
+				03E6B9561229024100C966C3 /* QNMainWindowController+Sheets.m in Sources */,
+				03E6B96F122903CC00C966C3 /* QNMainWindowController+DownloadManagerDelegate.m in Sources */,
+				03E6B9751229047200C966C3 /* QNMainWindowController+UnrarDelegate.m in Sources */,
+				03E6B97F1229058A00C966C3 /* QNMainWindowController+Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

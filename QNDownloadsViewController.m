@@ -64,37 +64,4 @@
 	return @"THE HOFF";
 }
 
-/*- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
-{
-	QNDownloadManager *downloadManager = [QNDownloadManager sharedManager];
-	QNDownloadBundleManager *bundleManager = [QNDownloadBundleManager sharedManager];
-	
-	NSTableView *table = [aNotification object];
-	
-	if ([table tag] == kTagBundlesTable && [table selectedRow] >= 0)
-	{
-		
-		
-		NSInteger index = [table selectedRow];
-		
-		if (index == 0)
-		{
-			//[downloadManager selectDownloadsInBundle: [bundleManager downloadBundleForTitle: @"Crash"]];
-			[downloadManager selectAllDownloads];
-			[downloadTable reloadData];
-			[self updateUIElements];
-			
-		}
-		else 
-		{
-			[downloadManager selectDownloadsInBundle: [[bundleManager managedDownloadBundles] objectAtIndex: (index-1)]];
-			[downloadTable reloadData]; 
-			[self updateUIElements];
-		}
-		
-		
-	}
-}*/
-
-
 @end
