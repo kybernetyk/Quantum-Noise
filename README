@@ -5,6 +5,10 @@ What's this
 -----------
 It's a OS X download client for one click hosters like hotfile or rapidshare.
 
+Why am I opensourcing it
+------------------------
+Like the most projects that get open sourced: Because it's dead :] I don't plan to do any work on it and I don't want this repo to keep a paid-for slot on github occupied. So here you are ... have a lot of fun or not. Most likely not :]
+
 Details
 -------
 It's written in Objective C and uses the Cocoa framework. For networking stuff (downloading) libcurl is used.
@@ -51,5 +55,5 @@ Using libcurl, something with rar, and probably some other FOSS projects.
 
 Copyright
 ---------
-All the shiny OS X stuff is done by me: J. Szpilewski / http://nntp.pl
+All the shiny OS X stuff is done by me: J. Szpilewski / http://nntp.pl / jszpilewski@me.com
 All the other shit is done by other people. Look into the files to get an idea who did it.
