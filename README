@@ -9,6 +9,10 @@ Details
 -------
 It's written in Objective C and uses the Cocoa framework. For networking stuff (downloading) libcurl is used.
 
+Supported Hosters
+-----------------
+Hotfile, Rapidshare* and normal http downloads.
+
 License
 -------
 GPL V3
