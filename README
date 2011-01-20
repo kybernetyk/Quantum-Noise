@@ -1,3 +1,51 @@
-This is the development branch. It's full of wonders and candy.
+Quantum Noise
+=============
 
-Omg, wir sind so toll!
+What's this
+-----------
+It's a OS X download client for one click hosters like hotfile or rapidshare.
+
+Details
+-------
+It's written in Objective C and uses the Cocoa framework. For networking stuff (downloading) libcurl is used.
+
+License
+-------
+GPL V3
+
+Usage
+-----
+Check out, open project in XCode, build&run. The program should be self explainatory.
+
+Binary Download
+---------------
+Hmm, let's see ... none there yet. :]]]]
+
+Warnings
+--------
+1) The code is ugly. It's a perfect example of over engineering everything and overusing OOP (by using it at all). If I had to do it again I would do a lot of stuff simpler and probably in plain old C99 instead of Obj-C. But at that time I was hyped by the smalltalk'ish Obj-C OO and drank too much kool aid.
+
+2) The LeftSideView (or what it's called) is an ugly bitch. It's a piece of crap that I somehow came up while under the influence of retardness.
+
+3) You might find old login data for one click hosters in the repo or the history. They are old and if they work: Lucky you - you got some free porn.
+
+4) Rapidshare support may be broken - but as RS is broken nowadays, who cares?
+
+5) The code is ugly. Please don't judge my l33tness based on the code. It's what happens if you over engineer at first and then start hacking around. Today I would just hack and fuck the engineering part. The internet is a hack, our computing systems are hacks, so we should keep the tradition and be hacking too. Let engineering to the retards who build bridges.
+
+6) It's FREE OF MEMORY LEAKS
+
+7) Did I say that the code is a mess? Yep, but: It's even more of a mess because I mixed OOP with concurrency. Yeah, stupid me ... the code to make the shit thread safe is rocket science. Though it works on dual core systems (in over one year of usage there were no concurrency related bugs). Don't mix OO with concurrency. In fact: Don't do OO unless your making some shiny UI where the OO concept is not too bad at.
+
+8) Sometimes when I'm drunk I start to code/comment code. Paired with my morbid sense of humor you might find interesting comments in the project. If you are a fucktard of political correct hippy faggot: Go away. You might find things that will disturb your world view.
+
+9) There's some functionality missing: Removing bundles, etc. But frankly I don't care because I'm using now a C99 based command line solution to get my daily infusion of warez/porn. So if you want that shit fixed: Either do it yourself or pay me a metric fuckton of money.
+
+Attribution
+-----------
+Using libcurl, something with rar, and probably some other FOSS projects.
+
+Copyright
+---------
+All the shiny OS X stuff is done by me: J. Szpilewski / http://nntp.pl
+All the other shit is done by other people. Look into the files to get an idea who did it.
